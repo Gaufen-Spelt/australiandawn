@@ -129,8 +129,10 @@ header h2:before {
 .tools.left {
   float: none;
   left: auto;
-  flex: 0 0 260px;
-  width: 260px;
+  flex: 1 1 0;
+  min-width: 0;
+  max-height: 12em;
+  overflow-y: auto;
 }
 
 /* Row 2: spans full width below the two left boxes */
