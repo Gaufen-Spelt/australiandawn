@@ -100,34 +100,46 @@ header h2:before {
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* ─── Tools wrapper — now BELOW content ─────────────────── */
+/* ─── Tools wrapper — row ABOVE #content ────────────────── */
+/*
+ * Layout (L→R): [tools.left #1 fixed] [tools.left #2 fixed] [tools.right expands]
+ * Sits between header and main content; #content follows below.
+ */
 #tools_wrapper {
   position: static;
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: stretch;
   gap: 0.6em;
-  margin-top: 1em;
+  margin-bottom: 0.6em;
 }
 
 /* ─── Individual tool panels ─────────────────────────────── */
 .tools {
   padding: 0.6em;
-  /* grow to fill available space, but cap width so they stay column-like */
-  flex: 1 1 220px;
-  max-width: 320px;
   color: var(--text-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
+  overflow-y: auto;
 }
-/* floats no longer needed */
-.tools.left,
-.tools.right {
+
+/* First two boxes: fixed 260 px, don't grow or shrink */
+.tools.left {
   float: none;
   left: auto;
+  flex: 0 0 260px;
+  width: 260px;
+}
+
+/* Third box: eat all remaining horizontal space */
+.tools.right {
+  float: none;
   right: auto;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* ─── Mid panel (no side margins needed anymore) ─────────── */
@@ -453,11 +465,13 @@ table {
   }
   #tools_wrapper {
     flex-direction: column;
+    flex-wrap: wrap;
   }
-  .tools {
-    max-width: 100%;
+  .tools.left,
+  .tools.right {
     flex: 1 1 auto;
-    margin: 0.4em 0;
+    width: 100%;
+    max-width: 100%;
   }
   #qualities {
     font-size: 1em;
