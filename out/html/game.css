@@ -10,14 +10,15 @@ body {
   --tab-bg-color: #dedede;
   --tab-color: #ddd;
   --tab-hover-color: #ececec;
-  --card-border-color: #ccc; 
-  --card-bg-color: #ddd; 
+  --card-border-color: #ccc;
+  --card-bg-color: #ddd;
   font-family: "Minion Pro", Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
   line-height: 155%;
   overflow-y: scroll;
 }
+
 body.dark-mode {
   --bg-color: #000;
   --border-color: #fff;
@@ -41,29 +42,23 @@ body.dark-mode .tools {
   border-width: 4px;
   border-color: #888;
 }
-header, #content, footer {
-  color: var(--text-color);
-  max-width: 800px;
+
+/* ─── Page shell ─────────────────────────────────────────── */
+#page {
+  width: 95%;
+  max-width: 95vw;
   margin: 0 auto;
-  overflow: auto;
-}
-#content {
-  position: relative;
-  background-color: var(--content-bg-color);
-  font-size: 1.1em;
-  padding: 1em 1.5em 1.5em 1.5em;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-}
-footer {
-  margin-top: 1em;
-  font-size: 0.8em;
   position: relative;
 }
-footer a {
-  padding-right: 1em;
-}
+
+/* ─── Header ─────────────────────────────────────────────── */
 header {
-  text-align: right
+  color: var(--text-color);
+  width: 95%;
+  max-width: 95vw;
+  margin: 0 auto;
+  text-align: right;
+  overflow: auto;
 }
 #header-links {
   text-align: left;
@@ -77,7 +72,8 @@ header {
 #header-links a {
   padding-right: 1em;
 }
-header h1, header h2 {
+header h1,
+header h2 {
   display: inline-block;
   font-weight: normal;
   margin: 0;
@@ -92,6 +88,88 @@ header h2:before {
   padding: 0 0.3em 0 0;
 }
 
+/* ─── Main content ───────────────────────────────────────── */
+#content {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--content-bg-color);
+  color: var(--text-color);
+  font-size: 1.1em;
+  padding: 1em 1.5em 1.5em 1.5em;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Tools wrapper — now BELOW content ─────────────────── */
+#tools_wrapper {
+  position: static;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin-top: 1em;
+}
+
+/* ─── Individual tool panels ─────────────────────────────── */
+.tools {
+  padding: 0.6em;
+  /* grow to fill available space, but cap width so they stay column-like */
+  flex: 1 1 220px;
+  max-width: 320px;
+  color: var(--text-color);
+  background-color: var(--content-bg-color);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+/* floats no longer needed */
+.tools.left,
+.tools.right {
+  float: none;
+  left: auto;
+  right: auto;
+}
+
+/* ─── Mid panel (no side margins needed anymore) ─────────── */
+#mid_panel {
+  margin: 0;
+}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+footer {
+  color: var(--text-color);
+  width: 95%;
+  max-width: 95vw;
+  margin: 1em auto 0 auto;
+  font-size: 0.8em;
+  position: relative;
+}
+footer a {
+  padding-right: 1em;
+}
+
+/* ─── Qualities sidebar ──────────────────────────────────── */
+#qualities {
+  text-indent: 0;
+  line-height: 1.3em;
+}
+#qualities p {
+  text-indent: 0;
+}
+#qualities h1 {
+  font-size: 1.1em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px,
+               rgba(0, 0, 0, 0.1) -1px -1px 2px;
+}
+#qualities h1 + p:first-line {
+  font-weight: normal;
+}
+
+/* ─── Content internals (unchanged) ─────────────────────── */
 #content #read-marker {
   border: none;
   border-top: 1px solid var(--border-color);
@@ -112,6 +190,7 @@ header h2:before {
   text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px,
                rgba(0, 0, 0, 0.1) -1px -1px 2px;
 }
+
 a {
   color: var(--link-color);
   text-decoration: none;
@@ -128,6 +207,7 @@ p.game-over {
   border-radius: 4px;
   color: #999;
 }
+
 ul.choices {
   border: 2px solid #876;
   padding: 0;
@@ -159,6 +239,7 @@ ul.choices li:last-child {
 ul.choices a {
   text-decoration: none;
 }
+
 blockquote {
   margin: 1em 2em;
 }
@@ -168,162 +249,74 @@ blockquote.attribution {
 blockquote + blockquote.attribution {
   margin-top: -1em;
 }
-/* This is mostly copied from undum. */
-#mid_panel {
-  margin: 0 12rem;
-}
-#page {
-  margin: 0 auto;
-  position: relative;
-}
-#tools_wrapper {
-  position: absolute;
-  width: 100%;
-  max-width: 80em;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
-.tools {
-  padding: 0.6em;
-  width: 14rem;
-  color: var(--text-color);
-  background-color: var(--content-bg-color);
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-}
-.tools.left {
-  float: left;
-  left: 0.4em;
-}
-.tools.right {
-  float: right;
-  right: 0.4em;
-}
-#qualities {
-  text-indent: 0;
-  line-height: 1.3em;
-}
-#qualities p {
-  text-indent: 0;
-}
-#qualities h1 {
-  font-size: 1.1em;
-  font-weight: normal;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px,
-               rgba(0, 0, 0, 0.1) -1px -1px 2px;
-}
-#qualities h1 + p:first-line {
-  font-weight: normal;
-}
 
-
-/* tabs */
+/* ─── Tabs ───────────────────────────────────────────────── */
 .tab_container {
-    background-color: var(--tab-bg-color);
-    margin-top: -0.6em;
-    margin-left: -0.6em;
-    margin-right: -0.6em;
+  background-color: var(--tab-bg-color);
+  margin-top: -0.6em;
+  margin-left: -0.6em;
+  margin-right: -0.6em;
 }
 .tab_button {
-    font-family: "Minion Pro", Georgia, serif;
-    background-color: var(--tab-color);
-    color: var(--text-color);
-    /*float: left;*/
-    border: none;
-    outline: none;
-    padding: 10px;
+  font-family: "Minion Pro", Georgia, serif;
+  background-color: var(--tab-color);
+  color: var(--text-color);
+  border: none;
+  outline: none;
+  padding: 10px;
 }
 .tab_button.active {
-    background-color: var(--content-bg-color);
+  background-color: var(--content-bg-color);
 }
 .tab_button:hover {
-    background-color: var(--tab-hover-color);
+  background-color: var(--tab-hover-color);
 }
 
-
+/* ─── Overlay / save ─────────────────────────────────────── */
 .overlay {
-    background: rgba(0,0,0,0.7);
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    overflow: scroll;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: 2;
+  overflow: scroll;
 }
 .options {
-    text-align: right;
+  text-align: right;
 }
 .overlay_top {
-    position: relative;
-    max-width: 540px;
-    margin: 100px auto;
-    background: rgba(50,50,50,0.7);
-    border: 2px solid;
-    color: white;
+  position: relative;
+  max-width: 540px;
+  margin: 100px auto;
+  background: rgba(50,50,50,0.7);
+  border: 2px solid;
+  color: white;
 }
 .save_info {
-    min-width: 10em;
+  min-width: 10em;
 }
+
+/* ─── Background layers ──────────────────────────────────── */
 .background {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: var(--bg-color);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    overflow: hidden;
+  position: fixed;
+  width: 100%; height: 100%;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: var(--bg-color);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
 }
-/*
- * This is used for overlaying transparencies
- * only transition on fade-in
- * */
-#bg2 {
-    z-index: -100;
-}
-#bg1 {
-    z-index: -99;
-}
-.b {
-}
-.save_button {
-}
-.delete_button {
-}
+#bg2 { z-index: -100; }
+#bg1  { z-index: -99; }
 
-/*
- * Card stuff for dendrynexus
- * 
- */
-
+/* ─── Cards ──────────────────────────────────────────────── */
 ul.decks, ul.hand, ul.pinned-cards {
   list-style: none;
   padding-left: 0;
 }
-
-.hand {
-
-}
-
-.pinned-cards {
-
-}
-
-.deck {
-
-}
-
 a.card {
   display: inline-block;
   width: 120px;
@@ -346,7 +339,6 @@ div.blank-card {
   border: 10px solid var(--card-border-color);
   margin-bottom: 0.5em;
 }
-
 .card-in-hand, .pinned-card, .deck {
   display: inline-block;
   position: relative;
@@ -354,20 +346,16 @@ div.blank-card {
   margin-right: 1em;
   vertical-align: top;
 }
-
-/* TODO: unavailable card */
 .unavailable-card {
   color: var(--unavailable-color);
   background-color: var(--unavailable-bg-color) !important;
   cursor: default !important;
 }
-
 .card-caption {
   text-align: center;
   display: block;
   font-size: 1em;
 }
-
 .card-tooltip {
   position: absolute;
   visibility: hidden;
@@ -380,197 +368,103 @@ div.blank-card {
   background-color: var(--content-bg-color);
   left: 105%;
 }
-
 .card-img {
   height: 150px;
   width: 120px;
   object-fit: cover;
 }
-
-a.card:focus .card-tooltip, a.card:hover .card-tooltip {
+a.card:focus .card-tooltip,
+a.card:hover .card-tooltip {
   visibility: visible;
   position: absolute;
 }
-
-/* Unlike cards, face images can have different sizes. */
 .face-figure {
-  /*vertical-align: top;*/
   display: inline-block;
   border: 5px solid var(--card-border-color);
   float: left;
   max-width: 35%;
-  /*max-height: 180px;*/
   margin-right: 1em;
   margin-bottom: 0.5em;
   overflow: hidden;
 }
 .face-img {
-  /*max-width: 150px;*/
   vertical-align: bottom;
   object-fit: cover;
 }
 
-/*
- * sprite stuff- feel free to comment out/remove if not using
- */
+/* ─── Sprites ────────────────────────────────────────────── */
 img {
-    max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 #contentSpriteContainer {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   max-width: 62em;
-  left: 0;
-  right: 0;
+  left: 0; right: 0;
   margin: 0 auto;
   z-index: -97;
 }
-.sprite {
-    position: absolute;
-    width: 180px;
-}
-#topLeftSprite {
-    float: left;
-    top: -1em;
-    left: 0.4em;
-}
-#topRightSprite {
-    float: right;
-    top: -1em;
-    right: 0.4em;
-}
-#bottomLeftSprite {
-    float: left;
-    left: 0.4em;
-    top: 50%;
-}
-#bottomRightSprite {
-    float: right;
-    right: 0.4em;
-    top: 50%;
-}
+.sprite { position: absolute; width: 180px; }
+#topLeftSprite    { float: left;  top: -1em; left: 0.4em; }
+#topRightSprite   { float: right; top: -1em; right: 0.4em; }
+#bottomLeftSprite { float: left;  left: 0.4em; top: 50%; }
+#bottomRightSprite{ float: right; right: 0.4em; top: 50%; }
 
-/* smaller screens: hide left margin */
-@media screen and (max-width: 1200px) {
-  .tools {
-      margin-right: 0.4em;
-      margin-left: 0.4em;
-  }
-  #mid_panel {
-      margin-right: 0.4em;
-  }
-}
-/* mobile: move the stat box to the top if the screen is too small,
- * and reduce font size slightly. */
-@media screen and (max-width: 560px) {
-  #page {
-      position: static;
-  }
-  #content {
-      position: static;
-      font-size: 1em;
-      line-height: 160%;
-      padding: 1em 1em 1.5em 1em;
-  }
-  #qualities {
-      font-size: 1em;
-  }
-  #tools_wrapper {
-    position: static;
-  }
-  .tools {
-      width: 90%;
-      margin: 2em 0 1em 0;
-      margin: 0.4em;
-  }
-  .tools.left {
-      float: none;
-      left: 0;
-  }
-  .tools.right {
-      float: none;
-      right: 0;
-  }
-  #mid_panel {
-      margin: 0 auto;
-  }
-
-  /* cards are smaller on mobile */
-  .card-img {
-    height: 125px;
-    width: 100px;
-  }
-  a.card {
-    width: 100px;
-    height: 125px;
-    border: 8px solid var(--card-border-color);
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-  div.blank-card {
-    width: 100px;
-    height: 125px;
-    border: 8px solid var(--card-border-color);
-    margin-bottom: 0.5em;
-  }
-  .card-in-hand, .pinned-card, .deck {
-    max-width: 120px;
-    margin-right: 1em;
-    vertical-align: top;
-  }
-}
-
-
-/* New stuff just for this game */
-
-/* colored box div */
+/* ─── Game-specific additions ────────────────────────────── */
 .box {
   display: inline-block;
   height: 1em;
   width: 1em;
 }
-
 table {
-    border-spacing: 0.5em;
+  border-spacing: 0.5em;
 }
 
-/* Styles for parties */
-.seat.kpd {
-    fill: #8B0000;
-}
-.seat.spd {
-    fill: #E3000F;
-    stroke: var(--border-color);
-    stroke-width: 1.5px;
-}
-.seat.ddp {
-    fill: #DCCA4A;
-}
-.seat.z {
-    fill: #000;
-}
-.seat.bvp {
-    fill: #69A2BE;
-}
-.seat.dvp {
-    fill: #D5AC27;
-}
-.seat.other {
-    fill: #909090;
-}
-.seat.dnvp {
-    fill: #3F7BC1;
-}
-.seat.nsdap {
-    fill: #954B00;
-}
-.seat.sapd {
-    fill: #C40000;
-}
+/* Party seat colours */
+.seat.kpd   { fill: #8B0000; }
+.seat.spd   { fill: #E3000F; stroke: var(--border-color); stroke-width: 1.5px; }
+.seat.ddp   { fill: #DCCA4A; }
+.seat.z     { fill: #000; }
+.seat.bvp   { fill: #69A2BE; }
+.seat.dvp   { fill: #D5AC27; }
+.seat.other { fill: #909090; }
+.seat.dnvp  { fill: #3F7BC1; }
+.seat.nsdap { fill: #954B00; }
+.seat.sapd  { fill: #C40000; }
 
 .tooltip-text {
-    text-decoration: underline;
-    text-decoration-style: dotted;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media screen and (max-width: 700px) {
+  #page,
+  header,
+  footer {
+    width: 100%;
+    max-width: 100%;
+  }
+  #content {
+    font-size: 1em;
+    line-height: 160%;
+    padding: 1em 1em 1.5em 1em;
+  }
+  #tools_wrapper {
+    flex-direction: column;
+  }
+  .tools {
+    max-width: 100%;
+    flex: 1 1 auto;
+    margin: 0.4em 0;
+  }
+  #qualities {
+    font-size: 1em;
+  }
+  /* smaller cards on mobile */
+  .card-img { height: 125px; width: 100px; }
+  a.card    { width: 100px; height: 125px; border: 8px solid var(--card-border-color); }
+  div.blank-card { width: 100px; height: 125px; border: 8px solid var(--card-border-color); }
+  .card-in-hand, .pinned-card, .deck { max-width: 120px; }
 }
