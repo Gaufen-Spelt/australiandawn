@@ -241,7 +241,37 @@
 
 
   window.justLoaded = true;
+  // Track tabs for each sidebar independently
   window.statusTab = "status";
+  window.statusTab2 = "status.politics";  // change to whatever scene you want
+  window.statusTab3 = "status.polls";     // change to whatever scene you want
+
+  window.updateSidebar = function() {
+    // Box 1 — existing
+    $('#qualities').empty();
+    var scene = dendryUI.game.scenes[window.statusTab];
+    dendryUI.dendryEngine._runActions(scene.onArrival);
+    var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
+    $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
+
+    // Box 2 — fixed scene, no tabs needed
+    $('#qualities_2').empty();
+    var scene2 = dendryUI.game.scenes[window.statusTab2];
+    if (scene2) {
+        dendryUI.dendryEngine._runActions(scene2.onArrival);
+        var displayContent2 = dendryUI.dendryEngine._makeDisplayContent(scene2.content, true);
+        $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
+    }
+
+    // Box 3 — fixed scene, no tabs needed
+    $('#qualities_3').empty();
+    var scene3 = dendryUI.game.scenes[window.statusTab3];
+    if (scene3) {
+        dendryUI.dendryEngine._runActions(scene3.onArrival);
+        var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
+        $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
+    }
+};
   window.dendryModifyUI = main;
   console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
 
