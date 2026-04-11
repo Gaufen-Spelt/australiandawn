@@ -306,6 +306,7 @@
                 </div>
             </header>
             <div id="tools_wrapper">
+                <!-- Box 1: existing stats sidebar (fixed width) -->
                 <div id='stats_sidebar' class='tools left'>
                     <div class="tab_container">
                         <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Main</button>
@@ -314,6 +315,18 @@
                         <button class="tab_button" id="poll_tab" onclick="window.changeTab('status.polls', 'poll_tab');">Polls</button>
                     </div>
                     <div id="qualities">
+                    </div>
+                </div>
+
+    <!-- Box 2: second fixed-width stats panel (populate via JS like qualities) -->
+                <div id='stats_sidebar_2' class='tools left'>
+                    <div id="qualities_2">
+                    </div>
+                </div>
+
+    <!-- Box 3: expands to fill remaining space -->
+                <div id='stats_sidebar_3' class='tools right'>
+                    <div id="qualities_3">
                     </div>
                 </div>
             </div>
