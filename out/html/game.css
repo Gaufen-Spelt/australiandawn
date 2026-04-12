@@ -507,3 +507,7 @@ table {
 @keyframes tw-fade {
     to { opacity: 1; }
 }
+
+#faction-chart {
+    margin-left: 1.5em;
+}
