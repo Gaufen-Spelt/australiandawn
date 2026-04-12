@@ -319,10 +319,17 @@
                     </div>
                 </div>
 
-    <!-- Box 2: second fixed-width stats panel (populate via JS like qualities) -->
+    <!-- Box 2: second fixed-width stats pane -->
                 <div id='stats_sidebar_2' class='tools left'>
-                    <div id="qualities_2">
-                    </div>
+    <div class="tab_container">
+        <button class="tab_button active" id="intel_tab" onclick="window.changeTab2('status_2.intel', 'intel_tab');">Intel</button>
+        <button class="tab_button" id="street_tab" onclick="window.changeTab2('status_2.street', 'street_tab');">Street</button>
+        <button class="tab_button" id="union_tab" onclick="window.changeTab2('status_2.union', 'union_tab');">Union</button>
+        <button class="tab_button" id="internal_tab" onclick="window.changeTab2('status_2.internal', 'internal_tab');">Internal</button>
+        <button class="tab_button" id="internat_tab" onclick="window.changeTab2('status_2.internat', 'internat_tab');">Internat</button>
+    </div>
+    <div id="qualities_2">
+    </div>
                 </div>
 
     <!-- Box 3: expands to fill remaining space -->
