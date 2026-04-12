@@ -502,7 +502,7 @@ table {
 
 .tw {
     opacity: 0;
-    animation: tw-fade 0.1s forwards;
+    animation: tw-fade 0.05s forwards;
 }
 @keyframes tw-fade {
     to { opacity: 1; }
