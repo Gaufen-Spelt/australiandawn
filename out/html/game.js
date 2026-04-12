@@ -314,9 +314,15 @@ window.updateSidebar = function() {
     $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
     }
 
+    var chartEl = document.getElementById('faction-chart');
+    if (chartEl) {
     if (window.statusTab3 === 'status_3.factions') {
-    window.drawFactionChart();
+        chartEl.style.display = '';
+        window.drawFactionChart();
+    } else {
+        chartEl.style.display = 'none';
     }
+}
 };
 
 window.sidebar3Collapsed = false;
