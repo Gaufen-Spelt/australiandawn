@@ -69,5 +69,3 @@ window._factionClick = function(idx) {
 !}
 
 = Charts
-
-{!<div id="faction-chart" style="margin-bottom:12px;"></div>!}
