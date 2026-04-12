@@ -329,4 +329,23 @@ window.onload = function() {
     window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
 };
 
+window.enableTypewriter = function() {
+    window.dendryUI.typewriter = true;
+    window.dendryUI.saveSettings();
+};
+
+window.disableTypewriter = function() {
+    window.dendryUI.typewriter = false;
+    window.dendryUI.saveSettings();
+};
+
+window.displayText = function(text) {
+    if (!window.dendryUI.typewriter) return text;
+    // wrap each character in a span with an increasing animation-delay
+    return text.replace(/(<[^>]+>)|(.)/gs, function(match, tag, char) {
+        if (tag) return tag; // skip HTML tags untouched
+        return '<span class="tw">' + char + '</span>';
+    });
+};
+
 }());
