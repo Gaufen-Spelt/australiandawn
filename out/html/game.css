@@ -144,6 +144,10 @@ header h2:before {
   min-width: 0;
 }
 
+#stats_sidebar_3.collapsed {
+    padding-bottom: 0.3em;
+}
+
 /* ─── Mid panel (no side margins needed anymore) ─────────── */
 #mid_panel {
   margin: 0;
