@@ -350,11 +350,16 @@
                 </div>
 
     <!-- Box 3: expands to fill remaining space -->
-                <div id='stats_sidebar_3' class='tools right'>
-                    <button id="collapse_3" onclick="window.toggleSidebar3();" style="float:right; font-size:0.8em; padding: 0.1em 0.4em; cursor:pointer;">▲</button>
-                    <div id="qualities_3"></div>
-                </div>
-            </div>
+<div id='stats_sidebar_3' class='tools right'>
+    <button id="collapse_3" onclick="window.toggleSidebar3();" style="float:right; font-size:0.8em; padding: 0.1em 0.4em; cursor:pointer;">▲</button>
+    <div class="tab_container">
+        <button class="tab_button active" id="factions_tab3" onclick="window.changeTab3('status_3.factions', 'factions_tab3');">Factions</button>
+        <button class="tab_button" id="economy_tab3" onclick="window.changeTab3('status_3.economy', 'economy_tab3');">Economy</button>
+        <button class="tab_button" id="morale_tab3" onclick="window.changeTab3('status_3.morale', 'morale_tab3');">Morale</button>
+    </div>
+    <div id="faction-chart"></div>
+    <div id="qualities_3"></div>
+</div>
 
             <div id='content'>
 
