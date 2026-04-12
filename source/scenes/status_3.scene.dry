@@ -1,4 +1,4 @@
-title: Factions
+title: Status 3
 new-page: true
 is-special: true
 
@@ -7,65 +7,13 @@ is-special: true
 Lol
 
 @factions
-on-display: {!
 
-var factions = [
-    { name: 'Left FI',      strength: Q.left_fi_strength      || 0, dissent: Q.left_fi_dissent      || 0, color: '#8B0000' },
-    { name: 'Left IN',      strength: Q.left_in_strength      || 0, dissent: Q.left_in_dissent      || 0, color: '#C40000' },
-    { name: 'Center',       strength: Q.center_strength       || 0, dissent: Q.center_dissent       || 0, color: '#DCCA4A' },
-    { name: 'Right Union',  strength: Q.right_union_strength  || 0, dissent: Q.right_union_dissent  || 0, color: '#69A2BE' },
-    { name: 'Industrial',   strength: Q.industrial_strength   || 0, dissent: Q.industrial_dissent   || 0, color: '#D5AC27' },
-    { name: 'Right SocDem', strength: Q.right_socdem_strength || 0, dissent: Q.right_socdem_dissent || 0, color: '#3F7BC1' },
-];
+= Info
 
-var container = document.getElementById('faction-chart');
-if (container) {
-    var W = 200, H = 200, cx = 100, cy = 100, R = 80, r = 45;
-    var total = factions.reduce(function(s, f) { return s + f.strength; }, 0);
-    var angle = -Math.PI / 2;
-    var svg = '<svg width="' + W + '" height="' + H + '" style="display:block;margin:0 auto;">';
+@graphs
 
-    factions.forEach(function(f, idx) {
-        if (f.strength <= 0) return;
-        var slice = (f.strength / total) * 2 * Math.PI;
-        var x1  = cx + R * Math.cos(angle),          y1  = cy + R * Math.sin(angle);
-        var x2  = cx + R * Math.cos(angle + slice),   y2  = cy + R * Math.sin(angle + slice);
-        var xi1 = cx + r * Math.cos(angle),           yi1 = cy + r * Math.sin(angle);
-        var xi2 = cx + r * Math.cos(angle + slice),   yi2 = cy + r * Math.sin(angle + slice);
-        var large = slice > Math.PI ? 1 : 0;
-        var path = ['M',xi1,yi1,'L',x1,y1,'A',R,R,0,large,1,x2,y2,'L',xi2,yi2,'A',r,r,0,large,0,xi1,yi1,'Z'].join(' ');
-        svg += '<path d="' + path + '" fill="' + f.color + '" stroke="none"'
-             + ' style="cursor:pointer;opacity:0.9;"'
-             + ' onclick="window._factionClick(' + idx + ')"'
-             + ' onmouseover="this.style.opacity=1"'
-             + ' onmouseout="this.style.opacity=0.9">'
-             + '<title>' + f.name + ': ' + f.strength + '</title></path>';
-        angle += slice;
-    });
-    svg += '</svg>';
+= Graphs
 
-    var legend = '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;font-size:0.78em;">';
-    factions.forEach(function(f, idx) {
-        legend += '<span style="cursor:pointer;" onclick="window._factionClick(' + idx + ')">'
-            + '<span style="display:inline-block;width:10px;height:10px;background:' + f.color
-            + ';border-radius:2px;margin-right:3px;vertical-align:middle;"></span>'
-            + f.name + ' ' + f.strength
-            + '</span>';
-    });
-    legend += '</div>';
+@info
 
-    var infoBox = '<div id="faction-info" style="text-align:center;font-size:0.85em;min-height:2em;padding:0.3em;"></div>';
-
-    container.innerHTML = svg + infoBox + legend;
-    window._factionData = factions;
-}
-
-window._factionClick = function(idx) {
-    var f = window._factionData[idx];
-    var el = document.getElementById('faction-info');
-    if (el) el.innerHTML = '<strong>' + f.name + '</strong> &nbsp; Str: ' + f.strength + ' &nbsp; Dissent: ' + f.dissent;
-};
-
-!}
-
-= Charts
+Info
