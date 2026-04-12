@@ -1,7 +1,10 @@
-title: Fuh Nah
+title: Factions
 new-page: true
 is-special: true
-
-@factions
-
+on-display: {!
 {! window.drawFactionChart(); !}
+!}
+
+--
+
+{!<div id="faction-chart"></div>!}
