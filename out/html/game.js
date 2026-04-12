@@ -303,6 +303,21 @@ window.updateSidebar = function() {
     }
 };
 
+window.sidebar3Collapsed = false;
+
+window.toggleSidebar3 = function() {
+    var content = document.getElementById('qualities_3');
+    var btn = document.getElementById('collapse_3');
+    window.sidebar3Collapsed = !window.sidebar3Collapsed;
+    if (window.sidebar3Collapsed) {
+        content.style.display = 'none';
+        btn.textContent = '▼';
+    } else {
+        content.style.display = '';
+        btn.textContent = '▲';
+    }
+};
+
 window.dendryModifyUI = main;
 console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
 
