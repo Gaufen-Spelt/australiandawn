@@ -249,20 +249,43 @@
 
 
   window.justLoaded = true;
-  // Track tabs for each sidebar independently
-  window.statusTab = "status";
-  window.statusTab2 = "status.politics";  // change to whatever scene you want
-  window.statusTab3 = "status.polls";     // change to whatever scene you want
+window.statusTab = "status";
+window.statusTab2 = "status_2.intel";
+window.statusTab3 = "status.polls";
 
-  window.updateSidebar = function() {
-    // Box 1 — existing
+window.changeTab = function(newTab, tabId) {
+    if (tabId == 'poll_tab' && dendryUI.dendryEngine.state.qualities.historical_mode) {
+        window.alert('Polls are not available in historical mode.');
+        return;
+    }
+    var tabButton = document.getElementById(tabId);
+    var tabButtons = document.getElementsByClassName('tab_button');
+    for (var i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].className = tabButtons[i].className.replace(' active', '');
+    }
+    tabButton.className += ' active';
+    window.statusTab = newTab;
+    window.updateSidebar();
+};
+
+window.changeTab2 = function(newTab, tabId) {
+    var tabButton = document.getElementById(tabId);
+    var tabButtons = document.getElementById('stats_sidebar_2').getElementsByClassName('tab_button');
+    for (var i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].className = tabButtons[i].className.replace(' active', '');
+    }
+    tabButton.className += ' active';
+    window.statusTab2 = newTab;
+    window.updateSidebar();
+};
+
+window.updateSidebar = function() {
     $('#qualities').empty();
     var scene = dendryUI.game.scenes[window.statusTab];
     dendryUI.dendryEngine._runActions(scene.onArrival);
     var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
     $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
 
-    // Box 2 — fixed scene, no tabs needed
     $('#qualities_2').empty();
     var scene2 = dendryUI.game.scenes[window.statusTab2];
     if (scene2) {
@@ -271,7 +294,6 @@
         $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
     }
 
-    // Box 3 — fixed scene, no tabs needed
     $('#qualities_3').empty();
     var scene3 = dendryUI.game.scenes[window.statusTab3];
     if (scene3) {
@@ -280,15 +302,16 @@
         $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
     }
 };
-  window.dendryModifyUI = main;
-  console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
 
-  window.onload = function() {
+window.dendryModifyUI = main;
+console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
+
+window.onload = function() {
     window.dendryUI.loadSettings({show_portraits: false});
     if (window.dendryUI.dark_mode) {
         document.body.classList.add('dark-mode');
     }
     window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
-  };
+};
 
 }());
