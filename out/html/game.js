@@ -252,7 +252,7 @@
   window.justLoaded = true;
 window.statusTab = "status";
 window.statusTab2 = "status_2.intel";
-window.statusTab3 = "status.polls";
+window.statusTab3 = "status_3.factions";
 
 window.changeTab = function(newTab, tabId) {
     if (tabId == 'poll_tab' && dendryUI.dendryEngine.state.qualities.historical_mode) {
@@ -280,6 +280,17 @@ window.changeTab2 = function(newTab, tabId) {
     window.updateSidebar();
 };
 
+window.changeTab3 = function(newTab, tabId) {
+    var tabButton = document.getElementById(tabId);
+    var tabButtons = document.getElementById('stats_sidebar_3').getElementsByClassName('tab_button');
+    for (var i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].className = tabButtons[i].className.replace(' active', '');
+    }
+    tabButton.className += ' active';
+    window.statusTab3 = newTab;
+    window.updateSidebar();
+};
+
 window.updateSidebar = function() {
     $('#qualities').empty();
     var scene = dendryUI.game.scenes[window.statusTab];
@@ -298,12 +309,11 @@ window.updateSidebar = function() {
     $('#qualities_3').empty();
     var scene3 = dendryUI.game.scenes[window.statusTab3];
     if (scene3) {
-        dendryUI.dendryEngine._runActions(scene3.onArrival);
-        var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
-        $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
+    dendryUI.dendryEngine._runActions(scene3.onArrival);
+    var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
+    $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
     }
-
-  window.drawFactionChart();
+    window.drawFactionChart();
 };
 
 window.sidebar3Collapsed = false;
