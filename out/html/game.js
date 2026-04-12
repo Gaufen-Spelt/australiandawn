@@ -350,7 +350,7 @@ window.displayText = function(text) {
     var i = 0;
     return text.replace(/(<[^>]+>)|(.)/gs, function(match, tag, char) {
         if (tag) return tag;
-        return '<span class="tw" style="animation-delay:' + (i++ * 22) + 'ms">' + char + '</span>';
+        return '<span class="tw" style="animation-delay:' + (i++ * 16) + 'ms">' + char + '</span>';
     });
 };
 
