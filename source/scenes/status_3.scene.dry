@@ -1,6 +1,12 @@
 title: Factions
 new-page: true
 is-special: true
+
+=Lol 
+
+Lol
+
+@factions
 on-display: {!
 
 var factions = [
