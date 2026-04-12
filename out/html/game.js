@@ -164,6 +164,11 @@
     } else {
         $('#light_mode')[0].checked = true;
     }
+    if (window.dendryUI.typewriter) {
+    $('#typewriter_yes')[0].checked = true;
+    } else {
+    $('#typewriter_no')[0].checked = true;
+    }
   };
 
   
