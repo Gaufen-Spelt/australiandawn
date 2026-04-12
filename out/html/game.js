@@ -25,6 +25,14 @@
       ui.loadGame(url);
   };
 
+  window.showCredits = function() {
+    if (window.dendryUI.dendryEngine.state.sceneId.startsWith('credits')) {
+        window.dendryUI.dendryEngine.goToScene('backSpecialScene');
+    } else {
+        window.dendryUI.dendryEngine.goToScene('credits');
+    }
+  };
+
   window.showStats = function() {
     if (window.dendryUI.dendryEngine.state.sceneId.startsWith('library')) {
         window.dendryUI.dendryEngine.goToScene('backSpecialScene');
