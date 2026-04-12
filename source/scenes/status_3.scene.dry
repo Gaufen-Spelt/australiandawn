@@ -2,7 +2,7 @@ title: Factions
 new-page: true
 is-special: true
 on-display: {!
-{! window.drawFactionChart(); !}
+window.drawFactionChart();
 !}
 
 --
