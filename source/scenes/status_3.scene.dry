@@ -1,0 +1,7 @@
+title: Fuh Nah
+new-page: true
+is-special: true
+
+@factions
+
+{! window.drawFactionChart(); !}
