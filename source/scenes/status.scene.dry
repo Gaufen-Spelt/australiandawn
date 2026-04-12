@@ -33,11 +33,11 @@ House of Representatives composition:
 
 {!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_r +]%
 
-{!<span class="tooltip-text" title="United Australia Party">UAP</span>!}: [+ ucp_r +]%
+{!<span class="tooltip-text" title="United Australia Party">UAP</span>!}: [+ uap_r +]%
 
 {!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_r +]%
 
-{!<span class="tooltip-text" title="Liberal Democratic Party">LDP{!</span>!}: [+ ldp_r +]%
+{!<span class="tooltip-text" title="Liberal Democratic Party">LDP</span>!}: [+ ldp_r +]%
 
 {!<span class="tooltip-text" title="Country Party">CP</span>!}: [+ cp_r +]%
 
@@ -45,17 +45,19 @@ House of Representatives composition:
 
 {!<span class="tooltip-text" title="Social Credit Party">SCP</span>!}: [+ scp_r +]%
 
-[? if dlp_formed = 1: {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_r +]%
+[? if dlp_formed == 1 : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_r +]% ?]
 
-Others: [+ other_r +]%
+Independents: [+ other_r +]%
 
 Senate Composition:
 
 {!<span class="tooltip-text" title="Australian Labor Party">ALP</span>!}: [+ alp_s +]%
 
+{!<span class="tooltip-text" title="United Australia Party">UAP</span>!}: [+ uap_s +]%
+
 {!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_s +]%
 
-{!<span class="tooltip-text" title="Liberal Democratic Party">LDP{!</span>!}: [+ ldp_s +]%
+{!<span class="tooltip-text" title="Liberal Democratic Party">LDP</span>!}: [+ ldp_s +]%
 
 {!<span class="tooltip-text" title="Country Party">CP</span>!}: [+ cp_s +]%
 
@@ -63,9 +65,10 @@ Senate Composition:
 
 {!<span class="tooltip-text" title="Social Credit Party">SCP</span>!}: [+ scp_s +]%
 
-[? if dlp_formed = 1: {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_s +]%
+[? if dlp_formed == 1 : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_s +]% ?]
 
-Others: [+ other_s +]%
+Independents: [+ other_s +]%
+
 
 
 [? if spd_in_government = 1 : Budget: [+ budget +] ?]
@@ -76,7 +79,7 @@ Next election: [+ next_election_month : month +] [+ next_election_year +]
 
 Inflation: [+ inflation_2 +]%
 
-[? if black_thursday_seen = 1 : Unemployment: [+ unemployed_2 +]% ?]
+nemployment: [+ unemployed_2 +]%
 
 Economic growth: [+ economic_growth_2 +]%
 
@@ -86,20 +89,21 @@ Economic growth: [+ economic_growth_2 +]%
 
 @politics
 
-= Inter-party Relations
+=  Inter-party Relations
 
+​{!<span class="tooltip-text" title="United Australia Party">UAP</span>!}: [+ uap_relation : relationships +]
 
-{!<span class="tooltip-text" title="Center Party">Z</span>!}: [+ z_relation : relationships +]
+​{!<span class="tooltip-text" title="Communist Party of Australia">CPA</span>!}: [+ cpa_relation : relationships +]
 
-{!<span class="tooltip-text" title="German Democratic Party">!}[? if not ddp_name: DDP?][? if ddp_name != 0 : [+ ddp_name +]?]{!</span>!}: [+ ddp_relation : relationships +]
+​{!<span class="tooltip-text" title="Liberal Democratic Party">LDP</span>!}: [+ ldp_relation : relationships +]
 
-{!<span class="tooltip-text" title="German People's Party">DVP</span>!}: [+ dvp_relation : relationships +]
+​{!<span class="tooltip-text" title="Country Party">CP</span>!}: [+ cp_relation : relationships +]
 
-{!<span class="tooltip-text" title="Communist Party of Germany">KPD</span>!}: [+ kpd_relation : relationships +]
+​{!<span class="tooltip-text" title="Lang Labor">Lang Labor</span>!}: [+ ll_relation : relationships +]
 
-{!<span class="tooltip-text" title="German National People's Party">DNVP</span>!}: [+ dnvp_relation : relationships +]
+​{!<span class="tooltip-text" title="Social Credit Party">SCP</span>!}: [+ scp_relation : relationships +]
 
-{!<span class="tooltip-text" title="National-Socialist German Worker's Party (Nazis)">NSDAP</span>!}: [+ nsdap_relation : relationships +]
+​[? if dlp_formed == 1 : {!<span class="tooltip-text" title="Democratic Labor Party">DLP</span>!}: [+ dlp_relation : relationships +] ?]
 
 = Internal Factions of the SPD
 
