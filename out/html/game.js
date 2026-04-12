@@ -313,7 +313,6 @@ window.updateSidebar = function() {
     var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
     $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
     }
-    window.drawFactionChart();
 };
 
 window.sidebar3Collapsed = false;
