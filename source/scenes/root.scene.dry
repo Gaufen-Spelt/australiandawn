@@ -554,18 +554,13 @@ Q.stampfer_advisor = 0; // Friedrich Stampfer
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
+> Once a learned Doctor sat down in Canberra, He was the Leader of the ALP. And he sang as he watched and waited till election day, Labor Must have Solidarity. Santamaria, Santamaria, Keon and Mullens are faithful to me And he sang as he watched and waited till election day, Labor Must have Solidarity. Down came Petrov, and Menzies was in power again, The Doctor cried, ‘It’s a Conspiracy!’ And he wrote out a statement, saying most emphatically, Labor Must have Solidarity. Santamaria, Santamaria, Keon and Mullens are getting at me And he wrote out a statement, saying most emphatically, Labor Must have Solidarity. Up came Chamberlain, mounted on Executive, Down came the Groupers, one, two, three! Oh, where's that jolly Santa you’ve got in your Movement, Labor Must have Solidarity. Santamaria, Santamaria, Keon and Mullens and Bourke make three Oh, where's that jolly Santa you've got in your Movement, Labor Must have Solidarity. Up jumped the Doctor and Sprang across the stormy sea, Bound for Hobart and unity, And he sighed as he sang in that very nearly empty hall, Labor has lost Solidarity. Santamaria, Santamaria, Keon and Mullens are all up a tree, And he sighed as he sang in that very nearly empty hall, Labor has lost Solidarity. Now Keon and Mullens and Bourke are back in Canberra, In the Anti-Communist ALP, And they hide behind the skirts of their Leader, Mr. Joshua, Singing Labor Must have Solidarity. Santamaria, Santamaria, Keon and Mullens and Bourke make three And they hide behind the skirts of their Leader, Mr. Joshua, Keon and Mullens with Liberals agree.
 
- - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
+ - Student Song 1955, The split: Australian Labor in the fifties, Robert Murray
 
 This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
 
-For more information on the politics and government of the German Republic, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read at least some of this information.
-
-- @1928_easy: Begin (easy difficulty)
-- @1928_main: Begin (normal difficulty)
-- @1928_hard: Begin (hard difficulty)
-- @1928_historical: Begin (historical mode)
+- @1928_easy: Begin the journey...
 
 @1928_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 29; z_relation = 54; dvp_relation = 49; budget = 5;
