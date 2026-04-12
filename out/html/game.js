@@ -366,9 +366,6 @@ window.displayText = function(text) {
     });
 };
 
-}());
-
-
 
 
 
@@ -432,3 +429,7 @@ window.showFactionInfo = function(idx) {
     var el = document.getElementById('faction-info');
     if (el) el.innerHTML = '<strong>' + f.name + '</strong> &nbsp; Str: ' + f.strength + ' &nbsp; Dissent: ' + f.dissent;
 };
+
+
+
+}());
