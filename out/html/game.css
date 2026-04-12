@@ -488,3 +488,22 @@ table {
   div.blank-card { width: 100px; height: 125px; border: 8px solid var(--card-border-color); }
   .card-in-hand, .pinned-card, .deck { max-width: 120px; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.tw {
+    opacity: 0;
+    animation: tw-fade 0.01s forwards;
+}
+@keyframes tw-fade {
+    to { opacity: 1; }
+}
