@@ -172,11 +172,7 @@
   };
 
   
-  // This function allows you to modify the text before it's displayed.
-  // E.g. wrapping chat-like messages in spans.
-  window.displayText = function(text) {
-      return text;
-  };
+  
 
   // This function allows you to do something in response to signals.
   window.handleSignal = function(signal, event, scene_id) {
@@ -344,12 +340,17 @@ window.disableTypewriter = function() {
     window.dendryUI.saveSettings();
 };
 
+
+// This function allows you to modify the text before it's displayed.
+  // E.g. wrapping chat-like messages in spans.
+
+  
 window.displayText = function(text) {
     if (!window.dendryUI.typewriter) return text;
-    // wrap each character in a span with an increasing animation-delay
+    var i = 0;
     return text.replace(/(<[^>]+>)|(.)/gs, function(match, tag, char) {
-        if (tag) return tag; // skip HTML tags untouched
-        return '<span class="tw">' + char + '</span>';
+        if (tag) return tag;
+        return '<span class="tw" style="animation-delay:' + (i++ * 22) + 'ms">' + char + '</span>';
     });
 };
 
