@@ -131,7 +131,7 @@ header h2:before {
   left: auto;
   flex: 1 1 0;
   min-width: 0;
-  max-height: 12em;
+  max-height: 16em;
   overflow-y: auto;
 }
 
