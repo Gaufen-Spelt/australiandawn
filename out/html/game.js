@@ -329,13 +329,16 @@ window.sidebar3Collapsed = false;
 
 window.toggleSidebar3 = function() {
     var content = document.getElementById('qualities_3');
+    var chart = document.getElementById('faction-chart');
     var btn = document.getElementById('collapse_3');
     window.sidebar3Collapsed = !window.sidebar3Collapsed;
     if (window.sidebar3Collapsed) {
         content.style.display = 'none';
+        if (chart) chart.style.display = 'none';
         btn.textContent = '▼';
     } else {
         content.style.display = '';
+        if (chart) chart.style.display = (window.statusTab3 === 'status_3.factions') ? '' : 'none';
         btn.textContent = '▲';
     }
 };
