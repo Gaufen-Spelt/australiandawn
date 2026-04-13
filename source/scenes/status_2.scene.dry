@@ -14,6 +14,96 @@ is-special: true
 
 = Union Affairs
 
+AWU (Australian Workers' Union)
+AWU Militancy: [+ awu_militancy +]
+AWU Strength: [+ awu_strength +]
+Communist Infiltration: [+ awu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ awu_grouper +] ?]
+
+Miners' Federation (Australasian Coal and Shale Employees' Federation)
+MF Militancy: [+ mf_militancy +]
+MF Strength: [+ mf_strength +]
+Communist Infiltration: [+ mf_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ mf_grouper +] ?]
+
+WWF (Waterside Workers' Federation)
+WWF Militancy: [+ wwf_militancy +]
+WWF Strength: [+ wwf_strength +]
+Communist Infiltration: [+ wwf_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ wwf_grouper +] ?]
+
+FIA (Federated Ironworkers' Association)
+FIA Militancy: [+ fia_militancy +]
+FIA Strength: [+ fia_strength +]
+Communist Infiltration: [+ fia_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ fia_grouper +] ?]
+
+ARU (Australian Railways Union)
+ARU Militancy: [+ aru_militancy +]
+ARU Strength: [+ aru_strength +]
+Communist Infiltration: [+ aru_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ aru_grouper +] ?]
+
+BWIU (Building Workers' Industrial Union)
+BWIU Militancy: [+ bwiu_militancy +]
+BWIU Strength: [+ bwiu_strength +]
+Communist Infiltration: [+ bwiu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ bwiu_grouper +] ?]
+
+FEDFA (Federated Engine Drivers and Firemen's Association)
+FEDFA Militancy: [+ fedfa_militancy +]
+FEDFA Strength: [+ fedfa_strength +]
+Communist Infiltration: [+ fedfa_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ fedfa_grouper +] ?]
+
+Seamen's Union of Australia
+Seamen Militancy: [+ seamen_militancy +]
+Seamen Strength: [+ seamen_strength +]
+Communist Infiltration: [+ seamen_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ seamen_grouper +] ?]
+
+AEU (Amalgamated Engineering Union)
+AEU Militancy: [+ aeu_militancy +]
+AEU Strength: [+ aeu_strength +]
+Communist Infiltration: [+ aeu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ aeu_grouper +] ?]
+
+ASCE (Australasian Society of Engineers)
+ASCE Militancy: [+ asce_militancy +]
+ASCE Strength: [+ asce_strength +]
+Communist Infiltration: [+ asce_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ asce_grouper +] ?]
+
+FCU (Federated Clerks' Union)
+FCU Militancy: [+ fcu_militancy +]
+FCU Strength: [+ fcu_strength +]
+Communist Infiltration: [+ fcu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ fcu_grouper +] ?]
+
+TWU (Transport Workers' Union)
+TWU Militancy: [+ twu_militancy +]
+TWU Strength: [+ twu_strength +]
+Communist Infiltration: [+ twu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ twu_grouper +] ?]
+
+AJA (Australian Journalists' Association)
+AJA Militancy: [+ aja_militancy +]
+AJA Strength: [+ aja_strength +]
+Communist Infiltration: [+ aja_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ aja_grouper +] ?]
+
+PIEUA (Printing Industry Employees' Union)
+PIEUA Militancy: [+ pieua_militancy +]
+PIEUA Strength: [+ pieua_strength +]
+Communist Infiltration: [+ pieua_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ pieua_grouper +] ?]
+
+ACTU (Australian Council of Trade Unions)
+ACTU Militancy: [+ actu_militancy +]
+ACTU Strength: [+ actu_strength +]
+Communist Infiltration: [+ actu_communist +]
+[? If santamaria_game: Grouper Infiltration: [+ actu_grouper +] ?]
+
 @street
 
 = Street Affairs
