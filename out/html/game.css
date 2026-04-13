@@ -1,62 +1,72 @@
 /* ─── Google Fonts ───────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Josefin+Slab:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Arvo:ital,wght@0,400;0,700;1,400&family=Share+Tech+Mono&display=swap');
 
-/* ─── Light mode variables ───────────────────────────────── */
+/*
+  Special Elite  — typewriter display / headings
+  Arvo           — sturdy slab serif body, not precious
+  Share Tech Mono— status panels, numbers, data
+*/
+
+/* ─── Ripped page edge — SVG mask on #content ───────────── */
+/* A subtle irregular top edge, like torn newsprint */
+
+/* ─── Light mode ─────────────────────────────────────────── */
 body {
-  --bg-color:             #D6D2C4;
-  --border-color:         #1B1F23;
-  --content-bg-color:     #E8E4D9;
-  --text-color:           #2C2C2C;
-  --heading-color:        #1B1F23;
-  --link-color:           #8E3A2A;
-  --link-hover-color:     rgba(0, 0, 0, 0.06);
-  --unavailable-bg-color: #C8C4B8;
-  --unavailable-color:    #888;
-  --tab-bg-color:         #4A4E52;
-  --tab-color:            #5A5E62;
-  --tab-hover-color:      #6B705C;
-  --tab-text-color:       #E8E4D9;
-  --tab-active-color:     #E8E4D9;
-  --card-border-color:    #4A4E52;
-  --card-bg-color:        #C8C4B8;
-  --accent-color:         #6B705C;
-  --rule-color:           #4A4E52;
+  --bg-color:             #B8B49A;
+  --border-color:         #2A2A22;
+  --content-bg-color:     #D4CFB8;
+  --text-color:           #1E1E18;
+  --heading-color:        #1A1A14;
+  --link-color:           #5C3A1E;
+  --link-hover-color:     rgba(0, 0, 0, 0.08);
+  --unavailable-bg-color: #A8A490;
+  --unavailable-color:    #6A6A5A;
+  --tab-bg-color:         #3A3A2E;
+  --tab-color:            #484838;
+  --tab-hover-color:      #565646;
+  --tab-text-color:       #C8C4A8;
+  --tab-active-color:     #D4CFB8;
+  --card-border-color:    #3A3A2E;
+  --card-bg-color:        #A8A490;
+  --accent-color:         #7A7A5E;
+  --rule-color:           #2A2A22;
+  --mono-color:           #3A3A2E;
 
-  font-family: 'Lora', Georgia, serif;
+  font-family: 'Arvo', Georgia, serif;
   background-color: var(--bg-color);
   padding: 0;
-  line-height: 160%;
+  line-height: 158%;
   overflow-y: scroll;
   color: var(--text-color);
 }
 
-/* ─── Dark mode variables ────────────────────────────────── */
+/* ─── Dark mode ──────────────────────────────────────────── */
 body.dark-mode {
-  --bg-color:             #1B1F23;
-  --border-color:         #8B9E8A;
-  --content-bg-color:     #252A2E;
-  --text-color:           #D6D2C4;
-  --heading-color:        #E8E4D9;
-  --link-color:           #C4614E;
-  --link-hover-color:     rgba(255, 255, 255, 0.07);
-  --unavailable-bg-color: #2E3338;
-  --unavailable-color:    #666;
-  --tab-bg-color:         #1B1F23;
-  --tab-color:            #2C3035;
-  --tab-hover-color:      #3A4040;
-  --tab-text-color:       #B0B8A8;
-  --tab-active-color:     #252A2E;
-  --card-border-color:    #4A4E52;
-  --card-bg-color:        #2E3338;
-  --accent-color:         #8B9E8A;
-  --rule-color:           #4A4E52;
+  --bg-color:             #1A1A14;
+  --border-color:         #6A6A5A;
+  --content-bg-color:     #222218;
+  --text-color:           #C8C4A8;
+  --heading-color:        #D8D4B8;
+  --link-color:           #9A7A4E;
+  --link-hover-color:     rgba(255, 255, 255, 0.06);
+  --unavailable-bg-color: #2A2A22;
+  --unavailable-color:    #585848;
+  --tab-bg-color:         #111110;
+  --tab-color:            #1E1E18;
+  --tab-hover-color:      #2A2A22;
+  --tab-text-color:       #8A8A72;
+  --tab-active-color:     #222218;
+  --card-border-color:    #484838;
+  --card-bg-color:        #2A2A22;
+  --accent-color:         #5A5A46;
+  --rule-color:           #484838;
+  --mono-color:           #8A8A72;
 }
 body.dark-mode #content {
-  border-top: 3px double var(--rule-color);
-  border-bottom: 3px double var(--rule-color);
+  border-color: #484838;
 }
 body.dark-mode .tools {
-  border: 1px solid var(--rule-color);
+  border-color: #484838;
 }
 
 /* ─── Page shell ─────────────────────────────────────────── */
@@ -75,7 +85,7 @@ header {
   margin: 0 auto;
   text-align: right;
   overflow: auto;
-  padding: 0.4em 0;
+  padding: 0.3em 0;
   border-bottom: 2px solid var(--rule-color);
   margin-bottom: 0.5em;
 }
@@ -83,15 +93,14 @@ header {
   text-align: left;
   float: left;
   display: inline-block;
-  margin-bottom: 0;
-  padding: 0.2em 1em 0.2em 0;
+  padding: 0.15em 0;
   background-color: transparent;
 }
 #header-links a {
   padding-right: 1.2em;
-  font-family: 'Josefin Slab', serif;
-  font-size: 0.85em;
-  letter-spacing: 0.05em;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 header h1,
@@ -99,33 +108,130 @@ header h2 {
   display: inline-block;
   font-weight: normal;
   margin: 0;
-  font-size: 1em;
-  font-family: 'Josefin Slab', serif;
-  letter-spacing: 0.04em;
+  font-size: 0.95em;
+  font-family: 'Special Elite', serif;
+  letter-spacing: 0.02em;
 }
 header h1 {
-  font-weight: 600;
+  font-weight: normal; /* Special Elite has its own weight */
 }
 header h2:before {
   content: "by";
   font-style: italic;
-  font-family: 'Lora', serif;
+  font-family: 'Arvo', serif;
   padding: 0 0.3em 0 0;
-  font-weight: normal;
 }
 
-/* ─── Main content ───────────────────────────────────────── */
+/* ─── Main content — ripped top edge ────────────────────── */
+/*
+ * The ripped effect is achieved with a repeating clip-path
+ * on a pseudo-element overlay. Subtle — just enough texture
+ * on the top border to suggest torn newsprint.
+ */
 #content {
   position: relative;
   width: 100%;
   box-sizing: border-box;
   background-color: var(--content-bg-color);
   color: var(--text-color);
-  font-size: 1.1em;
-  padding: 1.2em 1.8em 1.8em 1.8em;
-  box-shadow: 3px 3px 16px rgba(0, 0, 0, 0.15);
-  border-top: 3px double var(--rule-color);
-  border-bottom: 1px solid var(--rule-color);
+  font-size: 1.05em;
+  padding: 1.4em 1.8em 1.8em 1.8em;
+  /* Hard edges — no border-radius anywhere */
+  border-left: 3px solid var(--rule-color);
+  border-right: 1px solid var(--rule-color);
+  border-bottom: 3px solid var(--rule-color);
+  /* No top border — the ripped pseudo-element handles it */
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+/* Ripped top edge — irregular torn paper effect */
+#content::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-color: var(--content-bg-color);
+  /* Jagged clip path simulating torn paper */
+  clip-path: polygon(
+    0% 100%,
+    0.8% 20%,
+    2.1% 80%,
+    3.5% 10%,
+    5.0% 70%,
+    6.2% 30%,
+    7.8% 90%,
+    9.1% 15%,
+    10.5% 65%,
+    12.0% 40%,
+    13.3% 85%,
+    14.9% 20%,
+    16.2% 75%,
+    17.8% 35%,
+    19.0% 90%,
+    20.5% 10%,
+    22.0% 60%,
+    23.4% 30%,
+    24.8% 80%,
+    26.3% 20%,
+    27.7% 70%,
+    29.2% 40%,
+    30.6% 85%,
+    32.0% 15%,
+    33.5% 65%,
+    35.0% 35%,
+    36.4% 90%,
+    37.8% 20%,
+    39.3% 75%,
+    40.8% 45%,
+    42.2% 80%,
+    43.7% 25%,
+    45.1% 70%,
+    46.6% 10%,
+    48.0% 60%,
+    49.5% 30%,
+    51.0% 85%,
+    52.4% 20%,
+    53.9% 65%,
+    55.3% 40%,
+    56.8% 90%,
+    58.2% 15%,
+    59.7% 55%,
+    61.2% 30%,
+    62.6% 80%,
+    64.1% 20%,
+    65.5% 70%,
+    67.0% 45%,
+    68.4% 85%,
+    69.9% 25%,
+    71.4% 60%,
+    72.8% 35%,
+    74.3% 80%,
+    75.7% 10%,
+    77.2% 65%,
+    78.6% 40%,
+    80.1% 90%,
+    81.6% 20%,
+    83.0% 70%,
+    84.5% 30%,
+    85.9% 85%,
+    87.4% 15%,
+    88.8% 55%,
+    90.3% 35%,
+    91.8% 75%,
+    93.2% 25%,
+    94.7% 65%,
+    96.1% 40%,
+    97.6% 80%,
+    98.8% 20%,
+    100% 60%,
+    100% 100%
+  );
+  border-left: 3px solid var(--rule-color);
+  border-right: 1px solid var(--rule-color);
+  pointer-events: none;
 }
 
 /* ─── Tools wrapper ──────────────────────────────────────── */
@@ -135,19 +241,22 @@ header h2:before {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 0.6em;
-  margin-bottom: 0.6em;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
 }
 
-/* ─── Individual tool panels ─────────────────────────────── */
+/* ─── Tool panels — typewriter feel ─────────────────────── */
 .tools {
-  padding: 0.6em;
+  padding: 0.5em 0.6em;
   color: var(--text-color);
   background-color: var(--content-bg-color);
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
   overflow-y: auto;
-  border-top: 2px solid var(--rule-color);
+  border: 1px solid var(--rule-color);
+  border-top: 3px solid var(--rule-color);
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.88em;
 }
 .tools.left {
   float: none;
@@ -163,6 +272,8 @@ header h2:before {
   flex: 1 1 100%;
   width: 100%;
   min-width: 0;
+  font-family: 'Arvo', serif; /* wider panel can use body font */
+  font-size: 0.95em;
 }
 
 /* ─── Mid panel ──────────────────────────────────────────── */
@@ -175,42 +286,41 @@ footer {
   color: var(--text-color);
   width: 95%;
   max-width: 95vw;
-  margin: 1em auto 0 auto;
-  font-size: 0.8em;
-  font-family: 'Josefin Slab', serif;
-  letter-spacing: 0.03em;
+  margin: 0.8em auto 0 auto;
+  font-size: 0.75em;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.02em;
   position: relative;
   border-top: 1px solid var(--rule-color);
-  padding-top: 0.4em;
+  padding-top: 0.3em;
 }
 footer a {
   padding-right: 1em;
 }
 
-/* ─── Qualities sidebar ──────────────────────────────────── */
+/* ─── Qualities ──────────────────────────────────────────── */
 #qualities {
   text-indent: 0;
-  line-height: 1.4em;
-  font-size: 0.95em;
+  line-height: 1.45em;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9em;
 }
 #qualities p {
   text-indent: 0;
+  margin-bottom: 0.4em;
 }
 #qualities h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1em;
-  font-weight: 700;
+  font-family: 'Special Elite', serif;
+  font-size: 0.95em;
+  font-weight: normal;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--heading-color);
   border-bottom: 1px solid var(--rule-color);
-  padding-bottom: 0.2em;
-  margin-bottom: 0.4em;
+  padding-bottom: 0.15em;
+  margin-bottom: 0.3em;
   text-shadow: none;
-}
-#qualities h1 + p:first-line {
-  font-weight: normal;
 }
 
 /* ─── Content headings ───────────────────────────────────── */
@@ -218,25 +328,26 @@ footer a {
   border: none;
   border-top: 1px solid var(--rule-color);
   height: 1px;
-  width: 20%;
+  width: 25%;
   clear: left;
-  margin: 0.8em auto;
+  margin: 1em auto;
 }
 #content h1:first-child {
-  margin-top: 0.5em;
+  margin-top: 0.4em;
 }
 #content h1 {
-  font-family: 'Playfair Display', serif;
-  margin: 1.8em 0 0.8em 0;
-  font-size: 1.5em;
-  font-weight: 700;
+  font-family: 'Special Elite', serif;
+  margin: 1.6em 0 0.7em 0;
+  font-size: 1.4em;
+  font-weight: normal;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--heading-color);
   text-shadow: none;
-  border-bottom: 2px solid var(--rule-color);
-  padding-bottom: 0.3em;
+  border-top: 1px solid var(--rule-color);
+  border-bottom: 1px solid var(--rule-color);
+  padding: 0.25em 0;
 }
 
 /* ─── Links ──────────────────────────────────────────────── */
@@ -260,7 +371,8 @@ p.game-over {
   margin: 0.5em 0 0 0;
   color: var(--unavailable-color);
   font-style: italic;
-  font-family: 'Josefin Slab', serif;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9em;
 }
 
 /* ─── Choices ────────────────────────────────────────────── */
@@ -271,17 +383,19 @@ ul.choices {
   margin: 0.5em 0 0 0;
   list-style-type: none;
   clear: left;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.15);
 }
 ul.choices li {
   border-bottom: 1px solid var(--rule-color);
-  padding: 0.5em 0.8em;
-  font-family: 'Lora', serif;
+  padding: 0.45em 0.8em;
+  font-family: 'Arvo', serif;
 }
 ul.choices li div.subtitle {
   margin-left: 2em;
   font-style: italic;
-  font-size: 0.9em;
+  font-size: 0.88em;
   color: var(--unavailable-color);
+  font-family: 'Share Tech Mono', monospace;
 }
 ul.choices li.unavailable {
   color: var(--unavailable-color);
@@ -297,13 +411,13 @@ ul.choices li:last-child {
 }
 ul.choices a {
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* ─── Blockquotes ────────────────────────────────────────── */
 blockquote {
   margin: 1em 2em;
-  border-left: 3px solid var(--accent-color);
+  border-left: 4px solid var(--rule-color);
   padding-left: 1em;
   font-style: italic;
 }
@@ -312,6 +426,8 @@ blockquote.attribution {
   border-left: none;
   padding-left: 0;
   font-size: 0.9em;
+  font-family: 'Share Tech Mono', monospace;
+  font-style: normal;
 }
 blockquote + blockquote.attribution {
   margin-top: -0.8em;
@@ -320,22 +436,22 @@ blockquote + blockquote.attribution {
 /* ─── Tabs ───────────────────────────────────────────────── */
 .tab_container {
   background-color: var(--tab-bg-color);
-  margin-top: -0.6em;
+  margin-top: -0.5em;
   margin-left: -0.6em;
   margin-right: -0.6em;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.5em;
 }
 .tab_button {
-  font-family: 'Josefin Slab', serif;
-  font-size: 0.8em;
-  font-weight: 600;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75em;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   background-color: var(--tab-color);
   color: var(--tab-text-color);
   border: none;
+  border-right: 1px solid var(--rule-color);
   outline: none;
-  padding: 8px 12px;
+  padding: 7px 10px;
   cursor: pointer;
 }
 .tab_button.active {
@@ -348,7 +464,7 @@ blockquote + blockquote.attribution {
 
 /* ─── Overlay / save ─────────────────────────────────────── */
 .overlay {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   display: none;
   position: fixed;
   width: 100%;
@@ -364,17 +480,18 @@ blockquote + blockquote.attribution {
   position: relative;
   max-width: 540px;
   margin: 100px auto;
-  background: #1B1F23;
-  border: 2px solid #4A4E52;
-  color: #D6D2C4;
-  font-family: 'Josefin Slab', serif;
-  padding: 1em;
+  background: #1A1A14;
+  border: 2px solid #484838;
+  color: #C8C4A8;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9em;
+  padding: 1.2em;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.4);
 }
 .save_info {
   min-width: 10em;
-  font-size: 0.85em;
-  font-style: italic;
-  color: #8B9E8A;
+  font-size: 0.82em;
+  color: #7A7A5E;
 }
 
 /* ─── Background layers ──────────────────────────────────── */
@@ -400,22 +517,22 @@ a.card {
   display: inline-block;
   width: 120px;
   height: 150px;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
-  border: 8px solid var(--card-border-color);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+  border: 6px solid var(--card-border-color);
   margin-bottom: 0.5em;
   position: relative;
 }
 a.card:hover {
-  box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.25);
-  left: -4px;
-  top: -4px;
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.35);
+  left: -3px;
+  top: -3px;
 }
 div.blank-card {
   display: inline-block;
   width: 120px;
   height: 150px;
   background-color: var(--card-bg-color);
-  border: 8px solid var(--card-border-color);
+  border: 6px solid var(--card-border-color);
   margin-bottom: 0.5em;
 }
 .card-in-hand, .pinned-card, .deck {
@@ -433,21 +550,21 @@ div.blank-card {
 .card-caption {
   text-align: center;
   display: block;
-  font-size: 0.85em;
-  font-family: 'Josefin Slab', serif;
+  font-size: 0.78em;
+  font-family: 'Share Tech Mono', monospace;
 }
 .card-tooltip {
   position: absolute;
   visibility: hidden;
   width: 150px;
   max-width: 200px;
-  font-size: 0.85em;
+  font-size: 0.82em;
   z-index: 2;
   padding: 0.3em;
   border: 1px solid var(--border-color);
   background-color: var(--content-bg-color);
   left: 105%;
-  font-family: 'Lora', serif;
+  font-family: 'Share Tech Mono', monospace;
 }
 .card-img {
   height: 150px;
@@ -461,7 +578,7 @@ a.card:hover .card-tooltip {
 }
 .face-figure {
   display: inline-block;
-  border: 4px solid var(--card-border-color);
+  border: 3px solid var(--card-border-color);
   float: left;
   max-width: 35%;
   margin-right: 1em;
@@ -492,35 +609,35 @@ img {
 #bottomLeftSprite { float: left;  left: 0.4em; top: 50%; }
 #bottomRightSprite{ float: right; right: 0.4em; top: 50%; }
 
-/* ─── Game-specific additions ────────────────────────────── */
+/* ─── Game-specific ──────────────────────────────────────── */
 .box {
   display: inline-block;
   height: 1em;
   width: 1em;
 }
 table {
-  border-spacing: 0.5em;
-  font-family: 'Josefin Slab', serif;
-  font-size: 0.95em;
+  border-spacing: 0.4em;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.88em;
 }
 
-/* Australian party seat colours */
-.seat.alp   { fill: #8E3A2A; }
-.seat.uap   { fill: #4A4E52; }
-.seat.cp    { fill: #6B705C; }
-.seat.lib   { fill: #1B1F23; }
-.seat.other { fill: #909090; }
+/* Australian party colours */
+.seat.alp   { fill: #6B2A1A; }
+.seat.uap   { fill: #3A3A2E; }
+.seat.cp    { fill: #5A5A42; }
+.seat.lib   { fill: #2A2A22; }
+.seat.other { fill: #7A7A6A; }
 
-/* Weimar party seat colours (compatibility) */
-.seat.kpd   { fill: #8B0000; }
-.seat.spd   { fill: #8E3A2A; stroke: var(--border-color); stroke-width: 1.5px; }
-.seat.ddp   { fill: #DCCA4A; }
-.seat.z     { fill: #1B1F23; }
-.seat.bvp   { fill: #69A2BE; }
-.seat.dvp   { fill: #D5AC27; }
-.seat.dnvp  { fill: #4A4E52; }
-.seat.nsdap { fill: #6B3A2A; }
-.seat.sapd  { fill: #C40000; }
+/* Weimar compatibility */
+.seat.kpd   { fill: #6B0000; }
+.seat.spd   { fill: #7A3020; stroke: var(--border-color); stroke-width: 1.5px; }
+.seat.ddp   { fill: #C8B040; }
+.seat.z     { fill: #1A1A14; }
+.seat.bvp   { fill: #5A8A9E; }
+.seat.dvp   { fill: #B89020; }
+.seat.dnvp  { fill: #3A4A5E; }
+.seat.nsdap { fill: #5A3020; }
+.seat.sapd  { fill: #A03020; }
 
 .tooltip-text {
   text-decoration: underline;
@@ -544,15 +661,13 @@ table {
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media screen and (max-width: 700px) {
-  #page,
-  header,
-  footer {
+  #page, header, footer {
     width: 100%;
     max-width: 100%;
   }
   #content {
     font-size: 1em;
-    line-height: 160%;
+    line-height: 158%;
     padding: 1em 1em 1.5em 1em;
   }
   #tools_wrapper {
@@ -565,36 +680,9 @@ table {
     width: 100%;
     max-width: 100%;
   }
-  #qualities {
-    font-size: 1em;
-  }
+  #qualities { font-size: 0.9em; }
   .card-img { height: 125px; width: 100px; }
-  a.card    { width: 100px; height: 125px; border: 6px solid var(--card-border-color); }
-  div.blank-card { width: 100px; height: 125px; border: 6px solid var(--card-border-color); }
+  a.card { width: 100px; height: 125px; border: 5px solid var(--card-border-color); }
+  div.blank-card { width: 100px; height: 125px; border: 5px solid var(--card-border-color); }
   .card-in-hand, .pinned-card, .deck { max-width: 120px; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-#faction-chart {
-	
-    margin-left: 1.5em;
-	
-}
-	
-
