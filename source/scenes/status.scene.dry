@@ -71,7 +71,7 @@ Independents: [+ other_s +]%
 
 
 
-[? if spd_in_government = 1 : Budget: [+ budget +] ?]
+Budget: [+ budget +]
 
 Next election: [+ next_election_month : month +] [+ next_election_year +]
 
@@ -79,7 +79,7 @@ Next election: [+ next_election_month : month +] [+ next_election_year +]
 
 Inflation: [+ inflation_2 +]%
 
-nemployment: [+ unemployed_2 +]%
+Unemployment: [+ unemployed_2 +]%
 
 Economic growth: [+ economic_growth_2 +]%
 
@@ -119,50 +119,16 @@ Economic growth: [+ economic_growth_2 +]%
 
 
 @paramilitaries
-on-arrival: {!
-if (Q.rb_strength) {
-    Q.rb_strength_2 = Q.rb_strength.toFixed(1);
-}
-if (Q.rfb_strength) {
-    Q.rfb_strength_2 = Q.rfb_strength.toFixed(1);
-}
-if (Q.sh_strength) {
-    Q.sh_strength_2 = Q.sh_strength.toFixed(1);
-}
-if (Q.sa_strength) {
-    Q.sa_strength_2 = Q.sa_strength.toFixed(1);
-}
-!}
 
-= Paramilitaries
+= Military/paramilitaries
 
-{!<span class="tooltip-text" title="The Reichsbanner Schwarz-Rot-Gold is a popular organization for defending democracy, mostly affiliated with the SPD.">Reichsbanner</span>!} Strength: [+ rb_strength_2 +] thousand
+Military: [+ reichswehr_strength +] thousand troops.
 
-Reichsbanner Militarization: [+ rb_militancy : militancy +]
+Australian police: [+ prussian_police_strength +] thousand members.
 
-{!<span class="tooltip-text" title="The RFB (Rotfrontkämpferbund) is a communist group associated with the KPD.">RFB</span>!} Strength: [+ rfb_strength_2 +] thousand
+Australian police loyalty: [+ prussian_police_loyalty : loyalty +]
 
-RFB Militarization: [+ rfb_militancy : militancy +]
-
-{!<span class="tooltip-text" title="The Stahlhelm is a right-wing organization of war veterans associated with the DNVP.">Stahlhelm</span>!} Strength: [+ sh_strength_2 +] thousand
-
-Stahlhelm Militarization: [+ sh_militancy : militancy +]
-
-{!<span class="tooltip-text" title="The SA (Sturmabteilung) is the Nazi paramilitary.">SA</span>!} Strength: [+ sa_strength_2 +] thousand
-
-SA Militarization: [+ sa_militancy : militancy +]
-
-= Official military/paramilitaries
-
-Reichswehr: [+ reichswehr_strength +] thousand troops.
-
-Reichswehr Loyalty: [+ reichswehr_loyalty : loyalty +]
-
-Prussian police: [+ prussian_police_strength +] thousand members.
-
-Prussian police loyalty: [+ prussian_police_loyalty : loyalty +]
-
-[? if spd_in_government : Interior police loyalty: [+ interior_police_loyalty : loyalty +] ?]
+[? if asio_formed : ASIO loyalty: [+ interior_police_loyalty : loyalty +] ?]
 
 @polls
 on-arrival: {!
@@ -183,8 +149,8 @@ CPA: [+ cpa_votes +]%
 
 LDP: [+ ldp_votes +]%
 
-CP: [+ cp_votes +]
-%
+CP: [+ cp_votes +]%
+
 Lang Labor: [+ ll_votes +]%
 
 SCP: [+ scp_votes +]%
@@ -206,5 +172,3 @@ Rural: ALP: [+ rural_alp_display +]%, UAP: [+ rural_ucp_display +]%, CPA: [+ rur
 Unemployed: ALP: [+ unemployed_alp_display +]%, UAP: [+ unemployed_ucp_display +]%, CPA: [+ unemployed_cpa_display +]%, LDP: [+ unemployed_ldp_display +]%, CP: [+ unemployed_cp_display +]%, Lang Labor: [+ unemployed_ll_display +]%, SCP: [+ unemployed_scp_display +]%, Others: [+ unemployed_other_display +]% [? if dlp_formed == 1 : DLP: [+ unemployed_dlp_display +]% ?]
 
 Catholics: ALP: [+ catholics_alp_display +]%, UAP: [+ catholics_ucp_display +]%, CPA: [+ catholics_cpa_display +]%, LDP: [+ catholics_ldp_display +]%, CP: [+ catholics_cp_display +]%, Lang Labor: [+ catholics_ll_display +]%, SCP: [+ catholics_scp_display +]%, Others: [+ catholics_other_display +]% [? if dlp_formed == 1 : DLP: [+ catholics_dlp_display +]% ?]
-
-Support for the Republic: [+ pro_republic_disp +]%
