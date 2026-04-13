@@ -15,141 +15,62 @@
     <script src="game.js"></script>
   </head>
   <body>
-    <div class="background" id="bg2">
-    </div>
-
-    <div class="background" id="bg1">
-    </div>
+    <div class="background" id="bg2"></div>
+    <div class="background" id="bg1"></div>
 
     <div id="options" class="overlay options" style="display: none;">
         <div class="overlay_top">
             <table>
                 <tr>
-                    <td>
-                        Backgrounds:
-                    </td>
-                    <td>
-                        <label for="backgrounds_yes">On</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="backgrounds_yes" name="backgrounds" value="1" onclick="window.enableBg();">
-                    </td>
-                    <td>
-                        <label for="backgrounds_no">Off</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="backgrounds_no" name="backgrounds" value="0" onclick="window.disableBg();">
-                    </td>
+                    <td>Backgrounds:</td>
+                    <td><label for="backgrounds_yes">On</label></td>
+                    <td><input type="radio" id="backgrounds_yes" name="backgrounds" value="1" onclick="window.enableBg();"></td>
+                    <td><label for="backgrounds_no">Off</label></td>
+                    <td><input type="radio" id="backgrounds_no" name="backgrounds" value="0" onclick="window.disableBg();"></td>
+                </tr>
+                <tr><td><hr></td></tr>
+                <tr>
+                    <td>Event images:</td>
+                    <td><label for="images_yes">On</label></td>
+                    <td><input type="radio" id="images_yes" name="images" value="1" onclick="window.enableImages();"></td>
+                    <td><label for="images_no">Off</label></td>
+                    <td><input type="radio" id="images_no" name="images" value="0" onclick="window.disableImages();"></td>
+                </tr>
+                <tr><td><hr></td></tr>
+                <tr>
+                    <td>Animations:</td>
+                    <td><label for="animate_yes">On</label></td>
+                    <td><input type="radio" id="animate_yes" name="animate" value="1" onclick="window.enableAnimate();"></td>
+                    <td><label for="animate_no">Off</label></td>
+                    <td><input type="radio" id="animate_no" name="animate" value="0" onclick="window.disableAnimate();"></td>
+                </tr>
+                <tr><td><hr></td></tr>
+                <tr>
+                    <td>Music:</td>
+                    <td><label for="audio_yes">On</label></td>
+                    <td><input type="radio" id="audio_yes" name="audio" value="1" onclick="window.enableAudio();"></td>
+                    <td><label for="audio_no">Off</label></td>
+                    <td><input type="radio" id="audio_no" name="audio" value="0" onclick="window.disableAudio();"></td>
+                </tr>
+                <tr><td><hr></td></tr>
+                <tr>
+                    <td>Color scheme:</td>
+                    <td><label for="light_mode">Light mode</label></td>
+                    <td><input type="radio" id="light_mode" name="ld_mode" value="1" onclick="window.enableLightMode();"></td>
+                    <td><label for="dark_mode">Dark mode</label></td>
+                    <td><input type="radio" id="dark_mode" name="ld_mode" value="0" onclick="window.enableDarkMode();"></td>
                 </tr>
                 <tr>
-                    <td> <hr> </td>
+                    <td>Typewriter effect:</td>
+                    <td><label for="typewriter_yes">On</label></td>
+                    <td><input type="radio" id="typewriter_yes" name="typewriter" value="1" onclick="window.enableTypewriter();"></td>
+                    <td><label for="typewriter_no">Off</label></td>
+                    <td><input type="radio" id="typewriter_no" name="typewriter" value="0" onclick="window.disableTypewriter();"></td>
                 </tr>
                 <tr>
-                    <td>
-                        Event images:
-                    <td>
-                        <label for="images_yes">On</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="images_yes" name="images" value="1" onclick="window.enableImages();">
-                    </td>
-                    <td>
-                        <label for="images_no">Off</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="images_no" name="images" value="0" onclick="window.disableImages();">
-                    </td>
-                </tr>
-                <tr>
-                    <td> <hr> </td>
-                </tr>
- 
-                <tr>
-                    <td>
-                        Animations:
-                    </td>
-                    <td>
-                        <label for="animate_yes">On</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="animate_yes" name="animate" value="1" onclick="window.enableAnimate();">
-                    </td>
-                    <td>
-                        <label for="animate_no">Off</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="animate_no" name="animate" value="0" onclick="window.disableAnimate();">
-                    </td>
-                </tr>
-                <tr>
-                    <td> <hr> </td>
-                </tr>
-                <tr>
-                    <td>
-                        Music:
-                    </td>
-                    <td>
-                        <label for="audio_yes">On</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="audio_yes" name="audio" value="1" onclick="window.enableAudio();">
-                    </td>
-                    <td>
-                        <label for="audio_no">Off</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="audio_no" name="audio" value="0" onclick="window.disableAudio();">
-                    </td>
-                </tr>
-                <tr>
-                    <td> <hr> </td>
-                </tr>
-                <tr>
-                    <td>
-                        Color scheme:
-                    </td>
-                    <td>
-                        <label for="light_mode">Light mode</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="light_mode" name="ld_mode" value="1" onclick="window.enableLightMode();">
-                    </td>
-                    <td>
-                        <label for="dark_mode">Dark mode</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="dark_mode" name="ld_mode" value="0" onclick="window.enableDarkMode();">
-                    </td>
-                </tr>
-                <tr>
-                  <td>
-                        Typewriter effect:
-                    </td>
-                    <td>
-                        <label for="typewriter_yes">On</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="typewriter_yes" name="typewriter" value="1" onclick="window.enableTypewriter();">
-                    </td>
-                    <td>
-                        <label for="typewriter_no">Off</label>
-                    </td>
-                    <td>
-                        <input type="radio" id="typewriter_no" name="typewriter" value="0" onclick="window.disableTypewriter();">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button onclick="window.hideOptions();">Close</button>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                   <td>
-                        <button onclick="window.showMods();">Mods</button>
-                    </td>
-
+                    <td><button onclick="window.hideOptions();">Close</button></td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><button onclick="window.showMods();">Mods</button></td>
                 </tr>
             </table>
         </div>
@@ -159,162 +80,148 @@
         <table id="saves_table" class="overlay_top">
             <tr>
                 <td>Auto-0</td>
-                <td>
-                    <button class="b save_button" id="save_button_a0">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_a0">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_a0">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_a0">Delete</button></td>
                 <td class="save_info" id="save_info_a0"></td>
-                <td>
-                    <button class="b export_button" id="export_button_a0">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_a0">Export</button></td>
             </tr>
             <tr>
                 <td>Auto-1</td>
-                <td>
-                    <button class="b save_button" id="save_button_a1">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_a1">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_a1">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_a1">Delete</button></td>
                 <td class="save_info" id="save_info_a1"></td>
-                <td>
-                    <button class="b export_button" id="export_button_a1">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_a1">Export</button></td>
             </tr>
-            
             <tr>
                 <td>0</td>
-                <td>
-                    <button class="b save_button" id="save_button_0">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_0">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_0">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_0">Delete</button></td>
                 <td class="save_info" id="save_info_0"></td>
-                <td>
-                    <button class="b export_button" id="export_button_0">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_0">Export</button></td>
             </tr>
             <tr>
                 <td>1</td>
-                <td>
-                    <button class="b save_button" id="save_button_1">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_1">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_1">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_1">Delete</button></td>
                 <td class="save_info" id="save_info_1"></td>
-                <td>
-                    <button class="b export_button" id="export_button_1">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_1">Export</button></td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>
-                    <button class="b save_button" id="save_button_2">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_2">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_2">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_2">Delete</button></td>
                 <td class="save_info" id="save_info_2"></td>
-                <td>
-                    <button class="b export_button" id="export_button_2">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_2">Export</button></td>
             </tr>
             <tr>
                 <td>3</td>
-                <td>
-                    <button class="b save_button" id="save_button_3">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_3">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_3">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_3">Delete</button></td>
                 <td class="save_info" id="save_info_3"></td>
-                <td>
-                    <button class="b export_button" id="export_button_3">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_3">Export</button></td>
             </tr>
             <tr>
                 <td>4</td>
-                <td>
-                    <button class="b save_button" id="save_button_4">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_4">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_4">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_4">Delete</button></td>
                 <td class="save_info" id="save_info_4"></td>
-                <td>
-                    <button class="b export_button" id="export_button_4">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_4">Export</button></td>
             </tr>
             <tr>
                 <td>5</td>
-                <td>
-                    <button class="b save_button" id="save_button_5">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_5">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_5">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_5">Delete</button></td>
                 <td class="save_info" id="save_info_5"></td>
-                <td>
-                    <button class="b export_button" id="export_button_5">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_5">Export</button></td>
             </tr>
             <tr>
                 <td>6</td>
-                <td>
-                    <button class="b save_button" id="save_button_6">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_6">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_6">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_6">Delete</button></td>
                 <td class="save_info" id="save_info_6"></td>
-                <td>
-                    <button class="b export_button" id="export_button_6">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_6">Export</button></td>
             </tr>
             <tr>
                 <td>7</td>
-                <td>
-                    <button class="b save_button" id="save_button_7">Save</button>
-                </td>
-                <td>
-                    <button class="b delete_button" id="delete_button_7">Delete</button>
-                </td>
+                <td><button class="b save_button" id="save_button_7">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_7">Delete</button></td>
                 <td class="save_info" id="save_info_7"></td>
-                <td>
-                    <button class="b export_button" id="export_button_7">Export</button>
-                </td>
+                <td><button class="b export_button" id="export_button_7">Export</button></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><button class="b save_button" id="save_button_8">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_8">Delete</button></td>
+                <td class="save_info" id="save_info_8"></td>
+                <td><button class="b export_button" id="export_button_8">Export</button></td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><button class="b save_button" id="save_button_9">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_9">Delete</button></td>
+                <td class="save_info" id="save_info_9"></td>
+                <td><button class="b export_button" id="export_button_9">Export</button></td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><button class="b save_button" id="save_button_10">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_10">Delete</button></td>
+                <td class="save_info" id="save_info_10"></td>
+                <td><button class="b export_button" id="export_button_10">Export</button></td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td><button class="b save_button" id="save_button_11">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_11">Delete</button></td>
+                <td class="save_info" id="save_info_11"></td>
+                <td><button class="b export_button" id="export_button_11">Export</button></td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td><button class="b save_button" id="save_button_12">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_12">Delete</button></td>
+                <td class="save_info" id="save_info_12"></td>
+                <td><button class="b export_button" id="export_button_12">Export</button></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td><button class="b save_button" id="save_button_13">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_13">Delete</button></td>
+                <td class="save_info" id="save_info_13"></td>
+                <td><button class="b export_button" id="export_button_13">Export</button></td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td><button class="b save_button" id="save_button_14">Save</button></td>
+                <td><button class="b delete_button" id="delete_button_14">Delete</button></td>
+                <td class="save_info" id="save_info_14"></td>
+                <td><button class="b export_button" id="export_button_14">Export</button></td>
             </tr>
             <tr>
                 <td colspan="5">
-                    <label for="import_save">Import save file:</label> <input type="file" id="import_save" onchange="dendryUI.importSave('import_save');"></input>
+                    <label for="import_save">Import save file:</label>
+                    <input type="file" id="import_save" onchange="dendryUI.importSave('import_save');"></input>
                 </td>
-            </tr> 
+            </tr>
             <tr>
-                <td>
-                    <button onclick="dendryUI.hideSaveSlots();">Close</button>
-                </td>
+                <td><button onclick="dendryUI.hideSaveSlots();">Close</button></td>
             </tr>
         </table>
     </div>
 
-    <!-- Sprite stuff - feel free to comment out/remove if not using -->
+    <!-- Sprite stuff -->
     <div id="contentSpriteContainer">
         <div class="sprite" id="topLeftSprite"></div>
         <div class="sprite" id="topRightSprite"></div>
-
         <div class="sprite" id="bottomLeftSprite"></div>
         <div class="sprite" id="bottomRightSprite"></div>
     </div>
+
     <div id='page'>
         <div id="mid_panel">
             <header>
                 <h1 id="game-title">Australian Dawn: The Long Grey Morning</h1>
                 <h2 id="game-author">Gaufen_Spelt</h2>
-
                 <div id="header-links">
                     <a id="credits-link" onclick="window.showCredits();" href="#">Credits</a>
                     <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
@@ -322,8 +229,9 @@
                     <a onclick="window.showOptions();" href="#">Options</a>
                 </div>
             </header>
+
             <div id="tools_wrapper">
-                <!-- Box 1: existing stats sidebar (fixed width) -->
+                <!-- Box 1 -->
                 <div id='stats_sidebar' class='tools left'>
                     <div class="tab_container">
                         <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Main</button>
@@ -331,51 +239,47 @@
                         <button class="tab_button" id="paramilitary_tab" onclick="window.changeTab('status.paramilitaries', 'paramilitary_tab');">Defense</button>
                         <button class="tab_button" id="poll_tab" onclick="window.changeTab('status.polls', 'poll_tab');">Polls</button>
                     </div>
-                    <div id="qualities">
-                    </div>
+                    <div id="qualities"></div>
                 </div>
 
-    <!-- Box 2: second fixed-width stats pane -->
+                <!-- Box 2 -->
                 <div id='stats_sidebar_2' class='tools left'>
-    <div class="tab_container">
-        <button class="tab_button active" id="intel_tab" onclick="window.changeTab2('status_2.intel', 'intel_tab');">Intel</button>
-        <button class="tab_button" id="street_tab" onclick="window.changeTab2('status_2.street', 'street_tab');">Street</button>
-        <button class="tab_button" id="union_tab" onclick="window.changeTab2('status_2.union', 'union_tab');">Union</button>
-        <button class="tab_button" id="internal_tab" onclick="window.changeTab2('status_2.internal', 'internal_tab');">Internal</button>
-        <button class="tab_button" id="internat_tab" onclick="window.changeTab2('status_2.internat', 'internat_tab');">Internat</button>
-        <button class="tab_button" id="profile_tab" onclick="window.changeTab2('status_2.profile', 'profile_tab');">Profile</button>
-    </div>
-    <div id="qualities_2">
-    </div>
+                    <div class="tab_container">
+                        <button class="tab_button active" id="intel_tab" onclick="window.changeTab2('status_2.intel', 'intel_tab');">Intel</button>
+                        <button class="tab_button" id="street_tab" onclick="window.changeTab2('status_2.street', 'street_tab');">Street</button>
+                        <button class="tab_button" id="union_tab" onclick="window.changeTab2('status_2.union', 'union_tab');">Union</button>
+                        <button class="tab_button" id="internal_tab" onclick="window.changeTab2('status_2.internal', 'internal_tab');">Internal</button>
+                        <button class="tab_button" id="internat_tab" onclick="window.changeTab2('status_2.internat', 'internat_tab');">Internat</button>
+                        <button class="tab_button" id="profile_tab" onclick="window.changeTab2('status_2.profile', 'profile_tab');">Profile</button>
+                    </div>
+                    <div id="qualities_2"></div>
                 </div>
 
-    <!-- Box 3: expands to fill remaining space -->
-<div id='stats_sidebar_3' class='tools right'>
-    <button id="collapse_3" onclick="window.toggleSidebar3();" style="float:right; font-size:0.8em; padding: 0.1em 0.4em; cursor:pointer;">▲</button>
-    <div class="tab_container">
-        <button class="tab_button active" id="factions_tab3" onclick="window.changeTab3('status_3.factions', 'factions_tab3');">Charts</button>
-        <button class="tab_button" id="graph_tab3" onclick="window.changeTab3('status_3.graph', 'graph_tab3');">Graphs</button>
-        <button class="tab_button" id="info_tab3" onclick="window.changeTab3('status_3.info', 'info_tab3');">Info</button>
-    </div>
-    <div id="faction-chart" style="display:none;"></div>
-    <div id="qualities_3"></div>
-</div>
-
-            <div id='content'>
-
+                <!-- Box 3 -->
+                <div id='stats_sidebar_3' class='tools right'>
+                    <button id="collapse_3" onclick="window.toggleSidebar3();" style="float:right; font-size:0.8em; padding: 0.1em 0.4em; cursor:pointer;">▲</button>
+                    <div class="tab_container">
+                        <button class="tab_button active" id="factions_tab3" onclick="window.changeTab3('status_3.factions', 'factions_tab3');">Charts</button>
+                        <button class="tab_button" id="graph_tab3" onclick="window.changeTab3('status_3.graph', 'graph_tab3');">Graphs</button>
+                        <button class="tab_button" id="info_tab3" onclick="window.changeTab3('status_3.info', 'info_tab3');">Info</button>
+                    </div>
+                    <div id="faction-chart" style="display:none;"></div>
+                    <div id="qualities_3"></div>
+                </div>
             </div>
 
-            <footer>
-      <!--
-      <p>
-        <a onclick="window.showSaveSlots();" href="#">Save/Load</a>
-        <a onclick="window.quickSave();" href="#">Quick Save</a>
-        <a onclick="window.quickLoad();" href="#">Quick Load</a>
-      </p>
+            <div id='content'></div>
 
-      &copy; 2021 Autumn Chen.
-      Made with <a href="https://github.com/aucchen/dendry">Dendry</a>.
-      -->
+            <footer>
+            <!--
+            <p>
+                <a onclick="window.showSaveSlots();" href="#">Save/Load</a>
+                <a onclick="window.quickSave();" href="#">Quick Save</a>
+                <a onclick="window.quickLoad();" href="#">Quick Load</a>
+            </p>
+            &copy; 2021 Autumn Chen.
+            Made with <a href="https://github.com/aucchen/dendry">Dendry</a>.
+            -->
             </footer>
         </div>
     </div>
