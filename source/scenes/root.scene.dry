@@ -83,58 +83,48 @@ Q.dlp_relation = 10;
 // Others/Independents
 Q.other_relation = 50;
 
+Q.awu_strength = 4000;
+Q.awu_militancy = 0.001;
+Q.mf_strength = 1000;
+Q.mf_militancy = 0.06;
+Q.wwf_strength = 800;
+Q.wwf_militancy = 0.08;
 
-Q.kpd_leader = "Thälmann";
-// alternative is the Conciliators as party leader
-Q.kpd_party_leader = "Thälmann";
-Q.z_leader = "Brüning";
-// party leader - can be Ludwig Kaas, Joseph Joos, or Adam Stegerwald after the 1928 December conference. Joos will be most friendly to the SPD.
-Q.z_party_leader = "Marx";
-Q.nsdap_leader = "Hitler";
+Q.fia_strength = 600;
+Q.fia_militancy = 0.07;
 
-// hmm... maybe we can play nice with Hindenburg???
-Q.hindenburg_relation = 25;
-// whether or not hindenburg can dismiss the government.
-Q.hindenburg_enabled = 0;
+Q.aru_strength = 900;
+Q.aru_militancy = 0.05;
 
+Q.bwiu_strength = 700;
+Q.bwiu_militancy = 0.06;
 
-// Does the SPD lead in Prussia?
-Q.spd_prussia = 1;
-// Options: spd, z, dnvp, papen, nsdap
-Q.prussian_government = "SPD";
+Q.fedfa_strength = 400;
+Q.fedfa_militancy = 0.07;
 
-// The array of forces - paramilitary groups
-// Number of members in 1928 (in thousands)
-// Reichsbanner, stahlhelm, SA, rotfrontkämpferbund
-Q.rb_strength = 2000;
-Q.rb_militancy = 0.01;
-Q.women_in_rb = 0;
-Q.rb_banned = 0;
-Q.sh_strength = 500;
-Q.sh_militancy = 0.5;
-Q.sh_banned = 0;
-Q.sh_banned_prussia = 0;
-Q.sa_strength = 80;
-Q.sa_militancy = 0.5;
-Q.sa_banned = 0;
-Q.sa_banned_prussia = 0;
-Q.rfb_strength = 130;
-Q.rfb_militancy = 0.5;
-Q.rfb_banned = 0;
-Q.rfb_banned_prussia = 0;
+Q.seamen_strength = 350;
+Q.seamen_militancy = 0.08;
 
-Q.interior_police_strength = 50;
-Q.interior_police_militancy = 1;
-Q.interior_police_loyalty = 0.45;
+Q.aeu_strength = 500;
+Q.aeu_militancy = 0.04;
 
-Q.prussian_police_strength = 90;
-Q.prussian_police_militancy = 1;
-Q.prussian_police_loyalty = 0.5;
+Q.asce_strength = 300;
+Q.asce_militancy = 0.01;
 
-// strength includes actual military and de facto reserves?
-Q.reichswehr_strength = 100;
-Q.reichswehr_militancy = 5;
-Q.reichswehr_loyalty = 0.2;
+Q.fcu_strength = 600;
+Q.fcu_militancy = 0.02;
+
+Q.twu_strength = 450;
+Q.twu_militancy = 0.03;
+
+Q.aja_strength = 80;
+Q.aja_militancy = 0.02;
+
+Q.pieua_strength = 150;
+Q.pieua_militancy = 0.03;
+
+Q.actu_strength = 0;
+Q.actu_militancy = 0;
 
 // The state of the country
 
