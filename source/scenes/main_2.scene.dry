@@ -18,6 +18,7 @@ max-cards: 6
 - #advisor
 - @shuffle_leadership_pinned
 - @month_aff
+- @skip
 
 @party
 title: Party Affairs
