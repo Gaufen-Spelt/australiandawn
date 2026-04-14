@@ -1,5 +1,6 @@
 title: Daily Life
 new-page: True
+is-pinned-card: true
 is-card: True
 on-arrival: modem = 1
 go-to: main_2
