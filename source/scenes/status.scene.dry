@@ -174,8 +174,6 @@ Others: [+ other_votes +]%
 
 **Business & Professionals ([+ businessmen +]%):** ALP: [+ businessmen_alp_display +]%, LL: [+ businessmen_ll_display +]%, UAP: [+ businessmen_uap_display +]%, CP: [+ businessmen_cp_display +]%, CPA: [+ businessmen_cpa_display +]%, SCP: [+ businessmen_scp_display +]%, LDP: [+ businessmen_ldp_display +]%, Others: [+ businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ businessmen_dlp_display +]% ?]
 
----
-
 = Results by State
 
 **New South Wales ([+ nsw_weight_pct +]%):**
