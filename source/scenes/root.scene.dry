@@ -128,21 +128,40 @@ Q.actu_militancy = 0;
 
 Q.budget = 4;
 
-// The electoral weight of each state in the Federation
-Q.nsw_weight = 0.39;      // The "Prussia" of Australia - Industrial heartland
-Q.vic_weight = 0.28;      // The "Bavaria" - High Catholic/Grouper influence
-Q.qld_weight = 0.14;      // The "Silesia" - Agrarian/AWU stronghold
-Q.sa_weight = 0.09;       // The "Saxony" - Smaller industrial base
-Q.wa_weight = 0.06;       // The "frontier" - Resource focused, secessionist
-Q.tas_weight = 0.03;      // The "outlier" - Smallest state influence
-Q.nt_act_weight = 0.01;   // Federal territories - Minimal electoral impact
+// ── STATE ELECTORAL WEIGHTS ───────────────────────────────────────────────────
+Q.nsw_weight    = 0.39;
+Q.vic_weight    = 0.28;
+Q.qld_weight    = 0.14;
+Q.sa_weight     = 0.09;
+Q.wa_weight     = 0.06;
+Q.tas_weight    = 0.03;
+Q.nt_act_weight = 0.01;
 
-Q.bluecollar = 33;
-Q.whitecollar = 25;
-Q.catholics = 16;
-Q.rural = 15;
-Q.immigrants = 10;
-Q.businessmen = 1;
+// ── STATE CLASS WEIGHTS (must sum to 100 per state) ───────────────────────────
+Q.nsw_bluecollar_weight  = 38; Q.nsw_whitecollar_weight  = 27; Q.nsw_catholics_weight  = 14; Q.nsw_rural_weight  = 10; Q.nsw_immigrants_weight  = 9;  Q.nsw_businessmen_weight  = 2;
+Q.vic_bluecollar_weight  = 30; Q.vic_whitecollar_weight  = 28; Q.vic_catholics_weight  = 22; Q.vic_rural_weight  = 10; Q.vic_immigrants_weight  = 7;  Q.vic_businessmen_weight  = 3;
+Q.qld_bluecollar_weight  = 30; Q.qld_whitecollar_weight  = 20; Q.qld_catholics_weight  = 12; Q.qld_rural_weight  = 28; Q.qld_immigrants_weight  = 7;  Q.qld_businessmen_weight  = 3;
+Q.sa_bluecollar_weight   = 34; Q.sa_whitecollar_weight   = 26; Q.sa_catholics_weight   = 12; Q.sa_rural_weight   = 18; Q.sa_immigrants_weight   = 7;  Q.sa_businessmen_weight   = 3;
+Q.wa_bluecollar_weight   = 32; Q.wa_whitecollar_weight   = 24; Q.wa_catholics_weight   = 10; Q.wa_rural_weight   = 18; Q.wa_immigrants_weight   = 13; Q.wa_businessmen_weight   = 3;
+Q.tas_bluecollar_weight  = 34; Q.tas_whitecollar_weight  = 23; Q.tas_catholics_weight  = 13; Q.tas_rural_weight  = 22; Q.tas_immigrants_weight  = 6;  Q.tas_businessmen_weight  = 2;
+Q.nt_act_bluecollar_weight = 28; Q.nt_act_whitecollar_weight = 35; Q.nt_act_catholics_weight = 10; Q.nt_act_rural_weight = 14; Q.nt_act_immigrants_weight = 11; Q.nt_act_businessmen_weight = 2;
+
+// ── STATE PARTY MODIFIERS (1.0 = neutral) ─────────────────────────────────────
+Q.nsw_alp_modifier = 1.05; Q.nsw_ll_modifier  = 1.20; Q.nsw_uap_modifier = 0.95; Q.nsw_cp_modifier  = 0.85; Q.nsw_cpa_modifier = 1.10; Q.nsw_scp_modifier = 1.00; Q.nsw_ldp_modifier = 0.95; Q.nsw_other_modifier = 1.00;
+Q.vic_alp_modifier = 0.95; Q.vic_ll_modifier  = 0.70; Q.vic_uap_modifier = 1.05; Q.vic_cp_modifier  = 1.00; Q.vic_cpa_modifier = 0.90; Q.vic_scp_modifier = 1.00; Q.vic_ldp_modifier = 1.10; Q.vic_other_modifier = 1.00;
+Q.qld_alp_modifier = 1.05; Q.qld_ll_modifier  = 0.80; Q.qld_uap_modifier = 1.00; Q.qld_cp_modifier  = 1.20; Q.qld_cpa_modifier = 0.90; Q.qld_scp_modifier = 1.00; Q.qld_ldp_modifier = 0.90; Q.qld_other_modifier = 1.00;
+Q.sa_alp_modifier  = 1.00; Q.sa_ll_modifier   = 0.80; Q.sa_uap_modifier  = 1.05; Q.sa_cp_modifier   = 1.00; Q.sa_cpa_modifier  = 0.90; Q.sa_scp_modifier  = 1.10; Q.sa_ldp_modifier  = 1.00; Q.sa_other_modifier  = 1.00;
+Q.wa_alp_modifier  = 1.00; Q.wa_ll_modifier   = 0.70; Q.wa_uap_modifier  = 1.10; Q.wa_cp_modifier   = 1.10; Q.wa_cpa_modifier  = 0.90; Q.wa_scp_modifier  = 1.00; Q.wa_ldp_modifier  = 1.00; Q.wa_other_modifier  = 1.10;
+Q.tas_alp_modifier = 1.05; Q.tas_ll_modifier  = 0.80; Q.tas_uap_modifier = 1.00; Q.tas_cp_modifier  = 0.90; Q.tas_cpa_modifier = 0.90; Q.tas_scp_modifier = 1.00; Q.tas_ldp_modifier = 1.00; Q.tas_other_modifier = 1.00;
+Q.nt_act_alp_modifier = 1.00; Q.nt_act_ll_modifier = 0.70; Q.nt_act_uap_modifier = 1.00; Q.nt_act_cp_modifier = 0.80; Q.nt_act_cpa_modifier = 1.00; Q.nt_act_scp_modifier = 1.10; Q.nt_act_ldp_modifier = 1.10; Q.nt_act_other_modifier = 1.00;
+
+// ── CLASS PARTY PREFERENCES (raw, not normalized) ─────────────────────────────
+Q.bluecollar_alp = 55; Q.bluecollar_ll = 5;  Q.bluecollar_uap = 5;  Q.bluecollar_cp = 0;  Q.bluecollar_cpa = 20; Q.bluecollar_scp = 5; Q.bluecollar_ldp = 0;  Q.bluecollar_other = 10; Q.bluecollar_dlp = 0;
+Q.whitecollar_alp = 30; Q.whitecollar_ll = 20; Q.whitecollar_uap = 25; Q.whitecollar_cp = 5; Q.whitecollar_cpa = 5; Q.whitecollar_scp = 0; Q.whitecollar_ldp = 5; Q.whitecollar_other = 10; Q.whitecollar_dlp = 0;
+Q.catholics_alp = 50; Q.catholics_ll = 10; Q.catholics_uap = 10; Q.catholics_cp = 5; Q.catholics_cpa = 5; Q.catholics_scp = 0; Q.catholics_ldp = 10; Q.catholics_other = 10; Q.catholics_dlp = 0;
+Q.rural_alp = 15; Q.rural_ll = 10; Q.rural_uap = 20; Q.rural_cp = 45; Q.rural_cpa = 0; Q.rural_scp = 0; Q.rural_ldp = 0; Q.rural_other = 10; Q.rural_dlp = 0;
+Q.immigrants_alp = 35; Q.immigrants_ll = 15; Q.immigrants_uap = 15; Q.immigrants_cp = 5; Q.immigrants_cpa = 15; Q.immigrants_scp = 5; Q.immigrants_ldp = 5; Q.immigrants_other = 5; Q.immigrants_dlp = 0;
+Q.businessmen_alp = 5; Q.businessmen_ll = 0; Q.businessmen_uap = 45; Q.businessmen_cp = 10; Q.businessmen_cpa = 0; Q.businessmen_scp = 0; Q.businessmen_ldp = 5; Q.businessmen_other = 5; Q.businessmen_dlp = 0;
 
 Q.unemployment = 2.4;
 // inflation (in %; 1928: 2.9; 1929: 0; 1930: -5%; 1931: -10%; 1932: -10%) - source: https://en.wikipedia.org/wiki/File:BSPDRWeltkriseEngl.PNG, derived from https://www.destatis.de/DE/Methoden/WISTA-Wirtschaft-und-Statistik/2009/03/rezession-betrachtung-032009.pdf?__blob=publicationFile
