@@ -162,184 +162,186 @@ Others: [+ other_votes +]%
 
 **Detailed results for each demographic**
 
-**Blue-Collar Workers (33%):** ALP: [+ bluecollar_alp_display +]%, LL: [+ bluecollar_ll_display +]%, UAP: [+ bluecollar_uap_display +]%, CP: [+ bluecollar_cp_display +]%, CPA: [+ bluecollar_cpa_display +]%, SCP: [+ bluecollar_scp_display +]%, LDP: [+ bluecollar_ldp_display +]%, Others: [+ bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ bluecollar_dlp_display +]% ?]
+**Blue-Collar Workers ([+ bluecollar +]%):** ALP: [+ bluecollar_alp_display +]%, LL: [+ bluecollar_ll_display +]%, UAP: [+ bluecollar_uap_display +]%, CP: [+ bluecollar_cp_display +]%, CPA: [+ bluecollar_cpa_display +]%, SCP: [+ bluecollar_scp_display +]%, LDP: [+ bluecollar_ldp_display +]%, Others: [+ bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ bluecollar_dlp_display +]% ?]
 
-**White-Collar Workers (25%):** ALP: [+ whitecollar_alp_display +]%, LL: [+ whitecollar_ll_display +]%, UAP: [+ whitecollar_uap_display +]%, CP: [+ whitecollar_cp_display +]%, CPA: [+ whitecollar_cpa_display +]%, SCP: [+ whitecollar_scp_display +]%, LDP: [+ whitecollar_ldp_display +]%, Others: [+ whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ whitecollar_dlp_display +]% ?]
+**White-Collar Workers ([+ whitecollar +]%):** ALP: [+ whitecollar_alp_display +]%, LL: [+ whitecollar_ll_display +]%, UAP: [+ whitecollar_uap_display +]%, CP: [+ whitecollar_cp_display +]%, CPA: [+ whitecollar_cpa_display +]%, SCP: [+ whitecollar_scp_display +]%, LDP: [+ whitecollar_ldp_display +]%, Others: [+ whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ whitecollar_dlp_display +]% ?]
 
-**Catholics (16%):** ALP: [+ catholics_alp_display +]%, LL: [+ catholics_ll_display +]%, UAP: [+ catholics_uap_display +]%, CP: [+ catholics_cp_display +]%, CPA: [+ catholics_cpa_display +]%, SCP: [+ catholics_scp_display +]%, LDP: [+ catholics_ldp_display +]%, Others: [+ catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ catholics_dlp_display +]% ?]
+**Catholics ([+ catholics +]%):** ALP: [+ catholics_alp_display +]%, LL: [+ catholics_ll_display +]%, UAP: [+ catholics_uap_display +]%, CP: [+ catholics_cp_display +]%, CPA: [+ catholics_cpa_display +]%, SCP: [+ catholics_scp_display +]%, LDP: [+ catholics_ldp_display +]%, Others: [+ catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ catholics_dlp_display +]% ?]
 
-**Rural Voters (15%):** ALP: [+ rural_alp_display +]%, LL: [+ rural_ll_display +]%, UAP: [+ rural_uap_display +]%, CP: [+ rural_cp_display +]%, CPA: [+ rural_cpa_display +]%, SCP: [+ rural_scp_display +]%, LDP: [+ rural_ldp_display +]%, Others: [+ rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ rural_dlp_display +]% ?]
+**Rural Voters ([+ rural +]%):** ALP: [+ rural_alp_display +]%, LL: [+ rural_ll_display +]%, UAP: [+ rural_uap_display +]%, CP: [+ rural_cp_display +]%, CPA: [+ rural_cpa_display +]%, SCP: [+ rural_scp_display +]%, LDP: [+ rural_ldp_display +]%, Others: [+ rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ rural_dlp_display +]% ?]
 
-**New Immigrants (10%):** ALP: [+ immigrants_alp_display +]%, LL: [+ immigrants_ll_display +]%, UAP: [+ immigrants_uap_display +]%, CP: [+ immigrants_cp_display +]%, CPA: [+ immigrants_cpa_display +]%, SCP: [+ immigrants_scp_display +]%, LDP: [+ immigrants_ldp_display +]%, Others: [+ immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ immigrants_dlp_display +]% ?]
+**New Immigrants ([+ immigrants +]%):** ALP: [+ immigrants_alp_display +]%, LL: [+ immigrants_ll_display +]%, UAP: [+ immigrants_uap_display +]%, CP: [+ immigrants_cp_display +]%, CPA: [+ immigrants_cpa_display +]%, SCP: [+ immigrants_scp_display +]%, LDP: [+ immigrants_ldp_display +]%, Others: [+ immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ immigrants_dlp_display +]% ?]
 
-**Business & Professionals (1%):** ALP: [+ businessmen_alp_display +]%, LL: [+ businessmen_ll_display +]%, UAP: [+ businessmen_uap_display +]%, CP: [+ businessmen_cp_display +]%, CPA: [+ businessmen_cpa_display +]%, SCP: [+ businessmen_scp_display +]%, LDP: [+ businessmen_ldp_display +]%, Others: [+ businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ businessmen_dlp_display +]% ?]
+**Business & Professionals ([+ businessmen +]%):** ALP: [+ businessmen_alp_display +]%, LL: [+ businessmen_ll_display +]%, UAP: [+ businessmen_uap_display +]%, CP: [+ businessmen_cp_display +]%, CPA: [+ businessmen_cpa_display +]%, SCP: [+ businessmen_scp_display +]%, LDP: [+ businessmen_ldp_display +]%, Others: [+ businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ businessmen_dlp_display +]% ?]
 
-= **Results by State**
+---
 
-**New South Wales (39%):**
+= Results by State
+
+**New South Wales ([+ nsw_weight_pct +]%):**
 ALP: [+ nsw_alp_votes +]%, LL: [+ nsw_ll_votes +]%, UAP: [+ nsw_uap_votes +]%, CP: [+ nsw_cp_votes +]%, CPA: [+ nsw_cpa_votes +]%, SCP: [+ nsw_scp_votes +]%, LDP: [+ nsw_ldp_votes +]%, Others: [+ nsw_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ nsw_dlp_votes +]% ?]
-*Blue-Collar (38%), White-Collar (27%), Catholics (14%), Rural (10%), Immigrants (9%), Business (2%)*
+*Blue-Collar ([+ nsw_bluecollar_weight +]%), White-Collar ([+ nsw_whitecollar_weight +]%), Catholics ([+ nsw_catholics_weight +]%), Rural ([+ nsw_rural_weight +]%), Immigrants ([+ nsw_immigrants_weight +]%), Business ([+ nsw_businessmen_weight +]%)*
 
-**Victoria (28%):**
+**Victoria ([+ vic_weight_pct +]%):**
 ALP: [+ vic_alp_votes +]%, LL: [+ vic_ll_votes +]%, UAP: [+ vic_uap_votes +]%, CP: [+ vic_cp_votes +]%, CPA: [+ vic_cpa_votes +]%, SCP: [+ vic_scp_votes +]%, LDP: [+ vic_ldp_votes +]%, Others: [+ vic_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ vic_dlp_votes +]% ?]
-*Blue-Collar (30%), White-Collar (28%), Catholics (22%), Rural (10%), Immigrants (7%), Business (3%)*
+*Blue-Collar ([+ vic_bluecollar_weight +]%), White-Collar ([+ vic_whitecollar_weight +]%), Catholics ([+ vic_catholics_weight +]%), Rural ([+ vic_rural_weight +]%), Immigrants ([+ vic_immigrants_weight +]%), Business ([+ vic_businessmen_weight +]%)*
 
-**Queensland (14%):**
+**Queensland ([+ qld_weight_pct +]%):**
 ALP: [+ qld_alp_votes +]%, LL: [+ qld_ll_votes +]%, UAP: [+ qld_uap_votes +]%, CP: [+ qld_cp_votes +]%, CPA: [+ qld_cpa_votes +]%, SCP: [+ qld_scp_votes +]%, LDP: [+ qld_ldp_votes +]%, Others: [+ qld_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ qld_dlp_votes +]% ?]
-*Blue-Collar (30%), White-Collar (20%), Catholics (12%), Rural (28%), Immigrants (7%), Business (3%)*
+*Blue-Collar ([+ qld_bluecollar_weight +]%), White-Collar ([+ qld_whitecollar_weight +]%), Catholics ([+ qld_catholics_weight +]%), Rural ([+ qld_rural_weight +]%), Immigrants ([+ qld_immigrants_weight +]%), Business ([+ qld_businessmen_weight +]%)*
 
-**South Australia (9%):**
+**South Australia ([+ sa_weight_pct +]%):**
 ALP: [+ sa_alp_votes +]%, LL: [+ sa_ll_votes +]%, UAP: [+ sa_uap_votes +]%, CP: [+ sa_cp_votes +]%, CPA: [+ sa_cpa_votes +]%, SCP: [+ sa_scp_votes +]%, LDP: [+ sa_ldp_votes +]%, Others: [+ sa_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ sa_dlp_votes +]% ?]
-*Blue-Collar (34%), White-Collar (26%), Catholics (12%), Rural (18%), Immigrants (7%), Business (3%)*
+*Blue-Collar ([+ sa_bluecollar_weight +]%), White-Collar ([+ sa_whitecollar_weight +]%), Catholics ([+ sa_catholics_weight +]%), Rural ([+ sa_rural_weight +]%), Immigrants ([+ sa_immigrants_weight +]%), Business ([+ sa_businessmen_weight +]%)*
 
-**Western Australia (6%):**
+**Western Australia ([+ wa_weight_pct +]%):**
 ALP: [+ wa_alp_votes +]%, LL: [+ wa_ll_votes +]%, UAP: [+ wa_uap_votes +]%, CP: [+ wa_cp_votes +]%, CPA: [+ wa_cpa_votes +]%, SCP: [+ wa_scp_votes +]%, LDP: [+ wa_ldp_votes +]%, Others: [+ wa_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ wa_dlp_votes +]% ?]
-*Blue-Collar (32%), White-Collar (24%), Catholics (10%), Rural (18%), Immigrants (13%), Business (3%)*
+*Blue-Collar ([+ wa_bluecollar_weight +]%), White-Collar ([+ wa_whitecollar_weight +]%), Catholics ([+ wa_catholics_weight +]%), Rural ([+ wa_rural_weight +]%), Immigrants ([+ wa_immigrants_weight +]%), Business ([+ wa_businessmen_weight +]%)*
 
-**Tasmania (3%):**
+**Tasmania ([+ tas_weight_pct +]%):**
 ALP: [+ tas_alp_votes +]%, LL: [+ tas_ll_votes +]%, UAP: [+ tas_uap_votes +]%, CP: [+ tas_cp_votes +]%, CPA: [+ tas_cpa_votes +]%, SCP: [+ tas_scp_votes +]%, LDP: [+ tas_ldp_votes +]%, Others: [+ tas_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ tas_dlp_votes +]% ?]
-*Blue-Collar (34%), White-Collar (23%), Catholics (13%), Rural (22%), Immigrants (6%), Business (2%)*
+*Blue-Collar ([+ tas_bluecollar_weight +]%), White-Collar ([+ tas_whitecollar_weight +]%), Catholics ([+ tas_catholics_weight +]%), Rural ([+ tas_rural_weight +]%), Immigrants ([+ tas_immigrants_weight +]%), Business ([+ tas_businessmen_weight +]%)*
 
-**NT & ACT (1%):**
+**NT & ACT ([+ nt_act_weight_pct +]%):**
 ALP: [+ nt_act_alp_votes +]%, LL: [+ nt_act_ll_votes +]%, UAP: [+ nt_act_uap_votes +]%, CP: [+ nt_act_cp_votes +]%, CPA: [+ nt_act_cpa_votes +]%, SCP: [+ nt_act_scp_votes +]%, LDP: [+ nt_act_ldp_votes +]%, Others: [+ nt_act_other_votes +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_dlp_votes +]% ?]
-*Blue-Collar (28%), White-Collar (35%), Catholics (10%), Rural (14%), Immigrants (11%), Business (2%)*
+*Blue-Collar ([+ nt_act_bluecollar_weight +]%), White-Collar ([+ nt_act_whitecollar_weight +]%), Catholics ([+ nt_act_catholics_weight +]%), Rural ([+ nt_act_rural_weight +]%), Immigrants ([+ nt_act_immigrants_weight +]%), Business ([+ nt_act_businessmen_weight +]%)*
 
-= **Results by Class per State**
+= Results by Class per State
 
 **Blue-Collar Workers by State:**
 
-*New South Wales (38% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_bluecollar_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_bluecollar_alp_display +]%, LL: [+ nsw_bluecollar_ll_display +]%, UAP: [+ nsw_bluecollar_uap_display +]%, CP: [+ nsw_bluecollar_cp_display +]%, CPA: [+ nsw_bluecollar_cpa_display +]%, SCP: [+ nsw_bluecollar_scp_display +]%, LDP: [+ nsw_bluecollar_ldp_display +]%, Others: [+ nsw_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_bluecollar_dlp_display +]% ?]
 
-*Victoria (30% of VIC, state weight 28%):*
+*Victoria ([+ vic_bluecollar_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_bluecollar_alp_display +]%, LL: [+ vic_bluecollar_ll_display +]%, UAP: [+ vic_bluecollar_uap_display +]%, CP: [+ vic_bluecollar_cp_display +]%, CPA: [+ vic_bluecollar_cpa_display +]%, SCP: [+ vic_bluecollar_scp_display +]%, LDP: [+ vic_bluecollar_ldp_display +]%, Others: [+ vic_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_bluecollar_dlp_display +]% ?]
 
-*Queensland (30% of QLD, state weight 14%):*
+*Queensland ([+ qld_bluecollar_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_bluecollar_alp_display +]%, LL: [+ qld_bluecollar_ll_display +]%, UAP: [+ qld_bluecollar_uap_display +]%, CP: [+ qld_bluecollar_cp_display +]%, CPA: [+ qld_bluecollar_cpa_display +]%, SCP: [+ qld_bluecollar_scp_display +]%, LDP: [+ qld_bluecollar_ldp_display +]%, Others: [+ qld_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_bluecollar_dlp_display +]% ?]
 
-*South Australia (34% of SA, state weight 9%):*
+*South Australia ([+ sa_bluecollar_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_bluecollar_alp_display +]%, LL: [+ sa_bluecollar_ll_display +]%, UAP: [+ sa_bluecollar_uap_display +]%, CP: [+ sa_bluecollar_cp_display +]%, CPA: [+ sa_bluecollar_cpa_display +]%, SCP: [+ sa_bluecollar_scp_display +]%, LDP: [+ sa_bluecollar_ldp_display +]%, Others: [+ sa_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_bluecollar_dlp_display +]% ?]
 
-*Western Australia (32% of WA, state weight 6%):*
+*Western Australia ([+ wa_bluecollar_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_bluecollar_alp_display +]%, LL: [+ wa_bluecollar_ll_display +]%, UAP: [+ wa_bluecollar_uap_display +]%, CP: [+ wa_bluecollar_cp_display +]%, CPA: [+ wa_bluecollar_cpa_display +]%, SCP: [+ wa_bluecollar_scp_display +]%, LDP: [+ wa_bluecollar_ldp_display +]%, Others: [+ wa_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_bluecollar_dlp_display +]% ?]
 
-*Tasmania (34% of TAS, state weight 3%):*
+*Tasmania ([+ tas_bluecollar_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_bluecollar_alp_display +]%, LL: [+ tas_bluecollar_ll_display +]%, UAP: [+ tas_bluecollar_uap_display +]%, CP: [+ tas_bluecollar_cp_display +]%, CPA: [+ tas_bluecollar_cpa_display +]%, SCP: [+ tas_bluecollar_scp_display +]%, LDP: [+ tas_bluecollar_ldp_display +]%, Others: [+ tas_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_bluecollar_dlp_display +]% ?]
 
-*NT & ACT (28% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_bluecollar_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_bluecollar_alp_display +]%, LL: [+ nt_act_bluecollar_ll_display +]%, UAP: [+ nt_act_bluecollar_uap_display +]%, CP: [+ nt_act_bluecollar_cp_display +]%, CPA: [+ nt_act_bluecollar_cpa_display +]%, SCP: [+ nt_act_bluecollar_scp_display +]%, LDP: [+ nt_act_bluecollar_ldp_display +]%, Others: [+ nt_act_bluecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_bluecollar_dlp_display +]% ?]
 
 **White-Collar Workers by State:**
 
-*New South Wales (27% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_whitecollar_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_whitecollar_alp_display +]%, LL: [+ nsw_whitecollar_ll_display +]%, UAP: [+ nsw_whitecollar_uap_display +]%, CP: [+ nsw_whitecollar_cp_display +]%, CPA: [+ nsw_whitecollar_cpa_display +]%, SCP: [+ nsw_whitecollar_scp_display +]%, LDP: [+ nsw_whitecollar_ldp_display +]%, Others: [+ nsw_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_whitecollar_dlp_display +]% ?]
 
-*Victoria (28% of VIC, state weight 28%):*
+*Victoria ([+ vic_whitecollar_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_whitecollar_alp_display +]%, LL: [+ vic_whitecollar_ll_display +]%, UAP: [+ vic_whitecollar_uap_display +]%, CP: [+ vic_whitecollar_cp_display +]%, CPA: [+ vic_whitecollar_cpa_display +]%, SCP: [+ vic_whitecollar_scp_display +]%, LDP: [+ vic_whitecollar_ldp_display +]%, Others: [+ vic_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_whitecollar_dlp_display +]% ?]
 
-*Queensland (20% of QLD, state weight 14%):*
+*Queensland ([+ qld_whitecollar_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_whitecollar_alp_display +]%, LL: [+ qld_whitecollar_ll_display +]%, UAP: [+ qld_whitecollar_uap_display +]%, CP: [+ qld_whitecollar_cp_display +]%, CPA: [+ qld_whitecollar_cpa_display +]%, SCP: [+ qld_whitecollar_scp_display +]%, LDP: [+ qld_whitecollar_ldp_display +]%, Others: [+ qld_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_whitecollar_dlp_display +]% ?]
 
-*South Australia (26% of SA, state weight 9%):*
+*South Australia ([+ sa_whitecollar_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_whitecollar_alp_display +]%, LL: [+ sa_whitecollar_ll_display +]%, UAP: [+ sa_whitecollar_uap_display +]%, CP: [+ sa_whitecollar_cp_display +]%, CPA: [+ sa_whitecollar_cpa_display +]%, SCP: [+ sa_whitecollar_scp_display +]%, LDP: [+ sa_whitecollar_ldp_display +]%, Others: [+ sa_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_whitecollar_dlp_display +]% ?]
 
-*Western Australia (24% of WA, state weight 6%):*
+*Western Australia ([+ wa_whitecollar_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_whitecollar_alp_display +]%, LL: [+ wa_whitecollar_ll_display +]%, UAP: [+ wa_whitecollar_uap_display +]%, CP: [+ wa_whitecollar_cp_display +]%, CPA: [+ wa_whitecollar_cpa_display +]%, SCP: [+ wa_whitecollar_scp_display +]%, LDP: [+ wa_whitecollar_ldp_display +]%, Others: [+ wa_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_whitecollar_dlp_display +]% ?]
 
-*Tasmania (23% of TAS, state weight 3%):*
+*Tasmania ([+ tas_whitecollar_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_whitecollar_alp_display +]%, LL: [+ tas_whitecollar_ll_display +]%, UAP: [+ tas_whitecollar_uap_display +]%, CP: [+ tas_whitecollar_cp_display +]%, CPA: [+ tas_whitecollar_cpa_display +]%, SCP: [+ tas_whitecollar_scp_display +]%, LDP: [+ tas_whitecollar_ldp_display +]%, Others: [+ tas_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_whitecollar_dlp_display +]% ?]
 
-*NT & ACT (35% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_whitecollar_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_whitecollar_alp_display +]%, LL: [+ nt_act_whitecollar_ll_display +]%, UAP: [+ nt_act_whitecollar_uap_display +]%, CP: [+ nt_act_whitecollar_cp_display +]%, CPA: [+ nt_act_whitecollar_cpa_display +]%, SCP: [+ nt_act_whitecollar_scp_display +]%, LDP: [+ nt_act_whitecollar_ldp_display +]%, Others: [+ nt_act_whitecollar_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_whitecollar_dlp_display +]% ?]
 
 **Catholics by State:**
 
-*New South Wales (14% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_catholics_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_catholics_alp_display +]%, LL: [+ nsw_catholics_ll_display +]%, UAP: [+ nsw_catholics_uap_display +]%, CP: [+ nsw_catholics_cp_display +]%, CPA: [+ nsw_catholics_cpa_display +]%, SCP: [+ nsw_catholics_scp_display +]%, LDP: [+ nsw_catholics_ldp_display +]%, Others: [+ nsw_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_catholics_dlp_display +]% ?]
 
-*Victoria (22% of VIC, state weight 28%):*
+*Victoria ([+ vic_catholics_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_catholics_alp_display +]%, LL: [+ vic_catholics_ll_display +]%, UAP: [+ vic_catholics_uap_display +]%, CP: [+ vic_catholics_cp_display +]%, CPA: [+ vic_catholics_cpa_display +]%, SCP: [+ vic_catholics_scp_display +]%, LDP: [+ vic_catholics_ldp_display +]%, Others: [+ vic_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_catholics_dlp_display +]% ?]
 
-*Queensland (12% of QLD, state weight 14%):*
+*Queensland ([+ qld_catholics_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_catholics_alp_display +]%, LL: [+ qld_catholics_ll_display +]%, UAP: [+ qld_catholics_uap_display +]%, CP: [+ qld_catholics_cp_display +]%, CPA: [+ qld_catholics_cpa_display +]%, SCP: [+ qld_catholics_scp_display +]%, LDP: [+ qld_catholics_ldp_display +]%, Others: [+ qld_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_catholics_dlp_display +]% ?]
 
-*South Australia (12% of SA, state weight 9%):*
+*South Australia ([+ sa_catholics_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_catholics_alp_display +]%, LL: [+ sa_catholics_ll_display +]%, UAP: [+ sa_catholics_uap_display +]%, CP: [+ sa_catholics_cp_display +]%, CPA: [+ sa_catholics_cpa_display +]%, SCP: [+ sa_catholics_scp_display +]%, LDP: [+ sa_catholics_ldp_display +]%, Others: [+ sa_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_catholics_dlp_display +]% ?]
 
-*Western Australia (10% of WA, state weight 6%):*
+*Western Australia ([+ wa_catholics_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_catholics_alp_display +]%, LL: [+ wa_catholics_ll_display +]%, UAP: [+ wa_catholics_uap_display +]%, CP: [+ wa_catholics_cp_display +]%, CPA: [+ wa_catholics_cpa_display +]%, SCP: [+ wa_catholics_scp_display +]%, LDP: [+ wa_catholics_ldp_display +]%, Others: [+ wa_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_catholics_dlp_display +]% ?]
 
-*Tasmania (13% of TAS, state weight 3%):*
+*Tasmania ([+ tas_catholics_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_catholics_alp_display +]%, LL: [+ tas_catholics_ll_display +]%, UAP: [+ tas_catholics_uap_display +]%, CP: [+ tas_catholics_cp_display +]%, CPA: [+ tas_catholics_cpa_display +]%, SCP: [+ tas_catholics_scp_display +]%, LDP: [+ tas_catholics_ldp_display +]%, Others: [+ tas_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_catholics_dlp_display +]% ?]
 
-*NT & ACT (10% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_catholics_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_catholics_alp_display +]%, LL: [+ nt_act_catholics_ll_display +]%, UAP: [+ nt_act_catholics_uap_display +]%, CP: [+ nt_act_catholics_cp_display +]%, CPA: [+ nt_act_catholics_cpa_display +]%, SCP: [+ nt_act_catholics_scp_display +]%, LDP: [+ nt_act_catholics_ldp_display +]%, Others: [+ nt_act_catholics_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_catholics_dlp_display +]% ?]
 
 **Rural Voters by State:**
 
-*New South Wales (10% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_rural_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_rural_alp_display +]%, LL: [+ nsw_rural_ll_display +]%, UAP: [+ nsw_rural_uap_display +]%, CP: [+ nsw_rural_cp_display +]%, CPA: [+ nsw_rural_cpa_display +]%, SCP: [+ nsw_rural_scp_display +]%, LDP: [+ nsw_rural_ldp_display +]%, Others: [+ nsw_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_rural_dlp_display +]% ?]
 
-*Victoria (10% of VIC, state weight 28%):*
+*Victoria ([+ vic_rural_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_rural_alp_display +]%, LL: [+ vic_rural_ll_display +]%, UAP: [+ vic_rural_uap_display +]%, CP: [+ vic_rural_cp_display +]%, CPA: [+ vic_rural_cpa_display +]%, SCP: [+ vic_rural_scp_display +]%, LDP: [+ vic_rural_ldp_display +]%, Others: [+ vic_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_rural_dlp_display +]% ?]
 
-*Queensland (28% of QLD, state weight 14%):*
+*Queensland ([+ qld_rural_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_rural_alp_display +]%, LL: [+ qld_rural_ll_display +]%, UAP: [+ qld_rural_uap_display +]%, CP: [+ qld_rural_cp_display +]%, CPA: [+ qld_rural_cpa_display +]%, SCP: [+ qld_rural_scp_display +]%, LDP: [+ qld_rural_ldp_display +]%, Others: [+ qld_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_rural_dlp_display +]% ?]
 
-*South Australia (18% of SA, state weight 9%):*
+*South Australia ([+ sa_rural_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_rural_alp_display +]%, LL: [+ sa_rural_ll_display +]%, UAP: [+ sa_rural_uap_display +]%, CP: [+ sa_rural_cp_display +]%, CPA: [+ sa_rural_cpa_display +]%, SCP: [+ sa_rural_scp_display +]%, LDP: [+ sa_rural_ldp_display +]%, Others: [+ sa_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_rural_dlp_display +]% ?]
 
-*Western Australia (18% of WA, state weight 6%):*
+*Western Australia ([+ wa_rural_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_rural_alp_display +]%, LL: [+ wa_rural_ll_display +]%, UAP: [+ wa_rural_uap_display +]%, CP: [+ wa_rural_cp_display +]%, CPA: [+ wa_rural_cpa_display +]%, SCP: [+ wa_rural_scp_display +]%, LDP: [+ wa_rural_ldp_display +]%, Others: [+ wa_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_rural_dlp_display +]% ?]
 
-*Tasmania (22% of TAS, state weight 3%):*
+*Tasmania ([+ tas_rural_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_rural_alp_display +]%, LL: [+ tas_rural_ll_display +]%, UAP: [+ tas_rural_uap_display +]%, CP: [+ tas_rural_cp_display +]%, CPA: [+ tas_rural_cpa_display +]%, SCP: [+ tas_rural_scp_display +]%, LDP: [+ tas_rural_ldp_display +]%, Others: [+ tas_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_rural_dlp_display +]% ?]
 
-*NT & ACT (14% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_rural_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_rural_alp_display +]%, LL: [+ nt_act_rural_ll_display +]%, UAP: [+ nt_act_rural_uap_display +]%, CP: [+ nt_act_rural_cp_display +]%, CPA: [+ nt_act_rural_cpa_display +]%, SCP: [+ nt_act_rural_scp_display +]%, LDP: [+ nt_act_rural_ldp_display +]%, Others: [+ nt_act_rural_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_rural_dlp_display +]% ?]
 
 **New Immigrants by State:**
 
-*New South Wales (9% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_immigrants_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_immigrants_alp_display +]%, LL: [+ nsw_immigrants_ll_display +]%, UAP: [+ nsw_immigrants_uap_display +]%, CP: [+ nsw_immigrants_cp_display +]%, CPA: [+ nsw_immigrants_cpa_display +]%, SCP: [+ nsw_immigrants_scp_display +]%, LDP: [+ nsw_immigrants_ldp_display +]%, Others: [+ nsw_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_immigrants_dlp_display +]% ?]
 
-*Victoria (7% of VIC, state weight 28%):*
+*Victoria ([+ vic_immigrants_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_immigrants_alp_display +]%, LL: [+ vic_immigrants_ll_display +]%, UAP: [+ vic_immigrants_uap_display +]%, CP: [+ vic_immigrants_cp_display +]%, CPA: [+ vic_immigrants_cpa_display +]%, SCP: [+ vic_immigrants_scp_display +]%, LDP: [+ vic_immigrants_ldp_display +]%, Others: [+ vic_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_immigrants_dlp_display +]% ?]
 
-*Queensland (7% of QLD, state weight 14%):*
+*Queensland ([+ qld_immigrants_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_immigrants_alp_display +]%, LL: [+ qld_immigrants_ll_display +]%, UAP: [+ qld_immigrants_uap_display +]%, CP: [+ qld_immigrants_cp_display +]%, CPA: [+ qld_immigrants_cpa_display +]%, SCP: [+ qld_immigrants_scp_display +]%, LDP: [+ qld_immigrants_ldp_display +]%, Others: [+ qld_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_immigrants_dlp_display +]% ?]
 
-*South Australia (7% of SA, state weight 9%):*
+*South Australia ([+ sa_immigrants_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_immigrants_alp_display +]%, LL: [+ sa_immigrants_ll_display +]%, UAP: [+ sa_immigrants_uap_display +]%, CP: [+ sa_immigrants_cp_display +]%, CPA: [+ sa_immigrants_cpa_display +]%, SCP: [+ sa_immigrants_scp_display +]%, LDP: [+ sa_immigrants_ldp_display +]%, Others: [+ sa_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_immigrants_dlp_display +]% ?]
 
-*Western Australia (13% of WA, state weight 6%):*
+*Western Australia ([+ wa_immigrants_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_immigrants_alp_display +]%, LL: [+ wa_immigrants_ll_display +]%, UAP: [+ wa_immigrants_uap_display +]%, CP: [+ wa_immigrants_cp_display +]%, CPA: [+ wa_immigrants_cpa_display +]%, SCP: [+ wa_immigrants_scp_display +]%, LDP: [+ wa_immigrants_ldp_display +]%, Others: [+ wa_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_immigrants_dlp_display +]% ?]
 
-*Tasmania (6% of TAS, state weight 3%):*
+*Tasmania ([+ tas_immigrants_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_immigrants_alp_display +]%, LL: [+ tas_immigrants_ll_display +]%, UAP: [+ tas_immigrants_uap_display +]%, CP: [+ tas_immigrants_cp_display +]%, CPA: [+ tas_immigrants_cpa_display +]%, SCP: [+ tas_immigrants_scp_display +]%, LDP: [+ tas_immigrants_ldp_display +]%, Others: [+ tas_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_immigrants_dlp_display +]% ?]
 
-*NT & ACT (11% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_immigrants_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_immigrants_alp_display +]%, LL: [+ nt_act_immigrants_ll_display +]%, UAP: [+ nt_act_immigrants_uap_display +]%, CP: [+ nt_act_immigrants_cp_display +]%, CPA: [+ nt_act_immigrants_cpa_display +]%, SCP: [+ nt_act_immigrants_scp_display +]%, LDP: [+ nt_act_immigrants_ldp_display +]%, Others: [+ nt_act_immigrants_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_immigrants_dlp_display +]% ?]
 
 **Business & Professionals by State:**
 
-*New South Wales (2% of NSW, state weight 39%):*
+*New South Wales ([+ nsw_businessmen_weight +]% of NSW, state weight [+ nsw_weight_pct +]%):*
 ALP: [+ nsw_businessmen_alp_display +]%, LL: [+ nsw_businessmen_ll_display +]%, UAP: [+ nsw_businessmen_uap_display +]%, CP: [+ nsw_businessmen_cp_display +]%, CPA: [+ nsw_businessmen_cpa_display +]%, SCP: [+ nsw_businessmen_scp_display +]%, LDP: [+ nsw_businessmen_ldp_display +]%, Others: [+ nsw_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nsw_businessmen_dlp_display +]% ?]
 
-*Victoria (3% of VIC, state weight 28%):*
+*Victoria ([+ vic_businessmen_weight +]% of VIC, state weight [+ vic_weight_pct +]%):*
 ALP: [+ vic_businessmen_alp_display +]%, LL: [+ vic_businessmen_ll_display +]%, UAP: [+ vic_businessmen_uap_display +]%, CP: [+ vic_businessmen_cp_display +]%, CPA: [+ vic_businessmen_cpa_display +]%, SCP: [+ vic_businessmen_scp_display +]%, LDP: [+ vic_businessmen_ldp_display +]%, Others: [+ vic_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ vic_businessmen_dlp_display +]% ?]
 
-*Queensland (3% of QLD, state weight 14%):*
+*Queensland ([+ qld_businessmen_weight +]% of QLD, state weight [+ qld_weight_pct +]%):*
 ALP: [+ qld_businessmen_alp_display +]%, LL: [+ qld_businessmen_ll_display +]%, UAP: [+ qld_businessmen_uap_display +]%, CP: [+ qld_businessmen_cp_display +]%, CPA: [+ qld_businessmen_cpa_display +]%, SCP: [+ qld_businessmen_scp_display +]%, LDP: [+ qld_businessmen_ldp_display +]%, Others: [+ qld_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ qld_businessmen_dlp_display +]% ?]
 
-*South Australia (3% of SA, state weight 9%):*
+*South Australia ([+ sa_businessmen_weight +]% of SA, state weight [+ sa_weight_pct +]%):*
 ALP: [+ sa_businessmen_alp_display +]%, LL: [+ sa_businessmen_ll_display +]%, UAP: [+ sa_businessmen_uap_display +]%, CP: [+ sa_businessmen_cp_display +]%, CPA: [+ sa_businessmen_cpa_display +]%, SCP: [+ sa_businessmen_scp_display +]%, LDP: [+ sa_businessmen_ldp_display +]%, Others: [+ sa_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ sa_businessmen_dlp_display +]% ?]
 
-*Western Australia (3% of WA, state weight 6%):*
+*Western Australia ([+ wa_businessmen_weight +]% of WA, state weight [+ wa_weight_pct +]%):*
 ALP: [+ wa_businessmen_alp_display +]%, LL: [+ wa_businessmen_ll_display +]%, UAP: [+ wa_businessmen_uap_display +]%, CP: [+ wa_businessmen_cp_display +]%, CPA: [+ wa_businessmen_cpa_display +]%, SCP: [+ wa_businessmen_scp_display +]%, LDP: [+ wa_businessmen_ldp_display +]%, Others: [+ wa_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ wa_businessmen_dlp_display +]% ?]
 
-*Tasmania (2% of TAS, state weight 3%):*
+*Tasmania ([+ tas_businessmen_weight +]% of TAS, state weight [+ tas_weight_pct +]%):*
 ALP: [+ tas_businessmen_alp_display +]%, LL: [+ tas_businessmen_ll_display +]%, UAP: [+ tas_businessmen_uap_display +]%, CP: [+ tas_businessmen_cp_display +]%, CPA: [+ tas_businessmen_cpa_display +]%, SCP: [+ tas_businessmen_scp_display +]%, LDP: [+ tas_businessmen_ldp_display +]%, Others: [+ tas_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ tas_businessmen_dlp_display +]% ?]
 
-*NT & ACT (2% of NT/ACT, state weight 1%):*
+*NT & ACT ([+ nt_act_businessmen_weight +]% of NT/ACT, state weight [+ nt_act_weight_pct +]%):*
 ALP: [+ nt_act_businessmen_alp_display +]%, LL: [+ nt_act_businessmen_ll_display +]%, UAP: [+ nt_act_businessmen_uap_display +]%, CP: [+ nt_act_businessmen_cp_display +]%, CPA: [+ nt_act_businessmen_cpa_display +]%, SCP: [+ nt_act_businessmen_scp_display +]%, LDP: [+ nt_act_businessmen_ldp_display +]%, Others: [+ nt_act_businessmen_other_display +]%[? if dlp_formed == 1 : , DLP: [+ nt_act_businessmen_dlp_display +]% ?]
