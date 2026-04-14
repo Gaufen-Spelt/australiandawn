@@ -553,11 +553,7 @@ window.drawUnionChart = function() {
     });
     legend += '</div>';
 
-    container.innerHTML = buttons
-        + '<div style="display:flex;gap:1em;align-items:flex-start;">'
-        + '<div>' + svg + '</div>'
-        + '<div style="flex:1;">' + infoBox + legend + '</div>'
-        + '</div>';
+    container.innerHTML = buttons + svg + infoBox + legend;
 
     window._unionData = unions.map(function(u) {
         return { name: u.name, value: getValue(u),
