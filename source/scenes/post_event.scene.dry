@@ -144,6 +144,30 @@ if (total_fac_strength > 0) {
 
 console.log('post_event → dissent: ' + Q.dissent_percent + '% | ALP: ' + Q.alp_votes + '%');
 
+// ── Per-state per-class party display variables ───────────────────────────────
+for (var state of Q.states) {
+    var classWeights = stateClassWeights[state];
+    var classTotal = 0;
+    for (var c of Q.classes) classTotal += classWeights[c] || 0;
+
+    for (var c of Q.classes) {
+        // Raw totals for this state/class combo
+        var ct = 0;
+        for (var party of Q.parties) {
+            var mod = Q[state + '_' + c + '_modifier'] || 1.0;
+            var partyMod = Q[state + '_' + party + '_modifier'] || 1.0;
+            ct += Math.max(0, Q[c + '_' + party + '_normalized'] * mod * partyMod);
+        }
+        for (var party of Q.parties) {
+            var mod = Q[state + '_' + c + '_modifier'] || 1.0;
+            var partyMod = Q[state + '_' + party + '_modifier'] || 1.0;
+            var raw = Math.max(0, Q[c + '_' + party + '_normalized'] * mod * partyMod);
+            var share = (ct > 0) ? raw / ct : 0;
+            Q[state + '_' + c + '_' + party + '_display'] = parseFloat((share * 100).toFixed(2));
+        }
+    }
+}
+
 // 1. update dates
 if (Q.month_actions >= 1) {
     Q.time += 1;
