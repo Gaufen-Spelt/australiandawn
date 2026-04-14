@@ -434,10 +434,7 @@ window.drawFactionChart = function() {
     });
     legend += '</div>';
     var infoBox = '<div id="faction-info" style="text-align:center;font-size:0.85em;min-height:2em;padding:0.3em;"></div>';
-    container.innerHTML = '<div style="display:flex;gap:1em;align-items:flex-start;">'
-    + '<div>' + svg + '</div>'
-    + '<div style="flex:1;">' + infoBox + legend + '</div>'
-    + '</div>';
+    container.innerHTML = svg + infoBox + legend;
     window._factionData = factions;
 };
 
