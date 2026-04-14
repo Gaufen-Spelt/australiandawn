@@ -1,0 +1,5 @@
+title: Skip turn
+new-page: True
+is-pinned-card: true
+is-card: True
+on-arrival: month_actions += 1 if modem = 0; day_actions += 1 if modem = 1
