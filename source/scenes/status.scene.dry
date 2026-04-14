@@ -144,7 +144,7 @@ Q.socialism_disp = Math.round(Q.socialism);
 
 ALP: [+ alp_votes +]%
 
-UAP: [+ ucp_votes +]%
+UAP: [+ uap_votes +]%
 
 CPA: [+ cpa_votes +]%
 
@@ -162,14 +162,14 @@ Others: [+ other_votes +]%
 
 **Detailed results for each demographic**
 
-Workers: ALP: [+ workers_alp_display +]%, UAP: [+ workers_ucp_display +]%, CPA: [+ workers_cpa_display +]%, LDP: [+ workers_ldp_display +]%, CP: [+ workers_cp_display +]%, Lang Labor: [+ workers_ll_display +]%, SCP: [+ workers_scp_display +]%, Others: [+ workers_other_display +]% [? if dlp_formed == 1 : DLP: [+ workers_dlp_display +]% ?]
+**Blue-Collar Workers:** ALP: [+ bluecollar_alp_display +]%, LL: [+ bluecollar_ll_display +]%, UAP: [+ bluecollar_uap_display +]%, CP: [+ bluecollar_cp_display +]%, CPA: [+ bluecollar_cpa_display +]%, SCP: [+ bluecollar_scp_display +]%, LDP: [+ bluecollar_ldp_display +]%, Others: [+ bluecollar_other_display +]% [? if dlp_formed == 1 : DLP: [+ bluecollar_dlp_display +]% ?]
 
-New Middle Class: ALP: [+ new_middle_alp_display +]%, UAP: [+ new_middle_ucp_display +]%, CPA: [+ new_middle_cpa_display +]%, LDP: [+ new_middle_ldp_display +]%, CP: [+ new_middle_cp_display +]%, Lang Labor: [+ new_middle_ll_display +]%, SCP: [+ new_middle_scp_display +]%, Others: [+ new_middle_other_display +]% [? if dlp_formed == 1 : DLP: [+ new_middle_dlp_display +]% ?]
+**White-Collar (New Middle Class):** ALP: [+ whitecollar_alp_display +]%, LL: [+ whitecollar_ll_display +]%, UAP: [+ whitecollar_uap_display +]%, CP: [+ whitecollar_cp_display +]%, CPA: [+ whitecollar_cpa_display +]%, SCP: [+ whitecollar_scp_display +]%, LDP: [+ whitecollar_ldp_display +]%, Others: [+ whitecollar_other_display +]% [? if dlp_formed == 1 : DLP: [+ whitecollar_dlp_display +]% ?]
 
-Old Middle Class: ALP: [+ old_middle_alp_display +]%, UAP: [+ old_middle_ucp_display +]%, CPA: [+ old_middle_cpa_display +]%, LDP: [+ old_middle_ldp_display +]%, CP: [+ old_middle_cp_display +]%, Lang Labor: [+ old_middle_ll_display +]%, SCP: [+ old_middle_scp_display +]%, Others: [+ old_middle_other_display +]% [? if dlp_formed == 1 : DLP: [+ old_middle_dlp_display +]% ?]
+**Business & Professionals (Old Middle Class):** ALP: [+ businessmen_alp_display +]%, LL: [+ businessmen_ll_display +]%, UAP: [+ businessmen_uap_display +]%, CP: [+ businessmen_cp_display +]%, CPA: [+ businessmen_cpa_display +]%, SCP: [+ businessmen_scp_display +]%, LDP: [+ businessmen_ldp_display +]%, Others: [+ businessmen_other_display +]% [? if dlp_formed == 1 : DLP: [+ businessmen_dlp_display +]% ?]
 
-Rural: ALP: [+ rural_alp_display +]%, UAP: [+ rural_ucp_display +]%, CPA: [+ rural_cpa_display +]%, LDP: [+ rural_ldp_display +]%, CP: [+ rural_cp_display +]%, Lang Labor: [+ rural_ll_display +]%, SCP: [+ rural_scp_display +]%, Others: [+ rural_other_display +]% [? if dlp_formed == 1 : DLP: [+ rural_dlp_display +]% ?]
+**Rural Voters:** ALP: [+ rural_alp_display +]%, LL: [+ rural_ll_display +]%, UAP: [+ rural_uap_display +]%, CP: [+ rural_cp_display +]%, CPA: [+ rural_cpa_display +]%, SCP: [+ rural_scp_display +]%, LDP: [+ rural_ldp_display +]%, Others: [+ rural_other_display +]% [? if dlp_formed == 1 : DLP: [+ rural_dlp_display +]% ?]
 
-Unemployed: ALP: [+ unemployed_alp_display +]%, UAP: [+ unemployed_ucp_display +]%, CPA: [+ unemployed_cpa_display +]%, LDP: [+ unemployed_ldp_display +]%, CP: [+ unemployed_cp_display +]%, Lang Labor: [+ unemployed_ll_display +]%, SCP: [+ unemployed_scp_display +]%, Others: [+ unemployed_other_display +]% [? if dlp_formed == 1 : DLP: [+ unemployed_dlp_display +]% ?]
+**Catholics:** ALP: [+ catholics_alp_display +]%, LL: [+ catholics_ll_display +]%, UAP: [+ catholics_uap_display +]%, CP: [+ catholics_cp_display +]%, CPA: [+ catholics_cpa_display +]%, SCP: [+ catholics_scp_display +]%, LDP: [+ catholics_ldp_display +]%, Others: [+ catholics_other_display +]% [? if dlp_formed == 1 : DLP: [+ catholics_dlp_display +]% ?]
 
-Catholics: ALP: [+ catholics_alp_display +]%, UAP: [+ catholics_ucp_display +]%, CPA: [+ catholics_cpa_display +]%, LDP: [+ catholics_ldp_display +]%, CP: [+ catholics_cp_display +]%, Lang Labor: [+ catholics_ll_display +]%, SCP: [+ catholics_scp_display +]%, Others: [+ catholics_other_display +]% [? if dlp_formed == 1 : DLP: [+ catholics_dlp_display +]% ?]
+**New Immigrants:** ALP: [+ immigrants_alp_display +]%, LL: [+ immigrants_ll_display +]%, UAP: [+ immigrants_uap_display +]%, CP: [+ immigrants_cp_display +]%, CPA: [+ immigrants_cpa_display +]%, SCP: [+ immigrants_scp_display +]%, LDP: [+ immigrants_ldp_display +]%, Others: [+ immigrants_other_display +]% [? if dlp_formed == 1 : DLP: [+ immigrants_dlp_display +]% ?]
