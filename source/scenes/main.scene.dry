@@ -44,7 +44,7 @@ max-cards: 4
 - @govt
 - #advisor
 - @shuffle_leadership_pinned
-
+- @daily_life
 
 @party
 title: Party Affairs
