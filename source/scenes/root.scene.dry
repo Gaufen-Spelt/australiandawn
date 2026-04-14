@@ -126,61 +126,21 @@ Q.pieua_militancy = 0.03;
 Q.actu_strength = 0;
 Q.actu_militancy = 0;
 
-// The state of the country
-
-// popular opinion
-// national ideology - on a binary scale
-// nationalism vs internationalism or pacifism or non-nationalism
-Q.nationalism = 60;
-// socialism vs capitalism
-Q.socialism = 40;
-// pro-republic vs anti-republic
-Q.pro_republic = 59;
-
-Q.emergency_rule = 0;
-
-// minimum percentage of votes to be represented in the Reichstag
-Q.electoral_threshold = 0;
-// constitutional reform level
-Q.constitutional_reform = 0;
-// constructive vote of no confidence
-Q.constructive_vonc = 0;
-// reduction in presidential powers
-Q.presidential_powers = 0;
-// allows banning of non-constitutional parties
-Q.constitutional_protection = 0;
-Q.kpd_banned = 0;
-Q.nsdap_banned = 0;
-
-// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.
-// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.
-Q.coup_progress = 0;
-Q.capital_strike_progress = 0;
-
 Q.budget = 4;
 
-// Proportion of different social groups
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 45, table 3.4 - using 1925 figures
-Q.workers = 48; // industry and trade
-Q.old_middle = 13; // "old mittelstand"
-// 16.4 trade & commerce, 6.6 public and private services, 4.4 domestic help
-Q.new_middle = 14; // "new mittelstand"
-Q.rural = 25; // agriculture and forestry employment... but many of those are proletarians so...
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
-Q.unemployed = 8.6;
-Q.catholics = 30;
+Q.bluecollar = 33;
+Q.whitecollar = 25;
+Q.catholics = 16;
+Q.rural = 15;
+Q.immigrants = 10;
+Q.businessmen = 1;
 
-// unemployment: 1929 - 13.3, 1930 - 22.7, 1931 - 34.3, 1932 - 43.8 (same source as above)
-
-// income for industrial workers in reichsmarks/year - 1928 = 1600 Reichsmarks/year; 1931 = 1440 Reichsmarks/year; 1933 = 1138 Reichsmarks/year - source: https://babel.hathitrust.org/cgi/pt?id=uiug.30112104147985&seq=50
-Q.income = 1600;
-// what about incomes for different classes? rural workers? middle-class workers?
-
+Q.unemployment = 2.4;
 // inflation (in %; 1928: 2.9; 1929: 0; 1930: -5%; 1931: -10%; 1932: -10%) - source: https://en.wikipedia.org/wiki/File:BSPDRWeltkriseEngl.PNG, derived from https://www.destatis.de/DE/Methoden/WISTA-Wirtschaft-und-Statistik/2009/03/rezession-betrachtung-032009.pdf?__blob=publicationFile
-Q.inflation = 2.9;
+Q.inflation = 8.4
 
 // economic growth - same source as above, Table 2 (preisbereinigt) - this is also the source for the yearly changes in the great depression.
-Q.economic_growth = 4.4;
+Q.economic_growth = 6.7
 
 // economic expansion timer
 Q.economic_expansion = 0;
@@ -192,11 +152,8 @@ Q.unemployed_qol = 100;
 Q.old_middle_qol = 100;
 Q.new_middle_qol = 100;
 
-Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
-
-// TODO: add 'sapd' later on
-Q.sapd_formed = 0;
+Q.classes = ['bluecollar', 'whitecollar', 'catholics', 'rural', 'immigrants', 'businessmen'];
+Q.parties = ['alp', 'll', 'uap', 'cp', 'cpa', 'other', 'scp', 'ldp'];
 
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
@@ -253,39 +210,6 @@ Q.catholics_dvp = 5;
 Q.catholics_dnvp = 5;
 Q.catholics_nsdap = 0;
 Q.catholics_other = 12;
-
-
-// Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-Q.other_r = 9;
-
-// diff from prev
-Q.old_spd_r = 26;
-Q.old_kpd_r = 9;
-Q.old_z_r = 17;
-Q.old_ddp_r = 6;
-Q.old_dvp_r = 10;
-Q.old_dnvp_r = 20;
-Q.old_nsdap_r = 3;
-Q.old_other_r = 9;
-
-// sapd isn't formed yet, but it may be formed
-Q.sapd_r = 0;
-Q.old_sapd_r = 0;
-
-// for changing the DDP's name to the DStP
-Q.ddp_name = "DDP";
 
 // array of objects of the form {date: Date(), spd: 10, kpd: 12, ...} for each election
 Q.election_records = [];
@@ -544,47 +468,47 @@ Q.stampfer_advisor = 0; // Friedrich Stampfer
 set-bg: img/map_2.jpg
 new-page: true
 
-> Once a learned Doctor sat down in Canberra,
-> He was the Leader of the ALP.
-> And he sang as he watched and waited till election day,
-> Labor Must have Solidarity.
-> Santamaria, Santamaria,
-> Keon and Mullens are faithful to me
-> And he sang as he watched and waited till election day,
-> Labor Must have Solidarity.
-> Down came Petrov, and Menzies was in power again,
-> The Doctor cried, ‘It’s a Conspiracy!’
-> And he wrote out a statement, saying most emphatically,
-> Labor Must have Solidarity.
-> Santamaria, Santamaria,
-> Keon and Mullens are getting at me
-> And he wrote out a statement, saying most emphatically,
-> Labor Must have Solidarity.
-> Up came Chamberlain, mounted on Executive,
-> Down came the Groupers, one, two, three!
-> Oh, where's that jolly Santa you’ve got in your Movement,
-> Labor Must have Solidarity.
-> Santamaria, Santamaria,
-> Keon and Mullens and Bourke make three
-> Oh, where's that jolly Santa you've got in your Movement,
-> Labor Must have Solidarity.
-> Up jumped the Doctor and Sprang across the stormy sea,
-> Bound for Hobart and unity,
-> And he sighed as he sang in that very nearly empty hall,
-> Labor has lost Solidarity.
-> Santamaria, Santamaria,
-> Keon and Mullens are all up a tree,
-> And he sighed as he sang in that very nearly empty hall,
-> Labor has lost Solidarity.
-> Now Keon and Mullens and Bourke are back in Canberra,
-> In the Anti-Communist ALP,
-> And they hide behind the skirts of their Leader, Mr. Joshua,
-> Singing Labor Must have Solidarity.
-> Santamaria, Santamaria,
-> Keon and Mullens and Bourke make three
-> And they hide behind the skirts of their Leader, Mr. Joshua,
-> Keon and Mullens with Liberals agree.
-> 
+> Once a learned Doctor sat down in Canberra,<br>
+> He was the Leader of the ALP.<br>
+> And he sang as he watched and waited till election day,<br>
+> Labor Must have Solidarity.<br>
+> Santamaria, Santamaria,<br>
+> Keon and Mullens are faithful to me<br>
+> And he sang as he watched and waited till election day,<br>
+> Labor Must have Solidarity.<br>
+> Down came Petrov, and Menzies was in power again,<br>
+> The Doctor cried, ‘It’s a Conspiracy!’<br>
+> And he wrote out a statement, saying most emphatically,<br>
+> Labor Must have Solidarity.<br>
+> Santamaria, Santamaria,<br>
+> Keon and Mullens are getting at me<br>
+> And he wrote out a statement, saying most emphatically,<br>
+> Labor Must have Solidarity.<br>
+> Up came Chamberlain, mounted on Executive,<br>
+> Down came the Groupers, one, two, three!<br>
+> Oh, where's that jolly Santa you’ve got in your Movement,<br>
+> Labor Must have Solidarity.<br>
+> Santamaria, Santamaria,<br>
+> Keon and Mullens and Bourke make three<br>
+> Oh, where's that jolly Santa you've got in your Movement,<br>
+> Labor Must have Solidarity.<br>
+> Up jumped the Doctor and Sprang across the stormy sea,<br>
+> Bound for Hobart and unity,<br>
+> And he sighed as he sang in that very nearly empty hall,<br>
+> Labor has lost Solidarity.<br>
+> Santamaria, Santamaria,<br>
+> Keon and Mullens are all up a tree,<br>
+> And he sighed as he sang in that very nearly empty hall,<br>
+> Labor has lost Solidarity.<br>
+> Now Keon and Mullens and Bourke are back in Canberra,<br>
+> In the Anti-Communist ALP,<br>
+> And they hide behind the skirts of their Leader, Mr. Joshua,<br>
+> Singing Labor Must have Solidarity.<br>
+> Santamaria, Santamaria,<br>
+> Keon and Mullens and Bourke make three<br>
+> And they hide behind the skirts of their Leader, Mr. Joshua,<br>
+> Keon and Mullens with Liberals agree.<br>
+
 
  - Student Song 1955, The split: Australian Labor in the fifties, Robert Murray
 
