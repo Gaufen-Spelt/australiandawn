@@ -299,17 +299,25 @@ footer a {
 }
 
 /* ─── Qualities ──────────────────────────────────────────── */
-#qualities {
+#qualities,
+#qualities_2,
+#qualities_3 {
   text-indent: 0;
   line-height: 1.45em;
   font-family: 'Share Tech Mono', monospace;
   font-size: 0.9em;
 }
-#qualities p {
+
+#qualities p,
+#qualities_2 p,
+#qualities_3 p {
   text-indent: 0;
   margin-bottom: 0.4em;
 }
-#qualities h1 {
+
+#qualities h1,
+#qualities_2 h1,
+#qualities_3 h1 {
   font-family: 'Special Elite', serif;
   font-size: 0.95em;
   font-weight: normal;
