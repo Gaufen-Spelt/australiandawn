@@ -17,6 +17,7 @@ max-cards: 6
 - @govt
 - #advisor
 - @shuffle_leadership_pinned
+- @month_aff
 
 @party
 title: Party Affairs
