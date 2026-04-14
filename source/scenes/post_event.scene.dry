@@ -35,6 +35,11 @@ for (var c of Q.classes) {
     Q[c] = parseFloat((national_cw * 100).toFixed(2));
 }
 
+// ── Weight display helpers ────────────────────────────────────────────────────
+for (var state of Q.states) {
+    Q[state+'_weight_pct'] = parseFloat(((Q[state+'_weight'] || 0) * 100).toFixed(0));
+}
+
 // ── 3. Per-state per-class party shares + display vars ────────────────────────
 for (var state of Q.states) {
     var classTotal = 0;
@@ -122,11 +127,6 @@ if (total_fac_strength > 0) {
 } else {
     Q.dissent         = 0.05;
     Q.dissent_percent = 5.00;
-}
-
-// ── Weight display helpers ────────────────────────────────────────────────────
-for (var state of Q.states) {
-    Q[state+'_weight_pct'] = parseFloat(((Q[state+'_weight'] || 0) * 100).toFixed(0));
 }
 
 
