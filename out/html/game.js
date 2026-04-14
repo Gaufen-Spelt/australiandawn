@@ -325,8 +325,8 @@ window.updateSidebar = function() {
 }
 
   var unionEl = document.getElementById('union-chart');
-if (unionEl) {
-    if (window.statusTab3 === 'status_3.unions') {
+  if (unionEl) {
+    if (window.statusTab3 === 'status_3.factions') {
         unionEl.style.display = '';
         window.drawUnionChart();
     } else {
@@ -351,6 +351,9 @@ window.toggleSidebar3 = function() {
         if (chart) chart.style.display = (window.statusTab3 === 'status_3.factions') ? '' : 'none';
         btn.textContent = '▲';
     }
+  var unionEl = document.getElementById('union-chart');
+  if (unionEl) unionEl.style.display = window.sidebar3Collapsed ? 'none' 
+    : (window.statusTab3 === 'status_3.factions' ? '' : 'none');
 };
 
 window.dendryModifyUI = main;
