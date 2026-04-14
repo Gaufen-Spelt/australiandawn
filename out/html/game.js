@@ -323,6 +323,16 @@ window.updateSidebar = function() {
         chartEl.style.display = 'none';
     }
 }
+
+  var unionEl = document.getElementById('union-chart');
+if (unionEl) {
+    if (window.statusTab3 === 'status_3.unions') {
+        unionEl.style.display = '';
+        window.drawUnionChart();
+    } else {
+        unionEl.style.display = 'none';
+    }
+}
 };
 
 window.sidebar3Collapsed = false;
@@ -434,4 +444,122 @@ window._factionClick = function(idx) {
     if (el) el.innerHTML = '<strong>' + f.name + '</strong> &nbsp; Str: ' + f.strength + ' &nbsp; Dissent: ' + f.dissent;
 };
 
+
+
+window.unionChartMode = 'strength';
+
+window.drawUnionChart = function() {
+    var Q = dendryUI.dendryEngine.state.qualities;
+    var unions = [
+        { id: 'awu',   name: 'AWU'   },
+        { id: 'mf',    name: 'MF'    },
+        { id: 'wwf',   name: 'WWF'   },
+        { id: 'fia',   name: 'FIA'   },
+        { id: 'aru',   name: 'ARU'   },
+        { id: 'bwiu',  name: 'BWIU'  },
+        { id: 'fedfa', name: 'FEDFA' },
+        { id: 'seamen',name: 'Seamen'},
+        { id: 'aeu',   name: 'AEU'   },
+        { id: 'asce',  name: 'ASCE'  },
+        { id: 'fcu',   name: 'FCU'   },
+        { id: 'twu',   name: 'TWU'   },
+        { id: 'aja',   name: 'AJA'   },
+        { id: 'pieua', name: 'PIEUA' },
+        { id: 'actu',  name: 'ACTU'  },
+    ];
+
+    var modeKey = window.unionChartMode;
+    var modeField = {
+        strength:  function(u) { return Q[u.id + '_strength']  || 0; },
+        militancy: function(u) { return Q[u.id + '_militancy'] || 0; },
+        communist: function(u) { return Q[u.id + '_communist'] || 0; },
+        grouper:   function(u) { return Q[u.id + '_grouper']   || 0; },
+    };
+    var modeColor = {
+        strength:  '#3F7BC1',
+        militancy: '#C40000',
+        communist: '#8B0000',
+        grouper:   '#DCCA4A',
+    };
+
+    var getValue = modeField[modeKey];
+    var color = modeColor[modeKey];
+
+    var container = document.getElementById('union-chart');
+    if (!container) return;
+
+    // mode buttons
+    var modes = ['strength','militancy','communist','grouper'];
+    var modeLabels = {strength:'Strength', militancy:'Militancy', communist:'Communist', grouper:'Grouper'};
+    var showGrouper = Q.santamaria_game ? true : false;
+
+    var buttons = '<div style="margin-bottom:0.4em;font-size:0.78em;">';
+    modes.forEach(function(m) {
+        if (m === 'grouper' && !showGrouper) return;
+        var active = m === modeKey ? 'background:var(--content-bg-color);font-weight:bold;' : 'background:var(--tab-color);';
+        buttons += '<button onclick="window.unionChartMode=\'' + m + '\';window.drawUnionChart();"'
+            + ' style="' + active + 'border:none;padding:3px 7px;cursor:pointer;font-family:inherit;color:var(--text-color);margin-right:2px;">'
+            + modeLabels[m] + '</button>';
+    });
+    buttons += '</div>';
+
+    // donut chart
+    var W = 200, H = 200, cx = 100, cy = 100, R = 80, r = 45;
+    var total = unions.reduce(function(s, u) { return s + getValue(u); }, 0);
+    var svg = '<svg width="' + W + '" height="' + H + '" style="display:block;margin:0 auto;">';
+
+    if (total > 0) {
+        var angle = -Math.PI / 2;
+        unions.forEach(function(u, idx) {
+            var val = getValue(u);
+            if (val <= 0) return;
+            var slice = (val / total) * 2 * Math.PI;
+            var x1  = cx + R * Math.cos(angle),        y1  = cy + R * Math.sin(angle);
+            var x2  = cx + R * Math.cos(angle+slice),   y2  = cy + R * Math.sin(angle+slice);
+            var xi1 = cx + r * Math.cos(angle),         yi1 = cy + r * Math.sin(angle);
+            var xi2 = cx + r * Math.cos(angle+slice),   yi2 = cy + r * Math.sin(angle+slice);
+            var large = slice > Math.PI ? 1 : 0;
+            // shade each slice slightly differently
+            var shade = Math.round(60 + (idx / unions.length) * 140);
+            var sliceColor = color;
+            var path = ['M',xi1,yi1,'L',x1,y1,'A',R,R,0,large,1,x2,y2,'L',xi2,yi2,'A',r,r,0,large,0,xi1,yi1,'Z'].join(' ');
+            svg += '<path d="' + path + '" fill="' + sliceColor + '" stroke="#fff" stroke-width="0.5"'
+                 + ' style="cursor:pointer;opacity:' + (0.4 + (idx / unions.length) * 0.6).toFixed(2) + ';"'
+                 + ' onclick="window._unionClick(' + idx + ')"'
+                 + ' onmouseover="this.style.opacity=1"'
+                 + ' onmouseout="this.style.opacity=' + (0.4 + (idx / unions.length) * 0.6).toFixed(2) + '">'
+                 + '<title>' + u.name + ': ' + val + '</title></path>';
+            angle += slice;
+        });
+    } else {
+        // empty ring
+        svg += '<circle cx="100" cy="100" r="80" fill="none" stroke="#ccc" stroke-width="35"/>';
+    }
+    svg += '</svg>';
+
+    var infoBox = '<div id="union-info" style="text-align:center;font-size:0.85em;min-height:2em;padding:0.2em;"></div>';
+
+    var legend = '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;font-size:0.75em;">';
+    unions.forEach(function(u, idx) {
+        var val = getValue(u);
+        var opacity = (0.4 + (idx / unions.length) * 0.6).toFixed(2);
+        legend += '<span style="cursor:pointer;opacity:' + opacity + ';" onclick="window._unionClick(' + idx + ')">'
+            + '<span style="display:inline-block;width:8px;height:8px;background:' + color
+            + ';border-radius:2px;margin-right:2px;vertical-align:middle;"></span>'
+            + u.name + ' ' + val + '</span> ';
+    });
+    legend += '</div>';
+
+    container.innerHTML = buttons
+        + '<div style="display:flex;gap:1em;align-items:flex-start;">'
+        + '<div>' + svg + '</div>'
+        + '<div style="flex:1;">' + infoBox + legend + '</div>'
+        + '</div>';
+
+    window._unionData = unions.map(function(u) {
+        return { name: u.name, value: getValue(u),
+                 strength: Q[u.id+'_strength']||0, militancy: Q[u.id+'_militancy']||0,
+                 communist: Q[u.id+'_communist']||0, grouper: Q[u.id+'_grouper']||0 };
+    });
+};
 }());
