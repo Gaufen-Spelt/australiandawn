@@ -33,7 +33,14 @@ setTimeout(function() {
 
 Perhaps...
 
-- @1949.1.intro: But how can I leave the people in trouble...?
+- @1949.0.intro: You receive the mail.
+
+@1949.0.intro
+
+​'I know, Eddie... perhaps the currency of your spirit is spent, devalued by the grey rot of a world that has forgotten how to breathe. But listen to the gears grinding beneath the frost: What can a single hand carve into the face of a century in one year? In six? A shadow is stretching across the horizon, a shape only those with frozen blood and sharp mind can truly see. You are not a man of appetites, Eddie; you are a man of the Fire's Will. Now, the day begins, and I must move with it.'"
+
+- @1949.1.intro: But how can I leave the people in the trouble...?
 
 @1949.1.intro
+subtitle: Nothing is greater than seeing the faces of the liberated from cages.
 go-to: root.1928_main
