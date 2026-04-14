@@ -99,6 +99,36 @@ for (var party of Q.parties) {
     Q[party+'_support']       = national_raw[party];
 }
 
+// ── 5.5. National Class-Party Aggregates ───────────────────
+for (var c of Q.classes) {
+    var class_national_raw = {};
+    for (var party of Q.parties) class_national_raw[party] = 0;
+    var total_class_weight = 0;
+
+    // Aggregate the votes for this class across all states
+    for (var state of Q.states) {
+        var sw = (Q[state+'_weight'] || 0) / (total_sw || 1);
+        var state_classTotal = 0;
+        for (var cc of Q.classes) state_classTotal += Q[state+'_'+cc+'_weight'] || 0;
+        
+        var cw = (Q[state+'_'+c+'_weight'] || 0) / (state_classTotal || 1);
+        var state_class_weight = sw * cw;
+
+        total_class_weight += state_class_weight;
+
+        for (var party of Q.parties) {
+            class_national_raw[party] += state_class_weight * (Q[state+'_'+c+'_'+party+'_share'] || 0);
+        }
+    }
+
+    // Normalize and assign to the display variables
+    for (var party of Q.parties) {
+        var share = (total_class_weight > 0) ? class_national_raw[party] / total_class_weight : 0;
+        Q[c+'_'+party+'_display'] = parseFloat((share * 100).toFixed(2));
+    }
+}
+
+
 // ── 6. Clamp faction stats (strength 0–200, dissent 0–0.99) ──────────────────
 for (var f of Q.factions) {
     Q[f+'_strength'] = Math.min(200, Math.max(0, Q[f+'_strength'] || 0));
