@@ -128,6 +128,15 @@ Q.actu_militancy = 0;
 
 Q.budget = 4;
 
+// The electoral weight of each state in the Federation
+Q.nsw_weight = 0.39;      // The "Prussia" of Australia - Industrial heartland
+Q.vic_weight = 0.28;      // The "Bavaria" - High Catholic/Grouper influence
+Q.qld_weight = 0.14;      // The "Silesia" - Agrarian/AWU stronghold
+Q.sa_weight = 0.09;       // The "Saxony" - Smaller industrial base
+Q.wa_weight = 0.06;       // The "frontier" - Resource focused, secessionist
+Q.tas_weight = 0.03;      // The "outlier" - Smallest state influence
+Q.nt_act_weight = 0.01;   // Federal territories - Minimal electoral impact
+
 Q.bluecollar = 33;
 Q.whitecollar = 25;
 Q.catholics = 16;
@@ -154,6 +163,8 @@ Q.new_middle_qol = 100;
 
 Q.classes = ['bluecollar', 'whitecollar', 'catholics', 'rural', 'immigrants', 'businessmen'];
 Q.parties = ['alp', 'll', 'uap', 'cp', 'cpa', 'other', 'scp', 'ldp'];
+Q.states = ['nsw', 'vic', 'qld', 'sa', 'wa', 'tas', 'nt_act'];
+
 
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
