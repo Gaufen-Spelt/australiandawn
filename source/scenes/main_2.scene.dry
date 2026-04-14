@@ -1,4 +1,5 @@
 @main_2_easy
+title: Daily Life
 set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
