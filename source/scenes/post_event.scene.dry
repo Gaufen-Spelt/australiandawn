@@ -124,6 +124,11 @@ if (total_fac_strength > 0) {
     Q.dissent_percent = 5.00;
 }
 
+// ── Weight display helpers ────────────────────────────────────────────────────
+for (var state of Q.states) {
+    Q[state+'_weight_pct'] = parseFloat(((Q[state+'_weight'] || 0) * 100).toFixed(0));
+}
+
 
 
 
