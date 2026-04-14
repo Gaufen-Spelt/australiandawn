@@ -165,17 +165,32 @@ for (var state of Q.states) {
 
 
 
-// 1. update dates (Daily and Monthly)
+//// 1. update dates (Daily, Weekly, and Monthly)
 if (Q.day_actions >= 1) {
     Q.day += 1;
+    Q.week_day = (Q.week_day || 0) + 1; // Track day of the week (1-7)
     Q.day_actions = 0;
 
     // --- Daily Timer Decrement ---
-    // These timers go down every single day
     if (Q.day_timers) {
         for (var d_timer of Q.day_timers) {
             if (Q[d_timer + '_timer'] && Q[d_timer + '_timer'] > 0) {
                 Q[d_timer + '_timer'] -= 1;
+            }
+        }
+    }
+
+    // --- Weekly Rollover ---
+    if (Q.week_day > 7) {
+        Q.week_day = 1;
+        Q.week = (Q.week || 0) + 1;
+        
+        // --- Weekly Timer Decrement (Optional) ---
+        if (Q.week_timers) {
+            for (var w_timer of Q.week_timers) {
+                if (Q[w_timer + '_timer'] && Q[w_timer + '_timer'] > 0) {
+                    Q[w_timer + '_timer'] -= 1;
+                }
             }
         }
     }
@@ -186,14 +201,14 @@ if (Q.day_actions >= 1) {
         daysInMonth[2] = 29;
     }
 
-    // Check for Month Rollover
+    // --- Monthly Rollover ---
     if (Q.day > daysInMonth[Q.month]) {
         Q.day = 1;
+        Q.week = 1; // Reset week count for the new month
         Q.month += 1;
         Q.time += 1; 
 
-        // --- Monthly Timer Decrement ---
-        // These only go down once a month (the original logic)
+        // Monthly Timer Decrement
         for (var m_timer of Q.timers) {
             if (Q[m_timer + '_timer'] && Q[m_timer + '_timer'] > 0) {
                 Q[m_timer + '_timer'] -= 1;
@@ -202,7 +217,8 @@ if (Q.day_actions >= 1) {
 
         if (Q.month >= 13) {
             Q.month = 1;
-            Q.year += 1; }
+            Q.year += 1;
+            if (Q.historical_mode) { Q.resources += 2; }
         }
 
         // Monthly Record Keeping
@@ -218,6 +234,7 @@ if (Q.day_actions >= 1) {
         });
     }
 }
+
 
 
 
@@ -284,7 +301,7 @@ if (typeof window !== "undefined" && window.generateBar) {
 !}
 go-to: events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0; main.main_easy if has_event = 0 and difficulty < 0
 
-= Day [+ day +], Week [+ week +] of [+ month : month +] [+ year +]
+= Day [+ day +] (Week [+ week +]), [+ month : month +] [+ year +]
 
 @events_choice
 
