@@ -559,6 +559,9 @@ window.drawUnionChart = function() {
     });
 };
 
+
+}());
+
 window.showSidebars = function() {
     $("#stats_sidebar").show();
     $("#stats_sidebar_2").show();
@@ -571,4 +574,3 @@ window.hideSidebars = function() {
     $("#stats_sidebar_3").hide();
 };
 
-}());
