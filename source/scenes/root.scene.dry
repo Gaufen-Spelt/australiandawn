@@ -454,11 +454,11 @@ new-page: true
 
 This is a game of alternate history, since story diverged as far as 1929, while start of the game is in 1949 of January. Have fun.
 
-- @intro: Begin the journey...
+- @1928_easy: Begin the journey...
 
 @1928_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 29; z_relation = 54; dvp_relation = 49; budget = 5;
-go-to: 1928_main
+go-to: intro
 
 @1928_hard
 on-arrival: difficulty = 1; resources = 0; dues = 1; rb_strength = 1000; reformist_dissent = 25; left_dissent = 30; labor_dissent = 25; center_dissent = 25; z_relation = 41; kpd_relation = 16; dvp_relation = 31; budget = 3;
