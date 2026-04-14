@@ -706,3 +706,10 @@ table {
     margin-right: 1em;
     margin-bottom: 0.5em;
 }
+
+
+#game-intro-overlay {
+    font-family: "Minion Pro", Georgia, serif;
+    user-select: none;
+    cursor: pointer;
+}
