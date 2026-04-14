@@ -1,0 +1,6 @@
+title: Monthly Affairs
+new-page: True
+is-pinned-card: true
+is-card: True
+on-arrival: modem = 0
+go-to: main.main_easy
