@@ -558,4 +558,17 @@ window.drawUnionChart = function() {
                  communist: Q[u.id+'_communist']||0, grouper: Q[u.id+'_grouper']||0 };
     });
 };
+
+window.showSidebars = function() {
+    $("#stats_sidebar").show();
+    $("#stats_sidebar_2").show();
+    $("#stats_sidebar_3").show();
+};
+
+window.hideSidebars = function() {
+    $("#stats_sidebar").hide();
+    $("#stats_sidebar_2").hide();
+    $("#stats_sidebar_3").hide();
+};
+
 }());
