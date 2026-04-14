@@ -460,42 +460,32 @@ new-page: true
 go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 on-departure: {!
 
-// Create fullscreen intro overlay
 var overlay = document.createElement('div');
 overlay.id = 'game-intro-overlay';
-overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#1a1a0e;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity 1.2s ease;';
-
-var inner = document.createElement('div');
-inner.style.cssText = 'text-align:center;color:#d4c89a;max-width:600px;padding:2em;';
-
-inner.innerHTML = ''
-  + '<div id="intro-year" style="font-size:4em;font-weight:bold;letter-spacing:0.2em;opacity:0;transition:opacity 1s ease;font-family:Georgia,serif;color:#a08840;">1949</div>'
-  + '<div id="intro-line" style="font-size:1.1em;margin-top:1.5em;opacity:0;transition:opacity 1.2s ease;line-height:1.7;font-family:Georgia,serif;">'
-  + 'This is a game of alternate history.<br>'
-  + 'The story diverged as far back as 1929.<br>'
-  + 'The start of the game is January 1949.<br><br>'
-  + '<em>Have fun.</em>'
-  + '</div>'
-  + '<div id="intro-prompt" style="margin-top:2.5em;opacity:0;transition:opacity 1s ease;font-size:0.85em;color:#888;letter-spacing:0.15em;text-transform:uppercase;">Click anywhere to continue</div>';
-
-overlay.appendChild(inner);
+overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;';
 document.body.appendChild(overlay);
 
-// Animate in
-setTimeout(function() { overlay.style.opacity = '1'; }, 50);
-setTimeout(function() { document.getElementById('intro-year').style.opacity = '1'; }, 600);
-setTimeout(function() { document.getElementById('intro-line').style.opacity = '1'; }, 1600);
-setTimeout(function() { document.getElementById('intro-prompt').style.opacity = '1'; }, 3000);
+function addLine(text, delay, style) {
+    setTimeout(function() {
+        var el = document.createElement('div');
+        el.style.cssText = 'color:#d4c89a;font-family:"Minion Pro",Georgia,serif;opacity:0;transition:opacity 1s ease;' + (style || '');
+        el.textContent = text;
+        overlay.appendChild(el);
+        setTimeout(function() { el.style.opacity = '1'; }, 50);
+    }, delay);
+}
 
-// Click to dismiss
-overlay.addEventListener('click', function() {
-    overlay.style.transition = 'opacity 0.8s ease';
+addLine('1949.', 400, 'font-size:3em;letter-spacing:0.2em;margin-bottom:0.5em;');
+addLine('Australia,', 1800, 'font-size:1.4em;letter-spacing:0.1em;');
+addLine('New South Wales.', 2800, 'font-size:1.4em;letter-spacing:0.1em;margin-top:0.3em;');
+
+setTimeout(function() {
+    overlay.style.transition = 'opacity 2s ease';
     overlay.style.opacity = '0';
     setTimeout(function() {
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-    }, 800);
-});
-
+    }, 2000);
+}, 4500);
 !}
 
 = 1928
