@@ -1,0 +1,12 @@
+title: Australian
+subtitle: Test
+tags: event
+view-if: year = 1949
+max-visits: 1
+on-arrival: {!
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'We cannot let this pass without a fight.'});
+window.addDialogue({id:'player', name:'You', side:'right', text:'Then we go to the floor.'});
+window.addDialogue({side:'center', text:'A long silence follows.'});
+!}
+
+= Dialogue sus boys
