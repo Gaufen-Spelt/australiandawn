@@ -606,3 +606,111 @@ window.hideSidebars = function() {
     $("#stats_sidebar_3").hide();
 };
 
+
+// ─── Dialogue system ──────────────────────────────────────
+
+window._dialogueSceneId = null;
+window._dialogueContainer = null;
+
+// Palette for fallback portrait colors, cycles by id
+window._dialoguePalette = [
+    '#6B2A1A','#3A5A3A','#2A3A5A','#5A3A6B',
+    '#6B5A2A','#2A5A5A','#5A2A3A','#3A3A5A',
+];
+
+window._dialogueColorFor = function(id) {
+    var hash = 0;
+    for (var i = 0; i < id.length; i++) {
+        hash = id.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return window._dialoguePalette[Math.abs(hash) % window._dialoguePalette.length];
+};
+
+window._dialogueInitials = function(name) {
+    return name.split(' ').map(function(w) { return w[0]; }).join('').slice(0,2).toUpperCase();
+};
+
+window._getOrCreateDialogueLog = function() {
+    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
+
+    // New scene — wipe old log
+    if (currentScene !== window._dialogueSceneId) {
+        window._dialogueSceneId = currentScene;
+        window._dialogueContainer = null;
+    }
+
+    if (!window._dialogueContainer) {
+        var log = document.createElement('div');
+        log.className = 'dialogue-log';
+        document.getElementById('content').appendChild(log);
+        window._dialogueContainer = log;
+    }
+
+    return window._dialogueContainer;
+};
+
+window.addDialogue = function(opts) {
+    // opts: { id, name, side, text, img }
+    // id:   used for color + img lookup
+    // name: display name (optional, falls back to id)
+    // side: 'left' | 'right' | 'center'
+    // text: string
+    // img:  explicit path override (optional)
+
+    var id   = opts.id   || 'unknown';
+    var name = opts.name || id;
+    var side = opts.side || 'left';
+    var text = opts.text || '';
+    var img  = opts.img  || null;
+
+    var log = window._getOrCreateDialogueLog();
+
+    var entry = document.createElement('div');
+    entry.className = 'dialogue-entry ' + side;
+
+    // Portrait (skip for center)
+    if (side !== 'center') {
+        var portrait = document.createElement('div');
+        portrait.className = 'dialogue-portrait';
+
+        // Try image first
+        var imgPath = img || ('img/' + id + '.jpg');
+        var imgEl = document.createElement('img');
+        imgEl.src = imgPath;
+        imgEl.onerror = function() {
+            // Fallback: colored circle with initials
+            portrait.removeChild(imgEl);
+            portrait.style.backgroundColor = window._dialogueColorFor(id);
+            portrait.style.borderRadius = '0px'; // keep hard edges
+            portrait.textContent = window._dialogueInitials(name);
+        };
+        portrait.appendChild(imgEl);
+        entry.appendChild(portrait);
+    }
+
+    // Bubble
+    var bubble = document.createElement('div');
+    bubble.className = 'dialogue-bubble';
+
+    if (side !== 'center' && name) {
+        var nameEl = document.createElement('div');
+        nameEl.className = 'dialogue-name';
+        nameEl.textContent = name;
+        bubble.appendChild(nameEl);
+    }
+
+    var textEl = document.createElement('p');
+    textEl.textContent = text;
+    bubble.appendChild(textEl);
+    entry.appendChild(bubble);
+
+    log.appendChild(entry);
+};
+
+window.clearDialogue = function() {
+    if (window._dialogueContainer) {
+        window._dialogueContainer.innerHTML = '';
+    }
+    window._dialogueSceneId = null;
+    window._dialogueContainer = null;
+};
