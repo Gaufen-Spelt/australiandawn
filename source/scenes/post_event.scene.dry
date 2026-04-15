@@ -1,6 +1,7 @@
 title: Post Event
 new-page: true
 on-arrival: {!
+hideSidebars()
 
 // ── 0. Reset & clamp ──────────────────────────────────────────────────────────
 Q.last_advisor_action = 0;
