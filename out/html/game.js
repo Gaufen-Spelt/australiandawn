@@ -383,16 +383,6 @@ window.updateSidebar = function() {
     }
 };
 
-  var unionEl = document.getElementById('union-chart');
-  if (unionEl) {
-    if (window.statusTab3 === 'status_3.factions') {
-        unionEl.style.display = '';
-        window.drawUnionChart();
-    } else {
-        unionEl.style.display = 'none';
-    }
-}
-
 window.sidebar3Collapsed = false;
 
 window.toggleSidebar3 = function() {
