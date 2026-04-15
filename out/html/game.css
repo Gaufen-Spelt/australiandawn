@@ -156,20 +156,11 @@ body.classic-mode #tools_wrapper {
 }
 
 body.classic-mode .tools {
-  pointer-events: auto;
-  width: 100%;
-  float: none; /* Removed float logic */
-  left: auto;
-  right: auto;
-  margin: 0;
-  box-sizing: border-box;
-  
-  border: 1px solid var(--card-border-color);
-  border-radius: 6px;
-  background-color: var(--content-bg-color);
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.12);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  /* Prevent the panels from collapsing to 0 or 10px */
+  min-height: fit-content; 
+  display: block; /* Ensures internal flow isn't interrupted by parent flex */
 }
+
 
 body.classic-mode .tools:hover {
   box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.18);
@@ -222,8 +213,13 @@ body.classic-mode div.blank-card {
 body.classic-mode #qualities,
 body.classic-mode #qualities_2,
 body.classic-mode #qualities_3 {
-  font-size: 0.95em;
-  line-height: 1.45;
+  /* Ensure the containers expand to show all text/icons */
+  display: block;
+  height: auto;
+  min-height: 20px; 
+  padding: 0.6em; /* Gives the text some breathing room */
+  visibility: visible;
+  overflow: visible;
 }
 
 body.classic-mode #qualities h1,
