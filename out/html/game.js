@@ -122,6 +122,16 @@
       window.dendryUI.saveSettings();
   };
 
+  window.enableDialogueAnim = function() {
+    window.dendryUI.dialogue_anim = true;
+    window.dendryUI.saveSettings();
+  };
+
+  window.disableDialogueAnim = function() {
+    window.dendryUI.dialogue_anim = false;
+    window.dendryUI.saveSettings();
+  };
+
     // ─── THEME TOGGLE LOGIC ───────────────────────────────────────
 
   window.enableLightMode = function() {
@@ -181,6 +191,13 @@
     } else {
         $('#typewriter_no')[0].checked = true;
     }
+
+    if (window.dendryUI.dialogue_anim !== false) {
+    $('#dialogue_anim_yes')[0].checked = true;
+    } else {
+    $('#dialogue_anim_no')[0].checked = true;
+    }
+    
   };
 
   // ─── LOAD INITIALIZATION ───────────────────────────────────────
@@ -242,7 +259,8 @@
   };
 
   window.onDisplayContent = function() {
-      window.updateSidebar();
+    window.updateSidebar();
+    window._dialogueRestore();
   };
 
   /*
@@ -611,8 +629,23 @@ window.hideSidebars = function() {
 
 window._dialogueSceneId = null;
 window._dialogueContainer = null;
+window._dialogueQueue = [];
+window._dialoguePlaying = false;
 
-// Palette for fallback portrait colors, cycles by id
+// Persistent store keyed by sceneId
+window._dialogueStore = (function() {
+    try {
+        var raw = localStorage.getItem('_dialogueLog');
+        return raw ? JSON.parse(raw) : {};
+    } catch(e) { return {}; }
+}());
+
+window._dialogueSaveStore = function() {
+    try {
+        localStorage.setItem('_dialogueLog', JSON.stringify(window._dialogueStore));
+    } catch(e) {}
+};
+
 window._dialoguePalette = [
     '#6B2A1A','#3A5A3A','#2A3A5A','#5A3A6B',
     '#6B5A2A','#2A5A5A','#5A2A3A','#3A3A5A',
@@ -630,13 +663,21 @@ window._dialogueInitials = function(name) {
     return name.split(' ').map(function(w) { return w[0]; }).join('').slice(0,2).toUpperCase();
 };
 
+window._dialogueAnimEnabled = function() {
+    return window.dendryUI && window.dendryUI.dialogue_anim !== false;
+};
+window._dialogueAnimDelay = function() {
+    return window.dendryUI && window.dendryUI.typewriter ? 800 : 400;
+};
+
 window._getOrCreateDialogueLog = function() {
     var currentScene = window.dendryUI.dendryEngine.state.sceneId;
 
-    // New scene — wipe old log
     if (currentScene !== window._dialogueSceneId) {
         window._dialogueSceneId = currentScene;
         window._dialogueContainer = null;
+        window._dialogueQueue = [];
+        window._dialoguePlaying = false;
     }
 
     if (!window._dialogueContainer) {
@@ -649,46 +690,32 @@ window._getOrCreateDialogueLog = function() {
     return window._dialogueContainer;
 };
 
-window.addDialogue = function(opts) {
-    // opts: { id, name, side, text, img }
-    // id:   used for color + img lookup
-    // name: display name (optional, falls back to id)
-    // side: 'left' | 'right' | 'center'
-    // text: string
-    // img:  explicit path override (optional)
-
+window._buildDialogueEntry = function(opts, instant) {
     var id   = opts.id   || 'unknown';
     var name = opts.name || id;
     var side = opts.side || 'left';
     var text = opts.text || '';
     var img  = opts.img  || null;
 
-    var log = window._getOrCreateDialogueLog();
-
     var entry = document.createElement('div');
-    entry.className = 'dialogue-entry ' + side;
+    entry.className = 'dialogue-entry ' + side + (instant ? ' instant' : '');
 
-    // Portrait (skip for center)
     if (side !== 'center') {
         var portrait = document.createElement('div');
         portrait.className = 'dialogue-portrait';
 
-        // Try image first
         var imgPath = img || ('img/' + id + '.jpg');
         var imgEl = document.createElement('img');
         imgEl.src = imgPath;
         imgEl.onerror = function() {
-            // Fallback: colored circle with initials
             portrait.removeChild(imgEl);
             portrait.style.backgroundColor = window._dialogueColorFor(id);
-            portrait.style.borderRadius = '0px'; // keep hard edges
             portrait.textContent = window._dialogueInitials(name);
         };
         portrait.appendChild(imgEl);
         entry.appendChild(portrait);
     }
 
-    // Bubble
     var bubble = document.createElement('div');
     bubble.className = 'dialogue-bubble';
 
@@ -704,13 +731,92 @@ window.addDialogue = function(opts) {
     bubble.appendChild(textEl);
     entry.appendChild(bubble);
 
-    log.appendChild(entry);
+    return entry;
+};
+
+window._dialoguePlayQueue = function() {
+    if (window._dialoguePlaying) return;
+    if (window._dialogueQueue.length === 0) return;
+
+    window._dialoguePlaying = true;
+
+    var log = window._getOrCreateDialogueLog();
+    var animate = window.dendryUI && window.dendryUI.typewriter;
+
+    function playNext() {
+        if (window._dialogueQueue.length === 0) {
+            window._dialoguePlaying = false;
+            return;
+        }
+        var opts = window._dialogueQueue.shift();
+        var entry = window._buildDialogueEntry(opts, !animate);
+        log.appendChild(entry);
+
+        if (animate) {
+            // Force reflow then fade in
+            void entry.offsetWidth;
+            entry.classList.add('visible');
+            setTimeout(playNext, window._dialogueAnimDelay());
+        } else {
+            playNext();
+        }
+    }
+
+    playNext();
+};
+
+window.addDialogue = function(opts) {
+    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
+
+    // Record to persistent store
+    if (!window._dialogueStore[currentScene]) {
+        window._dialogueStore[currentScene] = [];
+    }
+    window._dialogueStore[currentScene].push(opts);
+    window._dialogueSaveStore();
+
+    // Ensure container exists for this scene
+    window._getOrCreateDialogueLog();
+
+    // Queue and play
+    window._dialogueQueue.push(opts);
+    window._dialoguePlayQueue();
 };
 
 window.clearDialogue = function() {
+    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
+    if (window._dialogueStore[currentScene]) {
+        delete window._dialogueStore[currentScene];
+        window._dialogueSaveStore();
+    }
     if (window._dialogueContainer) {
         window._dialogueContainer.innerHTML = '';
     }
     window._dialogueSceneId = null;
     window._dialogueContainer = null;
+    window._dialogueQueue = [];
+    window._dialoguePlaying = false;
+};
+
+// Restore dialogue on scene load
+window._dialogueRestore = function() {
+    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
+    var saved = window._dialogueStore[currentScene];
+    if (!saved || saved.length === 0) return;
+
+    // Reset container so it gets freshly appended after Dendry renders
+    window._dialogueSceneId = null;
+    window._dialogueContainer = null;
+
+    var log = window._getOrCreateDialogueLog();
+    var animate = window.dendryUI && window.dendryUI.typewriter;
+
+    saved.forEach(function(opts) {
+        var entry = window._buildDialogueEntry(opts, !animate);
+        if (animate) {
+            void entry.offsetWidth;
+            entry.classList.add('visible');
+        }
+        log.appendChild(entry);
+    });
 };
