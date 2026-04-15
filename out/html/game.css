@@ -729,3 +729,19 @@ table {
     display: none;
 }
 
+
+
+
+#qualities_2 img {
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
+  max-width: 80px;
+}
+
+#qualities_2 .face-figure {
+  float: none;
+  display: block;
+  max-width: 100%;
+  margin: 0 0 0.5em 0;
+}
