@@ -69,6 +69,139 @@ body.dark-mode .tools {
   border-color: #484838;
 }
 
+/* ─── CLASSIC MODE OVERRIDES ─────────────────────────────────────────────── */
+body.classic-mode {
+  --bg-color: #f3f3e3;
+  --border-color: #000;
+  --content-bg-color: #f3f3f3;
+  --text-color: #431;
+  --link-color: #900;
+  --link-hover-color: rgba(0, 0, 0, 0.05);
+  --unavailable-bg-color: rgba(0, 0, 0, 0.1);
+  --unavailable-color: #999;
+  --tab-bg-color: #dedede;
+  --tab-color: #ddd;
+  --tab-hover-color: #ececec;
+  --card-border-color: #ccc; 
+  --card-bg-color: #ddd; 
+  
+  /* Map classic colors to newsprint variables to prevent missing borders */
+  --heading-color: #431;
+  --rule-color: #876; 
+  
+  font-family: "Minion Pro", Georgia, serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Typography Overrides */
+body.classic-mode header h1, 
+body.classic-mode header h2,
+body.classic-mode #content h1,
+body.classic-mode .tools,
+body.classic-mode ul.choices li,
+body.classic-mode .tab_button {
+  font-family: "Minion Pro", Georgia, serif;
+}
+
+body.classic-mode header h1 {
+  font-weight: bold;
+  letter-spacing: normal;
+}
+
+body.classic-mode #content h1 {
+  margin: 2em 0 1em 0;
+  font-size: 1.35em;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px, rgba(0, 0, 0, 0.1) -1px -1px 2px;
+  border: none; /* Remove newsprint top/bottom borders */
+}
+
+/* Remove Newsprint Specific Elements */
+body.classic-mode #content::before {
+  display: none; /* Disables the ripped paper edge */
+}
+
+body.classic-mode #header-links a, 
+body.classic-mode #qualities h1, 
+body.classic-mode #qualities_2 h1, 
+body.classic-mode #qualities_3 h1 {
+  font-family: "Minion Pro", Georgia, serif;
+  letter-spacing: normal;
+}
+
+/* Layout Overrides: Absolute Positioning instead of Flexbox */
+body.classic-mode #tools_wrapper {
+  position: absolute;
+  width: 100%;
+  max-width: 69em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: block; /* Disables flexbox */
+}
+
+body.classic-mode #mid_panel {
+  margin: 0 16rem;
+}
+
+body.classic-mode #content {
+  border: none;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+/* Tool Panel Overrides */
+body.classic-mode .tools {
+  width: 14rem;
+  border: none;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+body.classic-mode .tools.left {
+  float: left;
+  left: 0.4em;
+  max-height: none; /* Remove flexbox height constraints */
+}
+
+body.classic-mode .tools.right {
+  float: right;
+  right: 0.4em;
+  width: 14rem;
+}
+
+/* UI Elements Overrides */
+body.classic-mode ul.choices {
+  border: 2px solid #876;
+  border-radius: 4px;
+  box-shadow: none; /* Remove the hard drop shadow from newsprint */
+}
+
+body.classic-mode a.card, 
+body.classic-mode div.blank-card {
+  border-width: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Classic Mode Responsive Constraints */
+@media screen and (max-width: 1200px) {
+  body.classic-mode .tools { margin-right: 0.4em; margin-left: 0.4em; }
+  body.classic-mode #mid_panel { margin-right: 0.4em; }
+}
+
+@media screen and (max-width: 700px) {
+  body.classic-mode #tools_wrapper { position: static; }
+  body.classic-mode .tools { 
+    width: 90%; 
+    float: none; 
+    margin: 0.4em auto 1.5em auto; 
+  }
+  body.classic-mode .tools.left, 
+  body.classic-mode .tools.right { left: auto; right: auto; }
+  body.classic-mode #mid_panel { margin: 0 auto; }
+}
+
+
 /* ─── Page shell ─────────────────────────────────────────── */
 #page {
   width: 95%;
