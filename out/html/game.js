@@ -122,54 +122,82 @@
       window.dendryUI.saveSettings();
   };
 
+    // ─── THEME TOGGLE LOGIC ───────────────────────────────────────
+
   window.enableLightMode = function() {
       window.dendryUI.dark_mode = false;
-      document.body.classList.remove('dark-mode');
+      window.dendryUI.classic_mode = false;
+      document.body.classList.remove('dark-mode', 'classic-mode');
       window.dendryUI.saveSettings();
   };
+
   window.enableDarkMode = function() {
       window.dendryUI.dark_mode = true;
+      window.dendryUI.classic_mode = false;
+      document.body.classList.remove('classic-mode');
       document.body.classList.add('dark-mode');
       window.dendryUI.saveSettings();
   };
 
-  // populates the checkboxes in the options view
+  window.enableClassicMode = function() {
+      window.dendryUI.dark_mode = false;
+      window.dendryUI.classic_mode = true;
+      document.body.classList.remove('dark-mode');
+      document.body.classList.add('classic-mode');
+      window.dendryUI.saveSettings();
+  };
+
+  // ─── OPTIONS MENU SYNCHRONIZATION ──────────────────────────────
+
   window.populateOptions = function() {
     var disable_bg = window.dendryUI.disable_bg;
     var animate = window.dendryUI.animate;
     var disable_audio = window.dendryUI.disable_audio;
     var show_portraits = window.dendryUI.show_portraits;
-    if (disable_bg) {
-        $('#backgrounds_no')[0].checked = true;
-    } else {
-        $('#backgrounds_yes')[0].checked = true;
-    }
-    if (animate) {
-        $('#animate_yes')[0].checked = true;
-    } else {
-        $('#animate_no')[0].checked = true;
-    }
-    if (disable_audio) {
-        $('#audio_no')[0].checked = true;
-    } else {
-        $('#audio_yes')[0].checked = true;
-    }
-    if (show_portraits) {
-        $('#images_yes')[0].checked = true;
-    } else {
-        $('#images_no')[0].checked = true;
-    }
+    
+    if (disable_bg) { $('#backgrounds_no')[0].checked = true; } 
+    else { $('#backgrounds_yes')[0].checked = true; }
+    
+    if (animate) { $('#animate_yes')[0].checked = true; } 
+    else { $('#animate_no')[0].checked = true; }
+    
+    if (disable_audio) { $('#audio_no')[0].checked = true; } 
+    else { $('#audio_yes')[0].checked = true; }
+    
+    if (show_portraits) { $('#images_yes')[0].checked = true; } 
+    else { $('#images_no')[0].checked = true; }
+
+    // Theme selector
     if (window.dendryUI.dark_mode) {
         $('#dark_mode')[0].checked = true;
+    } else if (window.dendryUI.classic_mode) {
+        $('#classic_mode')[0].checked = true;
     } else {
         $('#light_mode')[0].checked = true;
     }
+
     if (window.dendryUI.typewriter) {
-    $('#typewriter_yes')[0].checked = true;
+        $('#typewriter_yes')[0].checked = true;
     } else {
-    $('#typewriter_no')[0].checked = true;
+        $('#typewriter_no')[0].checked = true;
     }
   };
+
+  // ─── LOAD INITIALIZATION ───────────────────────────────────────
+
+  window.onload = function() {
+      window.dendryUI.loadSettings({show_portraits: false});
+      
+      // Inject saved visual theme immediately on boot
+      if (window.dendryUI.dark_mode) {
+          document.body.classList.add('dark-mode');
+      } else if (window.dendryUI.classic_mode) {
+          document.body.classList.add('classic-mode');
+      }
+      
+      window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
+  };
+
 
   
   
@@ -370,14 +398,6 @@ window.toggleSidebar3 = function() {
 
 window.dendryModifyUI = main;
 console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
-
-window.onload = function() {
-    window.dendryUI.loadSettings({show_portraits: false});
-    if (window.dendryUI.dark_mode) {
-        document.body.classList.add('dark-mode');
-    }
-    window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
-};
 
 window.enableTypewriter = function() {
     window.dendryUI.typewriter = true;
