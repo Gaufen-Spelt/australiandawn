@@ -69,7 +69,7 @@ body.dark-mode .tools {
   border-color: #484838;
 }
 
-/* ─── CLASSIC MODE OVERRIDES ─────────────────────────────────────────────── */
+/* ─── 1. CORE VARIABLES & BASE STYLES ────────────────────────────────────── */
 body.classic-mode {
   --bg-color: #f3f3e3;
   --border-color: #000;
@@ -85,7 +85,7 @@ body.classic-mode {
   --card-border-color: #ccc; 
   --card-bg-color: #ddd; 
   
-  /* Map classic colors to newsprint variables to prevent missing borders */
+  /* Mapping for Newsprint variable compatibility */
   --heading-color: #431;
   --rule-color: #876; 
   
@@ -94,33 +94,13 @@ body.classic-mode {
   color: var(--text-color);
 }
 
-/* Typography Overrides */
+/* ─── 2. TYPOGRAPHY OVERRIDES ────────────────────────────────────────────── */
 body.classic-mode header h1, 
 body.classic-mode header h2,
 body.classic-mode #content h1,
 body.classic-mode .tools,
 body.classic-mode ul.choices li,
-body.classic-mode .tab_button {
-  font-family: "Minion Pro", Georgia, serif;
-}
-
-body.classic-mode header h1 {
-  font-weight: bold;
-  letter-spacing: normal;
-}
-
-body.classic-mode #content h1 {
-  margin: 2em 0 1em 0;
-  font-size: 1.35em;
-  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px, rgba(0, 0, 0, 0.1) -1px -1px 2px;
-  border: none; /* Remove newsprint top/bottom borders */
-}
-
-/* Remove Newsprint Specific Elements */
-body.classic-mode #content::before {
-  display: none; /* Disables the ripped paper edge */
-}
-
+body.classic-mode .tab_button,
 body.classic-mode #header-links a, 
 body.classic-mode #qualities h1, 
 body.classic-mode #qualities_2 h1, 
@@ -129,52 +109,107 @@ body.classic-mode #qualities_3 h1 {
   letter-spacing: normal;
 }
 
-/* Layout Overrides: Absolute Positioning instead of Flexbox */
-body.classic-mode #tools_wrapper {
-  position: absolute;
-  width: 100%;
-  max-width: 69em;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  display: block; /* Disables flexbox */
+body.classic-mode header h1 {
+  font-weight: bold;
 }
 
-body.classic-mode #mid_panel {
-  margin: 0 16rem;
+body.classic-mode #content h1 {
+  margin: 2em 0 1em 0;
+  font-size: 1.35em;
+  text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 2px, rgba(0, 0, 0, 0.1) -1px -1px 2px;
+  border: none; 
 }
 
+/* ─── 3. MAIN CONTENT AREA (MID PANEL) ───────────────────────────────────── */
 body.classic-mode #content {
   border: none;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  background-color: var(--content-bg-color);
 }
 
-/* Tool Panel Overrides */
+body.classic-mode #content::before {
+  display: none; /* Disables the ripped paper edge */
+}
+
+body.classic-mode #mid_panel {
+  /* Pushed to the right to accommodate the 16rem sidebar stack */
+  margin: 0 2rem 0 20rem; 
+  max-width: 48rem;
+}
+
+/* ─── 4. THE UNIFIED SIDEBAR (TOOLS WRAPPER) ─────────────────────────────── */
+body.classic-mode #tools_wrapper {
+  position: absolute;
+  width: 16rem; 
+  left: 1.5rem;
+  top: 1.5rem;
+  margin: 0;
+  
+  /* Stack children vertically */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+  
+  /* Allow clicks to pass through the wrapper space */
+  pointer-events: none; 
+}
+
 body.classic-mode .tools {
-  width: 14rem;
+  pointer-events: auto;
+  width: 100%;
+  float: none; /* Removed float logic */
+  left: auto;
+  right: auto;
+  margin: 0;
+  box-sizing: border-box;
+  
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  background-color: var(--content-bg-color);
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+body.classic-mode .tools:hover {
+  box-shadow: 3px 6px 16px rgba(0, 0, 0, 0.18);
+  transform: translateY(-2px);
+}
+
+/* ─── 5. UI ELEMENTS (TABS, CHOICES, CARDS) ──────────────────────────────── */
+body.classic-mode .tab_container {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--card-border-color);
+  margin: -0.6em -0.6em 1em -0.6em;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+}
+
+body.classic-mode .tab_button {
+  flex: 1 1 auto;
+  text-align: center;
   border: none;
-  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-right: 1px solid var(--card-border-color);
+  background-color: var(--tab-bg-color);
+  padding: 0.6rem 0.4rem;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-body.classic-mode .tools.left {
-  float: left;
-  left: 0.4em;
-  max-height: none; /* Remove flexbox height constraints */
+body.classic-mode .tab_button.active {
+  background-color: var(--content-bg-color);
+  color: var(--link-color);
+  box-shadow: inset 0 3px 0 var(--link-color); 
 }
 
-body.classic-mode .tools.right {
-  float: right;
-  right: 0.4em;
-  width: 14rem;
-}
-
-/* UI Elements Overrides */
 body.classic-mode ul.choices {
   border: 2px solid #876;
   border-radius: 4px;
-  box-shadow: none; /* Remove the hard drop shadow from newsprint */
+  box-shadow: none; 
 }
 
 body.classic-mode a.card, 
@@ -183,23 +218,88 @@ body.classic-mode div.blank-card {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Classic Mode Responsive Constraints */
-@media screen and (max-width: 1200px) {
-  body.classic-mode .tools { margin-right: 0.4em; margin-left: 0.4em; }
-  body.classic-mode #mid_panel { margin-right: 0.4em; }
+/* ─── 6. INTERNAL QUALITIES FORMATTING ───────────────────────────────────── */
+body.classic-mode #qualities,
+body.classic-mode #qualities_2,
+body.classic-mode #qualities_3 {
+  font-size: 0.95em;
+  line-height: 1.45;
 }
 
-@media screen and (max-width: 700px) {
-  body.classic-mode #tools_wrapper { position: static; }
-  body.classic-mode .tools { 
-    width: 90%; 
-    float: none; 
-    margin: 0.4em auto 1.5em auto; 
-  }
-  body.classic-mode .tools.left, 
-  body.classic-mode .tools.right { left: auto; right: auto; }
-  body.classic-mode #mid_panel { margin: 0 auto; }
+body.classic-mode #qualities h1,
+body.classic-mode #qualities_2 h1,
+body.classic-mode #qualities_3 h1 {
+  border-bottom: 1px solid var(--card-border-color);
+  padding-bottom: 0.3em;
+  margin-bottom: 0.8em;
+  color: var(--text-color);
+  font-size: 1.05em;
+  font-weight: bold;
+  text-shadow: none;
+  text-align: left;
+  letter-spacing: 0.05em;
 }
+
+body.classic-mode #qualities_2 img,
+body.classic-mode #qualities_3 img {
+  border-radius: 4px;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--card-border-color);
+}
+
+/* ─── 7. RESPONSIVE FALLBACKS ─────────────────────────────────────────────── */
+@media screen and (max-width: 1200px) {
+  body.classic-mode #tools_wrapper {
+    width: 14rem;
+    left: 1rem;
+  }
+  body.classic-mode #mid_panel {
+    margin: 0 1rem 0 16rem;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  body.classic-mode #tools_wrapper {
+    position: static;
+    width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  body.classic-mode .tools {
+    width: calc(50% - 0.5rem);
+  }
+  body.classic-mode #stats_sidebar_3 {
+    width: 100%; 
+  }
+  body.classic-mode #mid_panel {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  body.classic-mode #tools_wrapper {
+    flex-direction: column;
+    padding: 0 0.5rem;
+  }
+  body.classic-mode .tools, 
+  body.classic-mode #stats_sidebar_3 {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
 
 
 /* ─── Page shell ─────────────────────────────────────────── */
