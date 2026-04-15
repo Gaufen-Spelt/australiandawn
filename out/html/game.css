@@ -168,6 +168,18 @@ body.classic-mode .tools:hover {
   transform: translateY(-2px);
 }
 
+/* ─── Classic mode tool height fix ──────────────────────── */
+body.classic-mode .tools.left {
+  max-height: none;
+  overflow-y: visible;
+  flex: none;
+}
+
+body.classic-mode .tools.right {
+  flex: none;
+  width: 100%;
+}
+
 /* ─── 5. UI ELEMENTS & TABS ──────────────────────────────────────────────── */
 body.classic-mode .tab_container {
   display: flex;
