@@ -54,11 +54,13 @@
                 </tr>
                 <tr><td><hr></td></tr>
                 <tr>
-                    <td>Color scheme:</td>
-                    <td><label for="light_mode">Light mode</label></td>
-                    <td><input type="radio" id="light_mode" name="ld_mode" value="1" onclick="window.enableLightMode();"></td>
-                    <td><label for="dark_mode">Dark mode</label></td>
-                    <td><input type="radio" id="dark_mode" name="ld_mode" value="0" onclick="window.enableDarkMode();"></td>
+                    <td>Interface Theme:</td>
+                        <td><label for="light_mode">Newsprint</label></td>
+                        <td><input type="radio" id="light_mode" name="ld_mode" value="light" onclick="window.enableLightMode();"></td>
+                        <td><label for="dark_mode">Dark</label></td>
+                        <td><input type="radio" id="dark_mode" name="ld_mode" value="dark" onclick="window.enableDarkMode();"></td>
+                        <td><label for="classic_mode">Classic</label></td>
+                        <td><input type="radio" id="classic_mode" name="ld_mode" value="classic" onclick="window.enableClassicMode();"></td>
                 </tr>
                 <tr>
                     <td>Typewriter effect:</td>
@@ -67,6 +69,7 @@
                     <td><label for="typewriter_no">Off</label></td>
                     <td><input type="radio" id="typewriter_no" name="typewriter" value="0" onclick="window.disableTypewriter();"></td>
                 </tr>
+                <tr><td><hr></td></tr>
                 <tr>
                     <td><button onclick="window.hideOptions();">Close</button></td>
                     <td></td><td></td><td></td><td></td>
