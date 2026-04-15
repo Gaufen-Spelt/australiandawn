@@ -346,7 +346,6 @@ window.updateSidebar = function() {
         unionEl.style.display = 'none';
     }
 }
-};
 
 window.sidebar3Collapsed = false;
 
