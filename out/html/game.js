@@ -306,23 +306,36 @@ window.updateSidebar = function() {
         $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
     }
 
-    $('#qualities_3').empty();
-    var scene3 = dendryUI.game.scenes[window.statusTab3];
-    if (scene3) {
-    dendryUI.dendryEngine._runActions(scene3.onArrival);
-    var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
-    $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
-    }
+    if (!window.sidebar3Collapsed) {
+        $('#qualities_3').empty();
+        var scene3 = dendryUI.game.scenes[window.statusTab3];
+        if (scene3) {
+            dendryUI.dendryEngine._runActions(scene3.onArrival);
+            var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
+            $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
+        }
 
-    var chartEl = document.getElementById('faction-chart');
-    if (chartEl) {
-    if (window.statusTab3 === 'status_3.factions') {
-        chartEl.style.display = '';
-        window.drawFactionChart();
-    } else {
-        chartEl.style.display = 'none';
+        var chartEl = document.getElementById('faction-chart');
+        if (chartEl) {
+            if (window.statusTab3 === 'status_3.factions') {
+                chartEl.style.display = '';
+                window.drawFactionChart();
+            } else {
+                chartEl.style.display = 'none';
+            }
+        }
+
+        var unionEl = document.getElementById('union-chart');
+        if (unionEl) {
+            if (window.statusTab3 === 'status_3.factions') {
+                unionEl.style.display = '';
+                window.drawUnionChart();
+            } else {
+                unionEl.style.display = 'none';
+            }
+        }
     }
-}
+};
 
   var unionEl = document.getElementById('union-chart');
   if (unionEl) {
