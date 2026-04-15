@@ -615,26 +615,12 @@ window.hideSidebars = function() {
 };
 
 
-// ─── Dialogue system ──────────────────────────────────────
+ // ─── Dialogue system ──────────────────────────────────────
 
 window._dialogueSceneId = null;
 window._dialogueContainer = null;
 window._dialogueQueue = [];
 window._dialoguePlaying = false;
-
-// Persistent store keyed by sceneId
-window._dialogueStore = (function() {
-    try {
-        var raw = localStorage.getItem('_dialogueLog');
-        return raw ? JSON.parse(raw) : {};
-    } catch(e) { return {}; }
-}());
-
-window._dialogueSaveStore = function() {
-    try {
-        localStorage.setItem('_dialogueLog', JSON.stringify(window._dialogueStore));
-    } catch(e) {}
-};
 
 window._dialoguePalette = [
     '#6B2A1A','#3A5A3A','#2A3A5A','#5A3A6B',
@@ -656,6 +642,7 @@ window._dialogueInitials = function(name) {
 window._dialogueAnimEnabled = function() {
     return window.dendryUI && window.dendryUI.dialogue_anim !== false;
 };
+
 window._dialogueAnimDelay = function() {
     return window.dendryUI && window.dendryUI.typewriter ? 800 : 400;
 };
@@ -688,7 +675,13 @@ window._buildDialogueEntry = function(opts, instant) {
     var img  = opts.img  || null;
 
     var entry = document.createElement('div');
-    entry.className = 'dialogue-entry ' + side + (instant ? ' instant' : '');
+    entry.className = 'dialogue-entry ' + side;
+
+    // Start hidden unless instant
+    if (!instant) {
+        entry.style.opacity = '0';
+        entry.style.transition = 'opacity 0.35s ease';
+    }
 
     if (side !== 'center') {
         var portrait = document.createElement('div');
@@ -729,26 +722,29 @@ window._dialoguePlayQueue = function() {
     if (window._dialogueQueue.length === 0) return;
 
     window._dialoguePlaying = true;
-
     var log = window._getOrCreateDialogueLog();
-    var animate = window.dendryUI && window.dendryUI.typewriter;
+    var animate = window._dialogueAnimEnabled();
 
     function playNext() {
         if (window._dialogueQueue.length === 0) {
             window._dialoguePlaying = false;
             return;
         }
+
         var opts = window._dialogueQueue.shift();
         var entry = window._buildDialogueEntry(opts, !animate);
         log.appendChild(entry);
 
         if (animate) {
-            // Force reflow then fade in
+            // Force reflow so the browser registers opacity:0 before transition
             void entry.offsetWidth;
-            entry.classList.add('visible');
+            entry.style.opacity = '1';
+            // Wait for fade + reading time before showing next entry
             setTimeout(playNext, window._dialogueAnimDelay());
         } else {
-            playNext();
+            // Instant: loop synchronously but yield to browser every entry
+            // to avoid locking up on large queues
+            setTimeout(playNext, 0);
         }
     }
 
@@ -756,29 +752,12 @@ window._dialoguePlayQueue = function() {
 };
 
 window.addDialogue = function(opts) {
-    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
-
-    // Record to persistent store
-    if (!window._dialogueStore[currentScene]) {
-        window._dialogueStore[currentScene] = [];
-    }
-    window._dialogueStore[currentScene].push(opts);
-    window._dialogueSaveStore();
-
-    // Ensure container exists for this scene
     window._getOrCreateDialogueLog();
-
-    // Queue and play
     window._dialogueQueue.push(opts);
     window._dialoguePlayQueue();
 };
 
 window.clearDialogue = function() {
-    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
-    if (window._dialogueStore[currentScene]) {
-        delete window._dialogueStore[currentScene];
-        window._dialogueSaveStore();
-    }
     if (window._dialogueContainer) {
         window._dialogueContainer.innerHTML = '';
     }
@@ -788,25 +767,4 @@ window.clearDialogue = function() {
     window._dialoguePlaying = false;
 };
 
-// Restore dialogue on scene load
-window._dialogueRestore = function() {
-    var currentScene = window.dendryUI.dendryEngine.state.sceneId;
-    var saved = window._dialogueStore[currentScene];
-    if (!saved || saved.length === 0) return;
-
-    // Reset container so it gets freshly appended after Dendry renders
-    window._dialogueSceneId = null;
-    window._dialogueContainer = null;
-
-    var log = window._getOrCreateDialogueLog();
-    var animate = window.dendryUI && window.dendryUI.typewriter;
-
-    saved.forEach(function(opts) {
-        var entry = window._buildDialogueEntry(opts, !animate);
-        if (animate) {
-            void entry.offsetWidth;
-            entry.classList.add('visible');
-        }
-        log.appendChild(entry);
-    });
-};
+window._dialogueRestore = function() {};
