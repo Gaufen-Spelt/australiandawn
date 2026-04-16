@@ -175,8 +175,8 @@ if (Q.day_actions >= 1) {
     // --- Daily Timer Decrement ---
     if (Q.day_timers) {
         for (var d_timer of Q.day_timers) {
-            if (Q[d_timer + '_timer'] && Q[d_timer + '_timer'] > 0) {
-                Q[d_timer + '_timer'] -= 1;
+            if (Q[d_timer + '_d_timer'] && Q[d_timer + '_d_timer'] > 0) {
+                Q[d_timer + '_d_timer'] -= 1;
             }
         }
     }
