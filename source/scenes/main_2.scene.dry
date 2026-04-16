@@ -21,7 +21,7 @@ max-cards: 6
 - @skip
 
 @nsw
-title: Party Affairs
+title: New South Wales
 card-image: img/Vorwaerts_nr_1.png
 is-deck: true
 
