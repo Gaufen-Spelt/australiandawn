@@ -1,12 +1,13 @@
-title: Australian
-subtitle: Test
+title: The Call
+subtitle: Perhaps, someone's New Year is just as restless?
 tags: event
-view-if: year = 1949
+view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
-window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'We cannot let this pass without a fight.'});
-window.addDialogue({id:'player', name:'You', side:'right', text:'Then we go to the floor.'});
-window.addDialogue({side:'center', text:'A long silence follows.'});
+window.addDialogue({side:'left', text:'My mind is nothing but restless. My world is nothing but hell. There shall be no day further where bankers and rich fags would be living further in their comfort. Or so I thought. I have no one but my people. They are sitting in bar, talking about their hardships. Perhaps... Call?'});
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Who would be it?...'});
+window.addDialogue({side:'center', text:'As Eddie reaches out to the phone, he hears the voice of...'});
+window.addDialogue({id:'eddie', name:'Jack Lang', side:'right', text:'My lords, who could it be in the days of the cold and spiteful January if not Premier himself?... If only I was. Welcome, Ed...'});
 !}
 
 = Dialogue sus boys
