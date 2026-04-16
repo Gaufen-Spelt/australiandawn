@@ -644,7 +644,10 @@ window._dialogueAnimEnabled = function() {
 };
 
 window._dialogueAnimDelay = function() {
-    return window.dendryUI && window.dendryUI.typewriter ? 800 : 400;
+    // Base reading pause after fade completes
+    // 450ms for the fade + 600ms reading time normally, 
+    // more if typewriter is on since text is still appearing
+    return window.dendryUI && window.dendryUI.typewriter ? 1400 : 1050;
 };
 
 window._getOrCreateDialogueLog = function() {
@@ -677,10 +680,15 @@ window._buildDialogueEntry = function(opts, instant) {
     var entry = document.createElement('div');
     entry.className = 'dialogue-entry ' + side;
 
-    // Start hidden unless instant
     if (!instant) {
         entry.style.opacity = '0';
-        entry.style.transition = 'opacity 0.35s ease';
+        entry.style.transform = 'translateY(6px)';
+        entry.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    } else {
+        // On restore, skip animation entirely
+        entry.style.opacity = '1';
+        entry.style.transform = 'translateY(0)';
+        entry.style.transition = 'none';
     }
 
     if (side !== 'center') {
@@ -717,6 +725,9 @@ window._buildDialogueEntry = function(opts, instant) {
     return entry;
 };
 
+
+
+
 window._dialoguePlayQueue = function() {
     if (window._dialoguePlaying) return;
     if (window._dialogueQueue.length === 0) return;
@@ -736,14 +747,16 @@ window._dialoguePlayQueue = function() {
         log.appendChild(entry);
 
         if (animate) {
-            // Force reflow so the browser registers opacity:0 before transition
-            void entry.offsetWidth;
-            entry.style.opacity = '1';
-            // Wait for fade + reading time before showing next entry
-            setTimeout(playNext, window._dialogueAnimDelay());
+            // Two rAF calls ensure the browser has painted opacity:0
+            // before we switch to opacity:1, guaranteeing the transition fires
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    entry.style.opacity = '1';
+                    entry.style.transform = 'translateY(0)';
+                    setTimeout(playNext, window._dialogueAnimDelay());
+                });
+            });
         } else {
-            // Instant: loop synchronously but yield to browser every entry
-            // to avoid locking up on large queues
             setTimeout(playNext, 0);
         }
     }
