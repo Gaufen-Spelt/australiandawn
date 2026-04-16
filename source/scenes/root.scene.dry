@@ -353,7 +353,7 @@ Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'kpd_policy', 'kpd_ultimatum', 'popular_front_dispute',
             'high_inflation', 'banking_crisis', 'march_on_berlin',
             'understanding_enemy', 'schleichers_schemes'];
-Q.day_timers = ['leafleting', 'postering', 'debating']
+Q.day_timers = ['leafleting', 'postering', 'debating', 'fundraisinge']
 Q.advisor_action_timer = 0;
 Q.leafleting_d_timer = 0;
 // party affairs timers
