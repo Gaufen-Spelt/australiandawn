@@ -987,11 +987,13 @@ table {
   gap: 0.6em;
   max-width: 85%;
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .dialogue-entry.visible {
   opacity: 1;
+  transform: translateY(0);
 }
 
 .dialogue-entry.instant {
