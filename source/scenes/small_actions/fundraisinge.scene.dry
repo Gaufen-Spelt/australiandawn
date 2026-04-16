@@ -2,8 +2,8 @@ Title: Local Fundraiser
 tags: nsw_action
 is-card: true
 new-page: true
-view-if: fundraising_timer <= 0
-on-arrival: day_actions += 1; fundraising_timer = 8
+view-if: fundraisinge_timer <= 0
+on-arrival: day_actions += 1; fundraisinge_timer = 8
 
 = Local Fundraiser 
 
@@ -11,10 +11,10 @@ While stump speeches and door-knocking win hearts, it's the "bob-a-week" subscri
 
 What is the priority for the branch this week?
 
-Current Stock:
-Leaflets: [+ leaflets +]
-Posters: [+ posters +]
-Regional Funds: [+ nsw_resources +]
+Current Stock: <br>
+Leaflets: [+ leaflets +]  <br>
+Posters: [+ posters +] <br>
+Regional Funds: [+ nsw_resources +] <br>
 
 - @leaflets: Crank the Mimeograph.
 - @posters: Commission a Screen-Print run.
@@ -22,12 +22,12 @@ Regional Funds: [+ nsw_resources +]
 
 @leaflets
 subtitle: It's messy work with ink and stencils, but we can produce thousands.
-on-arrival: leaflets += 1000; fundraising_timer += 1
+on-arrival: leaflets += 1000; fundraisinge_timer += 1
 
 @posters
 subtitle: High-visibility "Vote 1" placards. Requires a small layout of cash for the ink. 〔 -1 NSW RESOURCE 〕
-on-arrival: posters += 170; nsw_resources -= 1; fundraising_timer += 2
+on-arrival: posters += 170; nsw_resources -= 1; fundraisinge_timer += 2
   
 @resource
 subtitle: A dance at the Town Hall. Harder to organize, but the "tin-rattle" is lucrative.
-on-arrival: nsw_resources += 3; fundraising_timer += 4
+on-arrival: nsw_resources += 3; fundraisinge_timer += 4
