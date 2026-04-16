@@ -1,0 +1,8 @@
+title: Leafleting
+tags: nsw_action
+is-card: true
+new-page: true
+view-if: leafleting_d_timer =< 0
+on-arrival: leafleting_d_timer = 6
+
+= Leafleting, oh yeah
