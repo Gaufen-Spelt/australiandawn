@@ -13,19 +13,19 @@ if (Q.advisor_action_timer <= 0) {
 !}
 max-cards: 6
 
-- @party
+- @nsw
 - @govt
 - #advisor
 - @shuffle_leadership_pinned
 - @month_aff
 - @skip
 
-@party
+@nsw
 title: Party Affairs
 card-image: img/Vorwaerts_nr_1.png
 is-deck: true
 
-- #party_affairs
+- #nsw_action
 
 @govt
 title: Government Affairs
