@@ -1,0 +1,8 @@
+title: Debating
+tags: nsw_action
+is-card: true
+new-page: true
+view-if: debating_d_timer <= 0
+on-arrival: debating_d_timer = 2
+
+= Leafleting, oh yeah
