@@ -103,7 +103,10 @@ body.classic-mode .tab_button,
 body.classic-mode #header-links a, 
 body.classic-mode #qualities h1, 
 body.classic-mode #qualities_2 h1, 
-body.classic-mode #qualities_3 h1 {
+body.classic-mode #qualities_3 h1,
+body.classic-mode #qualities_4 h1, 
+body.classic-mode #qualities_5 h1, 
+body.classic-mode #qualities_6 h1{
   font-family: "Minion Pro", Georgia, serif;
   letter-spacing: normal;
 }
@@ -225,7 +228,10 @@ body.classic-mode a.card, body.classic-mode div.blank-card {
 /* ─── 6. INTERNAL QUALITIES (SIZE PROTECTION) ────────────────────────────── */
 body.classic-mode #qualities,
 body.classic-mode #qualities_2,
-body.classic-mode #qualities_3 {
+body.classic-mode #qualities_3,
+body.classic-mode #qualities_4,
+body.classic-mode #qualities_5,
+body.classic-mode #qualities_6 {
   /* Prevent microscopic 10px text */
   font-size: 1rem; 
   line-height: 1.5;
@@ -237,7 +243,10 @@ body.classic-mode #qualities_3 {
 
 body.classic-mode #qualities h1,
 body.classic-mode #qualities_2 h1,
-body.classic-mode #qualities_3 h1 {
+body.classic-mode #qualities_3 h1,
+body.classic-mode #qualities_4 h1,
+body.classic-mode #qualities_5 h1,
+body.classic-mode #qualities_6 h1 {
   border-bottom: 1px solid var(--card-border-color);
   padding-bottom: 0.3em;
   margin-bottom: 0.8em;
@@ -249,7 +258,9 @@ body.classic-mode #qualities_3 h1 {
 }
 
 body.classic-mode #qualities_2 img,
-body.classic-mode #qualities_3 img {
+body.classic-mode #qualities_3 img,
+body.classic-mode #qualities_5 img,
+body.classic-mode #qualities_6 img{
   border-radius: 4px;
   max-width: 100%;
   height: auto;
@@ -274,6 +285,7 @@ body.classic-mode #qualities_3 img {
   }
   body.classic-mode .tools { width: calc(50% - 0.5rem); }
   body.classic-mode #stats_sidebar_3 { width: 100%; }
+  body.classic-mode #stats_sidebar_6 { width: 100%; }
   body.classic-mode #mid_panel { margin: 0 auto; padding: 0 1rem; }
 }
 
@@ -522,7 +534,10 @@ footer a {
 /* ─── Qualities ──────────────────────────────────────────── */
 #qualities,
 #qualities_2,
-#qualities_3 {
+#qualities_3,
+#qualities_4,
+#qualities_5,
+#qualities_6 {
   text-indent: 0;
   line-height: 1.45em;
   font-family: 'Share Tech Mono', monospace;
@@ -531,14 +546,20 @@ footer a {
 
 #qualities p,
 #qualities_2 p,
-#qualities_3 p {
+#qualities_3 p,
+#qualities_4 p,
+#qualities_5 p,
+#qualities_6 p {
   text-indent: 0;
   margin-bottom: 0.4em;
 }
 
 #qualities h1,
 #qualities_2 h1,
-#qualities_3 h1 {
+#qualities_3 h1,
+#qualities_4 h1,
+#qualities_5 h1,
+#qualities_6 h1 {
   font-family: 'Special Elite', serif;
   font-size: 0.95em;
   font-weight: normal;
@@ -946,7 +967,10 @@ table {
 /* Hide all three toolboxes by default */
 #stats_sidebar, 
 #stats_sidebar_2, 
-#stats_sidebar_3 {
+#stats_sidebar_3,
+#stats_sidebar_4, 
+#stats_sidebar_5, 
+#stats_sidebar_6 {
     display: none;
 }
 
