@@ -277,6 +277,33 @@
                     <div id="union-chart" style="display:none;"></div>
                     <div id="qualities_3"></div>
                 </div>
+
+              <!-- CHAP 2 -->
+                <div id='stats_sidebar_4' class='tools left' style="display:none;">
+                        <div class="tab_container">
+                        <button class="tab_button active" id="comm_tab" onclick="window.changeTab4('status_4.comm', 'comm_tab');">Comms</button>
+                        <button class="tab_button" id="crypto_tab" onclick="window.changeTab4('status_4.crypto', 'crypto_tab');">Crypto</button>
+                    </div>
+                    <div id="qualities_4"></div>
+                </div>
+
+                <div id='stats_sidebar_5' class='tools left' style="display:none;">
+                    <div class="tab_container">
+                        <button class="tab_button active" id="network_tab" onclick="window.changeTab5('status_5.network', 'network_tab');">Network</button>
+                        <button class="tab_button" id="trace_tab" onclick="window.changeTab5('status_5.trace', 'trace_tab');">Trace</button>
+                    </div>
+                    <div id="qualities_5"></div>
+                </div>
+
+                <div id='stats_sidebar_6' class='tools right' style="display:none;">
+                    <button id="collapse_6" onclick="window.toggleSidebar6();" style="float:right; font-size:0.8em; padding: 0.1em 0.4em; cursor:pointer;">▲</button>
+                    <div class="tab_container">
+                        <button class="tab_button active" id="data_tab" onclick="window.changeTab6('status_6.data', 'data_tab');">Data</button>
+                        <button class="tab_button" id="signal_tab" onclick="window.changeTab6('status_6.signal', 'signal_tab');">Signal</button>
+                    </div>
+                    <div id="qualities_6"></div>
+                </div>
+
             </div>
 
             <div id='content'></div>
