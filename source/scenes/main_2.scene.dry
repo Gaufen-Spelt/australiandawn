@@ -3,6 +3,7 @@ set-bg: img/map_2.jpg
 is-hand: true
 on-arrival: {!
 showSidebars();
+Q.intro_sidebar_trigger = 1;
 if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Advisors - an action is available.';
 } else if (Q.advisor_action_timer == 1) {
