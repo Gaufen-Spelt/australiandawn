@@ -415,7 +415,7 @@ window.updateSidebar = function() {
             }
         }
 
-    } else {
+    } else if (Q.intro_sidebar_trigger === 1) {
         $('#stats_sidebar_4').hide();
         $('#stats_sidebar_5').hide();
         $('#stats_sidebar_6').hide();
