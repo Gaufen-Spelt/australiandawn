@@ -190,7 +190,7 @@
   };
 
   window.onload = function() {
-      // Force-hide all sidebars immediately before Dendry can show them
+      // Force-hide all sidebars at boot before Dendry can set inline styles
       $('#stats_sidebar').hide();
       $('#stats_sidebar_2').hide();
       $('#stats_sidebar_3').hide();
@@ -375,34 +375,86 @@ window.toggleSidebar6 = function() {
     }
 };
 
+// ─── Sidebar show/hide (scene-callable) ───────────────────
+
+window.showSidebars = function() {
+    var Q = dendryUI.dendryEngine.state.qualities;
+    if (!Q) return;
+    if (Q.modem === 1) {
+        $('#stats_sidebar_4').show();
+        $('#stats_sidebar_5').show();
+        $('#stats_sidebar_6').show();
+    } else {
+        $('#stats_sidebar').show();
+        $('#stats_sidebar_2').show();
+        $('#stats_sidebar_3').show();
+    }
+    window.updateSidebar();
+};
+
+window.hideSidebars = function() {
+    $('#stats_sidebar').hide();
+    $('#stats_sidebar_2').hide();
+    $('#stats_sidebar_3').hide();
+    $('#stats_sidebar_4').hide();
+    $('#stats_sidebar_5').hide();
+    $('#stats_sidebar_6').hide();
+};
+
 // ─── Core sidebar renderer ────────────────────────────────
+//
+// updateSidebar ONLY renders content into whichever sidebars
+// are already visible. It does NOT show hidden sidebars.
+// The one exception is the modem group-swap: if modem changes,
+// it hides the outgoing group and shows the incoming group,
+// because leaving the wrong group visible would be broken.
 
 window.updateSidebar = function() {
     var Q = dendryUI.dendryEngine.state.qualities;
     if (!Q) return;
 
-    if (Q.modem === 1 && Q.intro_sidebar_trigger === 1) {
+    var group1Visible = $('#stats_sidebar').is(':visible');
+    var group2Visible = $('#stats_sidebar_4').is(':visible');
+
+    // Modem group-swap: only triggers when the active group doesn't
+    // match the current modem state. Doesn't show anything that
+    // wasn't already shown by showSidebars().
+    if (Q.modem === 1 && group1Visible && !group2Visible) {
         $('#stats_sidebar').hide();
         $('#stats_sidebar_2').hide();
         $('#stats_sidebar_3').hide();
         $('#stats_sidebar_4').show();
         $('#stats_sidebar_5').show();
         $('#stats_sidebar_6').show();
+        group1Visible = false;
+        group2Visible = true;
+    } else if (Q.modem !== 1 && group2Visible && !group1Visible) {
+        $('#stats_sidebar_4').hide();
+        $('#stats_sidebar_5').hide();
+        $('#stats_sidebar_6').hide();
+        $('#stats_sidebar').show();
+        $('#stats_sidebar_2').show();
+        $('#stats_sidebar_3').show();
+        group1Visible = true;
+        group2Visible = false;
+    }
 
+    if (group2Visible) {
+        // Render group 2 content
         $('#qualities_4').empty();
         var scene4 = dendryUI.game.scenes[window.statusTab4];
         if (scene4) {
             dendryUI.dendryEngine._runActions(scene4.onArrival);
-            var displayContent4 = dendryUI.dendryEngine._makeDisplayContent(scene4.content, true);
-            $('#qualities_4').append(dendryUI.contentToHTML.convert(displayContent4));
+            var dc4 = dendryUI.dendryEngine._makeDisplayContent(scene4.content, true);
+            $('#qualities_4').append(dendryUI.contentToHTML.convert(dc4));
         }
 
         $('#qualities_5').empty();
         var scene5 = dendryUI.game.scenes[window.statusTab5];
         if (scene5) {
             dendryUI.dendryEngine._runActions(scene5.onArrival);
-            var displayContent5 = dendryUI.dendryEngine._makeDisplayContent(scene5.content, true);
-            $('#qualities_5').append(dendryUI.contentToHTML.convert(displayContent5));
+            var dc5 = dendryUI.dendryEngine._makeDisplayContent(scene5.content, true);
+            $('#qualities_5').append(dendryUI.contentToHTML.convert(dc5));
         }
 
         if (!window.sidebar6Collapsed) {
@@ -410,42 +462,37 @@ window.updateSidebar = function() {
             var scene6 = dendryUI.game.scenes[window.statusTab6];
             if (scene6) {
                 dendryUI.dendryEngine._runActions(scene6.onArrival);
-                var displayContent6 = dendryUI.dendryEngine._makeDisplayContent(scene6.content, true);
-                $('#qualities_6').append(dendryUI.contentToHTML.convert(displayContent6));
+                var dc6 = dendryUI.dendryEngine._makeDisplayContent(scene6.content, true);
+                $('#qualities_6').append(dendryUI.contentToHTML.convert(dc6));
             }
         }
+    }
 
-    } else if (Q.intro_sidebar_trigger === 1) {
-        $('#stats_sidebar_4').hide();
-        $('#stats_sidebar_5').hide();
-        $('#stats_sidebar_6').hide();
-        $('#stats_sidebar').show();
-        $('#stats_sidebar_2').show();
-        $('#stats_sidebar_3').show();
-
+    if (group1Visible) {
+        // Render group 1 content
         $('#qualities').empty();
         var scene = dendryUI.game.scenes[window.statusTab];
         if (scene) {
             dendryUI.dendryEngine._runActions(scene.onArrival);
-            var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-            $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
+            var dc = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
+            $('#qualities').append(dendryUI.contentToHTML.convert(dc));
         }
 
         $('#qualities_2').empty();
         var scene2 = dendryUI.game.scenes[window.statusTab2];
         if (scene2) {
             dendryUI.dendryEngine._runActions(scene2.onArrival);
-            var displayContent2 = dendryUI.dendryEngine._makeDisplayContent(scene2.content, true);
-            $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
-        } else { hideSidebars() }
+            var dc2 = dendryUI.dendryEngine._makeDisplayContent(scene2.content, true);
+            $('#qualities_2').append(dendryUI.contentToHTML.convert(dc2));
+        }
 
         if (!window.sidebar3Collapsed) {
             $('#qualities_3').empty();
             var scene3 = dendryUI.game.scenes[window.statusTab3];
             if (scene3) {
                 dendryUI.dendryEngine._runActions(scene3.onArrival);
-                var displayContent3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
-                $('#qualities_3').append(dendryUI.contentToHTML.convert(displayContent3));
+                var dc3 = dendryUI.dendryEngine._makeDisplayContent(scene3.content, true);
+                $('#qualities_3').append(dendryUI.contentToHTML.convert(dc3));
             }
 
             var chartEl = document.getElementById('faction-chart');
@@ -469,21 +516,6 @@ window.updateSidebar = function() {
             }
         }
     }
-};
-
-// ─── Sidebar show/hide (scene-callable) ───────────────────
-
-window.showSidebars = function() {
-    window.updateSidebar();
-};
-
-window.hideSidebars = function() {
-    $('#stats_sidebar').hide();
-    $('#stats_sidebar_2').hide();
-    $('#stats_sidebar_3').hide();
-    $('#stats_sidebar_4').hide();
-    $('#stats_sidebar_5').hide();
-    $('#stats_sidebar_6').hide();
 };
 
 // ─── Typewriter ───────────────────────────────────────────
@@ -630,10 +662,10 @@ window.drawUnionChart = function() {
             var val = getValue(u);
             if (val <= 0) return;
             var slice = (val / total) * 2 * Math.PI;
-            var x1  = cx + R * Math.cos(angle),        y1  = cy + R * Math.sin(angle);
-            var x2  = cx + R * Math.cos(angle+slice),   y2  = cy + R * Math.sin(angle+slice);
-            var xi1 = cx + r * Math.cos(angle),         yi1 = cy + r * Math.sin(angle);
-            var xi2 = cx + r * Math.cos(angle+slice),   yi2 = cy + r * Math.sin(angle+slice);
+            var x1  = cx + R * Math.cos(angle),       y1  = cy + R * Math.sin(angle);
+            var x2  = cx + R * Math.cos(angle+slice),  y2  = cy + R * Math.sin(angle+slice);
+            var xi1 = cx + r * Math.cos(angle),        yi1 = cy + r * Math.sin(angle);
+            var xi2 = cx + r * Math.cos(angle+slice),  yi2 = cy + r * Math.sin(angle+slice);
             var large = slice > Math.PI ? 1 : 0;
             var opacity = (0.4 + (idx / unions.length) * 0.6).toFixed(2);
             var path = ['M',xi1,yi1,'L',x1,y1,'A',R,R,0,large,1,x2,y2,'L',xi2,yi2,'A',r,r,0,large,0,xi1,yi1,'Z'].join(' ');
@@ -678,18 +710,18 @@ window._unionClick = function(idx) {
     var u  = window._unionData[idx];
     var el = document.getElementById('union-info');
     if (el) el.innerHTML = '<strong>' + u.name + '</strong>'
-        + ' &nbsp; Str: '  + u.strength
-        + ' &nbsp; Mil: '  + u.militancy
-        + ' &nbsp; Com: '  + u.communist
-        + (window._unionData[idx].grouper !== undefined ? ' &nbsp; Grp: ' + u.grouper : '');
+        + ' &nbsp; Str: ' + u.strength
+        + ' &nbsp; Mil: ' + u.militancy
+        + ' &nbsp; Com: ' + u.communist
+        + (u.grouper !== undefined ? ' &nbsp; Grp: ' + u.grouper : '');
 };
 
 // ─── Dialogue system ──────────────────────────────────────
 
-window._dialogueSceneId  = null;
+window._dialogueSceneId   = null;
 window._dialogueContainer = null;
-window._dialogueQueue    = [];
-window._dialoguePlaying  = false;
+window._dialogueQueue     = [];
+window._dialoguePlaying   = false;
 
 window._dialoguePalette = [
     '#6B2A1A','#3A5A3A','#2A3A5A','#5A3A6B',
@@ -744,12 +776,12 @@ window._buildDialogueEntry = function(opts, instant) {
     entry.className = 'dialogue-entry ' + side;
 
     if (!instant) {
-        entry.style.opacity   = '0';
-        entry.style.transform = 'translateY(6px)';
+        entry.style.opacity    = '0';
+        entry.style.transform  = 'translateY(6px)';
         entry.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
     } else {
-        entry.style.opacity   = '1';
-        entry.style.transform = 'translateY(0)';
+        entry.style.opacity    = '1';
+        entry.style.transform  = 'translateY(0)';
         entry.style.transition = 'none';
     }
 
@@ -836,3 +868,42 @@ window.clearDialogue = function() {
 };
 
 window._dialogueRestore = function() {};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.showSidebars = function() {
+    var Q = dendryUI.dendryEngine.state.qualities;
+    if (!Q) return;
+    if (Q.modem === 1) {
+        $('#stats_sidebar_4').show();
+        $('#stats_sidebar_5').show();
+        $('#stats_sidebar_6').show();
+    } else {
+        $('#stats_sidebar').show();
+        $('#stats_sidebar_2').show();
+        $('#stats_sidebar_3').show();
+    }
+    window.updateSidebar();
+};
+
+window.hideSidebars = function() {
+    $('#stats_sidebar').hide();
+    $('#stats_sidebar_2').hide();
+    $('#stats_sidebar_3').hide();
+    $('#stats_sidebar_4').hide();
+    $('#stats_sidebar_5').hide();
+    $('#stats_sidebar_6').hide();
+};
