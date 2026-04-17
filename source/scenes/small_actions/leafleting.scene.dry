@@ -1,8 +1,32 @@
-title: Leafleting
+Title: Leafleting
 tags: nsw_action
 is-card: true
 new-page: true
-view-if: leafleting_d_timer <= 0
+view-if: leafleting_d_timer <= 0 and leaflets >= 100
 on-arrival: day_actions += 1; leafleting_d_timer = 6
 
-= Leafleting, oh yeah
+= Leafleting
+
+It’s honest, tiring work. Our volunteers have been pounding the pavement from Bankstown to Bondi, dodging magpies and grumpy homeowners to get our message into every letterbox.
+
+What is the scale of our distribution today?
+
+- @small_drop: Small suburban run (100 leaflets).
+- @medium_drop: Factory gate blitz (400 leaflets).
+- @massive_drop: The "Full State" saturation (1000 leaflets).
+- @easy_discard: Return back
+
+@small_drop
+subtitle: Focus on a few quiet streets.
+view-if: leaflets >= 100
+on-arrival: leaflets -= 100; nsw_support += 1
+
+@medium_drop
+subtitle: Target the industrial hubs during the shift change.
+view-if: leaflets >= 400
+on-arrival: leaflets -= 400; nsw_support += 3
+
+@massive_drop
+subtitle: A logistical feat. We're blanketing the region, but of course too much of it will not have exponential effect.
+view-if: leaflets >= 1000
+on-arrival: leaflets -= 1000; nsw_support += 5
