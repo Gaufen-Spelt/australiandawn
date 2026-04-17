@@ -12,15 +12,10 @@
   var main = function(dendryUI) {
     ui = dendryUI;
     game = ui.game;
-
-    // Add your custom code here.
   };
 
   var TITLE = "Social Democracy: An Alternate History" + '_' + "Autumn Chen";
 
-  // the url is a link to game.json
-  // test url: https://aucchen.github.io/social_democracy_mods/v0.1.json
-  // TODO; 
   window.loadMod = function(url) {
       ui.loadGame(url);
   };
@@ -49,7 +44,7 @@
         window.dendryUI.dendryEngine.goToScene('mod_loader');
     }
   };
-  
+
   window.showOptions = function() {
       var save_element = document.getElementById('options');
       window.populateOptions();
@@ -132,8 +127,6 @@
     window.dendryUI.saveSettings();
   };
 
-    // ─── THEME TOGGLE LOGIC ───────────────────────────────────────
-
   window.enableLightMode = function() {
       window.dendryUI.dark_mode = false;
       window.dendryUI.classic_mode = false;
@@ -157,27 +150,24 @@
       window.dendryUI.saveSettings();
   };
 
-  // ─── OPTIONS MENU SYNCHRONIZATION ──────────────────────────────
-
   window.populateOptions = function() {
     var disable_bg = window.dendryUI.disable_bg;
     var animate = window.dendryUI.animate;
     var disable_audio = window.dendryUI.disable_audio;
     var show_portraits = window.dendryUI.show_portraits;
-    
-    if (disable_bg) { $('#backgrounds_no')[0].checked = true; } 
+
+    if (disable_bg) { $('#backgrounds_no')[0].checked = true; }
     else { $('#backgrounds_yes')[0].checked = true; }
-    
-    if (animate) { $('#animate_yes')[0].checked = true; } 
+
+    if (animate) { $('#animate_yes')[0].checked = true; }
     else { $('#animate_no')[0].checked = true; }
-    
-    if (disable_audio) { $('#audio_no')[0].checked = true; } 
+
+    if (disable_audio) { $('#audio_no')[0].checked = true; }
     else { $('#audio_yes')[0].checked = true; }
-    
-    if (show_portraits) { $('#images_yes')[0].checked = true; } 
+
+    if (show_portraits) { $('#images_yes')[0].checked = true; }
     else { $('#images_no')[0].checked = true; }
 
-    // Theme selector
     if (window.dendryUI.dark_mode) {
         $('#dark_mode')[0].checked = true;
     } else if (window.dendryUI.classic_mode) {
@@ -193,37 +183,35 @@
     }
 
     if (window.dendryUI.dialogue_anim !== false) {
-    $('#dialogue_anim_yes')[0].checked = true;
+        $('#dialogue_anim_yes')[0].checked = true;
     } else {
-    $('#dialogue_anim_no')[0].checked = true;
+        $('#dialogue_anim_no')[0].checked = true;
     }
-    
   };
 
-  // ─── LOAD INITIALIZATION ───────────────────────────────────────
-
   window.onload = function() {
+      // Force-hide all sidebars immediately before Dendry can show them
+      $('#stats_sidebar').hide();
+      $('#stats_sidebar_2').hide();
+      $('#stats_sidebar_3').hide();
+      $('#stats_sidebar_4').hide();
+      $('#stats_sidebar_5').hide();
+      $('#stats_sidebar_6').hide();
+
       window.dendryUI.loadSettings({show_portraits: false});
-      
-      // Inject saved visual theme immediately on boot
+
       if (window.dendryUI.dark_mode) {
           document.body.classList.add('dark-mode');
       } else if (window.dendryUI.classic_mode) {
           document.body.classList.add('classic-mode');
       }
-      
+
       window.pinnedCardsDescription = "Advisor cards - actions are only usable once per 6 months.";
   };
 
-
-  
-  
-
-  // This function allows you to do something in response to signals.
   window.handleSignal = function(signal, event, scene_id) {
   };
-  
-  // This function runs on a new page. Right now, this auto-saves.
+
   window.onNewPage = function() {
     var scene = window.dendryUI.dendryEngine.state.sceneId;
     if (scene != 'root' && !window.justLoaded) {
@@ -234,43 +222,11 @@
     }
   };
 
-  // TODO: have some code for tabbed sidebar browsing.
-  window.updateSidebar = function() {
-      $('#qualities').empty();
-      var scene = dendryUI.game.scenes[window.statusTab];
-      dendryUI.dendryEngine._runActions(scene.onArrival);
-      var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-      $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
-  };
-
-  window.changeTab = function(newTab, tabId) {
-      if (tabId == 'poll_tab' && dendryUI.dendryEngine.state.qualities.historical_mode) {
-          window.alert('Polls are not available in historical mode.');
-          return;
-      }
-      var tabButton = document.getElementById(tabId);
-      var tabButtons = document.getElementsByClassName('tab_button');
-      for (i = 0; i < tabButtons.length; i++) {
-        tabButtons[i].className = tabButtons[i].className.replace(' active', '');
-      }
-      tabButton.className += ' active';
-      window.statusTab = newTab;
-      window.updateSidebar();
-  };
-
   window.onDisplayContent = function() {
     window.updateSidebar();
     window._dialogueRestore();
   };
 
-  /*
-   * This function copied from the code for Infinite Space Battle Simulator
-   *
-   * quality - a number between max and min
-   * qualityName - the name of the quality
-   * max and min - numbers
-   * colors - if true/1, will use some color scheme - green to yellow to red for high to low
-   * */
   window.generateBar = function(quality, qualityName, max, min, colors) {
       var bar = document.createElement('div');
       bar.className = 'bar';
@@ -294,9 +250,14 @@
       return bar;
   };
 
+  window.dendryModifyUI = main;
+
+}());
+
+// ─── Global state ─────────────────────────────────────────
 
 window.justLoaded = true;
-window.statusTab = "status";
+window.statusTab  = "status";
 window.statusTab2 = "status_2.intel";
 window.statusTab3 = "status_3.factions";
 window.statusTab4 = "status_4.comm";
@@ -304,6 +265,10 @@ window.statusTab5 = "status_5.network";
 window.statusTab6 = "status_6.data";
 window.sidebar6Collapsed = false;
 window.sidebar3Collapsed = false;
+
+console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
+
+// ─── Tab switching ────────────────────────────────────────
 
 window.changeTab = function(newTab, tabId) {
     if (tabId == 'poll_tab' && dendryUI.dendryEngine.state.qualities.historical_mode) {
@@ -375,9 +340,31 @@ window.changeTab6 = function(newTab, tabId) {
     window.updateSidebar();
 };
 
+// ─── Sidebar collapse toggles ─────────────────────────────
+
+window.toggleSidebar3 = function() {
+    var content = document.getElementById('qualities_3');
+    var chart   = document.getElementById('faction-chart');
+    var unionEl = document.getElementById('union-chart');
+    var btn     = document.getElementById('collapse_3');
+    window.sidebar3Collapsed = !window.sidebar3Collapsed;
+    if (window.sidebar3Collapsed) {
+        content.style.display = 'none';
+        if (chart)   chart.style.display = 'none';
+        if (unionEl) unionEl.style.display = 'none';
+        btn.textContent = '▼';
+    } else {
+        content.style.display = '';
+        var showCharts = (window.statusTab3 === 'status_3.factions') ? '' : 'none';
+        if (chart)   chart.style.display = showCharts;
+        if (unionEl) unionEl.style.display = showCharts;
+        btn.textContent = '▲';
+    }
+};
+
 window.toggleSidebar6 = function() {
     var content = document.getElementById('qualities_6');
-    var btn = document.getElementById('collapse_6');
+    var btn     = document.getElementById('collapse_6');
     window.sidebar6Collapsed = !window.sidebar6Collapsed;
     if (window.sidebar6Collapsed) {
         content.style.display = 'none';
@@ -388,22 +375,20 @@ window.toggleSidebar6 = function() {
     }
 };
 
+// ─── Core sidebar renderer ────────────────────────────────
+
 window.updateSidebar = function() {
     var Q = dendryUI.dendryEngine.state.qualities;
-    
-    // Check if the modem state is active
+    if (!Q) return;
+
     if (Q.modem === 1) {
-        // Hide Group 1
         $('#stats_sidebar').hide();
         $('#stats_sidebar_2').hide();
         $('#stats_sidebar_3').hide();
-        
-        // Show Group 2
         $('#stats_sidebar_4').show();
         $('#stats_sidebar_5').show();
         $('#stats_sidebar_6').show();
 
-        // Render Box 4
         $('#qualities_4').empty();
         var scene4 = dendryUI.game.scenes[window.statusTab4];
         if (scene4) {
@@ -412,7 +397,6 @@ window.updateSidebar = function() {
             $('#qualities_4').append(dendryUI.contentToHTML.convert(displayContent4));
         }
 
-        // Render Box 5
         $('#qualities_5').empty();
         var scene5 = dendryUI.game.scenes[window.statusTab5];
         if (scene5) {
@@ -421,7 +405,6 @@ window.updateSidebar = function() {
             $('#qualities_5').append(dendryUI.contentToHTML.convert(displayContent5));
         }
 
-        // Render Box 6
         if (!window.sidebar6Collapsed) {
             $('#qualities_6').empty();
             var scene6 = dendryUI.game.scenes[window.statusTab6];
@@ -431,18 +414,15 @@ window.updateSidebar = function() {
                 $('#qualities_6').append(dendryUI.contentToHTML.convert(displayContent6));
             }
         }
+
     } else {
-        // Hide Group 2
         $('#stats_sidebar_4').hide();
         $('#stats_sidebar_5').hide();
         $('#stats_sidebar_6').hide();
-
-        // Show Group 1
         $('#stats_sidebar').show();
         $('#stats_sidebar_2').show();
         $('#stats_sidebar_3').show();
 
-        // Render Box 1
         $('#qualities').empty();
         var scene = dendryUI.game.scenes[window.statusTab];
         if (scene) {
@@ -451,7 +431,6 @@ window.updateSidebar = function() {
             $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
         }
 
-        // Render Box 2
         $('#qualities_2').empty();
         var scene2 = dendryUI.game.scenes[window.statusTab2];
         if (scene2) {
@@ -460,7 +439,6 @@ window.updateSidebar = function() {
             $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
         }
 
-        // Render Box 3
         if (!window.sidebar3Collapsed) {
             $('#qualities_3').empty();
             var scene3 = dendryUI.game.scenes[window.statusTab3];
@@ -493,27 +471,22 @@ window.updateSidebar = function() {
     }
 };
 
-window.toggleSidebar3 = function() {
-    var content = document.getElementById('qualities_3');
-    var chart = document.getElementById('faction-chart');
-    var btn = document.getElementById('collapse_3');
-    window.sidebar3Collapsed = !window.sidebar3Collapsed;
-    if (window.sidebar3Collapsed) {
-        content.style.display = 'none';
-        if (chart) chart.style.display = 'none';
-        btn.textContent = '▼';
-    } else {
-        content.style.display = '';
-        if (chart) chart.style.display = (window.statusTab3 === 'status_3.factions') ? '' : 'none';
-        btn.textContent = '▲';
-    }
-  var unionEl = document.getElementById('union-chart');
-  if (unionEl) unionEl.style.display = window.sidebar3Collapsed ? 'none' 
-    : (window.statusTab3 === 'status_3.factions' ? '' : 'none');
+// ─── Sidebar show/hide (scene-callable) ───────────────────
+
+window.showSidebars = function() {
+    window.updateSidebar();
 };
 
-window.dendryModifyUI = main;
-console.log("Modifying stats: see dendryUI.dendryEngine.state.qualities");
+window.hideSidebars = function() {
+    $('#stats_sidebar').hide();
+    $('#stats_sidebar_2').hide();
+    $('#stats_sidebar_3').hide();
+    $('#stats_sidebar_4').hide();
+    $('#stats_sidebar_5').hide();
+    $('#stats_sidebar_6').hide();
+};
+
+// ─── Typewriter ───────────────────────────────────────────
 
 window.enableTypewriter = function() {
     window.dendryUI.typewriter = true;
@@ -525,11 +498,6 @@ window.disableTypewriter = function() {
     window.dendryUI.saveSettings();
 };
 
-
-// This function allows you to modify the text before it's displayed.
-  // E.g. wrapping chat-like messages in spans.
-
-  
 window.displayText = function(text) {
     if (!window.dendryUI.typewriter) return text;
     var i = 0;
@@ -538,6 +506,8 @@ window.displayText = function(text) {
         return '<span class="tw" style="animation-delay:' + (i++ * 26) + 'ms">' + char + '</span>';
     });
 };
+
+// ─── Faction chart ────────────────────────────────────────
 
 window.drawFactionChart = function() {
     var Q = dendryUI.dendryEngine.state.qualities;
@@ -558,10 +528,10 @@ window.drawFactionChart = function() {
     factions.forEach(function(f, idx) {
         if (f.strength <= 0) return;
         var slice = (f.strength / total) * 2 * Math.PI;
-        var x1  = cx + R * Math.cos(angle),         y1  = cy + R * Math.sin(angle);
-        var x2  = cx + R * Math.cos(angle + slice),  y2  = cy + R * Math.sin(angle + slice);
-        var xi1 = cx + r * Math.cos(angle),          yi1 = cy + r * Math.sin(angle);
-        var xi2 = cx + r * Math.cos(angle + slice),  yi2 = cy + r * Math.sin(angle + slice);
+        var x1  = cx + R * Math.cos(angle),        y1  = cy + R * Math.sin(angle);
+        var x2  = cx + R * Math.cos(angle + slice), y2  = cy + R * Math.sin(angle + slice);
+        var xi1 = cx + r * Math.cos(angle),         yi1 = cy + r * Math.sin(angle);
+        var xi2 = cx + r * Math.cos(angle + slice), yi2 = cy + r * Math.sin(angle + slice);
         var large = slice > Math.PI ? 1 : 0;
         var path = ['M',xi1,yi1,'L',x1,y1,'A',R,R,0,large,1,x2,y2,'L',xi2,yi2,'A',r,r,0,large,0,xi1,yi1,'Z'].join(' ');
         svg += '<path d="' + path + '" fill="' + f.color + '" stroke="none"'
@@ -592,28 +562,28 @@ window._factionClick = function(idx) {
     if (el) el.innerHTML = '<strong>' + f.name + '</strong> &nbsp; Str: ' + f.strength + ' &nbsp; Dissent: ' + f.dissent;
 };
 
-
+// ─── Union chart ──────────────────────────────────────────
 
 window.unionChartMode = 'strength';
 
 window.drawUnionChart = function() {
     var Q = dendryUI.dendryEngine.state.qualities;
     var unions = [
-        { id: 'awu',   name: 'AWU'   },
-        { id: 'mf',    name: 'MF'    },
-        { id: 'wwf',   name: 'WWF'   },
-        { id: 'fia',   name: 'FIA'   },
-        { id: 'aru',   name: 'ARU'   },
-        { id: 'bwiu',  name: 'BWIU'  },
-        { id: 'fedfa', name: 'FEDFA' },
-        { id: 'seamen',name: 'Seamen'},
-        { id: 'aeu',   name: 'AEU'   },
-        { id: 'asce',  name: 'ASCE'  },
-        { id: 'fcu',   name: 'FCU'   },
-        { id: 'twu',   name: 'TWU'   },
-        { id: 'aja',   name: 'AJA'   },
-        { id: 'pieua', name: 'PIEUA' },
-        { id: 'actu',  name: 'ACTU'  },
+        { id: 'awu',    name: 'AWU'    },
+        { id: 'mf',     name: 'MF'     },
+        { id: 'wwf',    name: 'WWF'    },
+        { id: 'fia',    name: 'FIA'    },
+        { id: 'aru',    name: 'ARU'    },
+        { id: 'bwiu',   name: 'BWIU'   },
+        { id: 'fedfa',  name: 'FEDFA'  },
+        { id: 'seamen', name: 'Seamen' },
+        { id: 'aeu',    name: 'AEU'    },
+        { id: 'asce',   name: 'ASCE'   },
+        { id: 'fcu',    name: 'FCU'    },
+        { id: 'twu',    name: 'TWU'    },
+        { id: 'aja',    name: 'AJA'    },
+        { id: 'pieua',  name: 'PIEUA'  },
+        { id: 'actu',   name: 'ACTU'   },
     ];
 
     var modeKey = window.unionChartMode;
@@ -631,13 +601,12 @@ window.drawUnionChart = function() {
     };
 
     var getValue = modeField[modeKey];
-    var color = modeColor[modeKey];
+    var color    = modeColor[modeKey];
 
     var container = document.getElementById('union-chart');
     if (!container) return;
 
-    // mode buttons
-    var modes = ['strength','militancy','communist','grouper'];
+    var modes      = ['strength','militancy','communist','grouper'];
     var modeLabels = {strength:'Strength', militancy:'Militancy', communist:'Communist', grouper:'Grouper'};
     var showGrouper = Q.santamaria_game ? true : false;
 
@@ -651,7 +620,6 @@ window.drawUnionChart = function() {
     });
     buttons += '</div>';
 
-    // donut chart
     var W = 200, H = 200, cx = 100, cy = 100, R = 80, r = 45;
     var total = unions.reduce(function(s, u) { return s + getValue(u); }, 0);
     var svg = '<svg width="' + W + '" height="' + H + '" style="display:block;margin:0 auto;">';
@@ -667,20 +635,17 @@ window.drawUnionChart = function() {
             var xi1 = cx + r * Math.cos(angle),         yi1 = cy + r * Math.sin(angle);
             var xi2 = cx + r * Math.cos(angle+slice),   yi2 = cy + r * Math.sin(angle+slice);
             var large = slice > Math.PI ? 1 : 0;
-            // shade each slice slightly differently
-            var shade = Math.round(60 + (idx / unions.length) * 140);
-            var sliceColor = color;
+            var opacity = (0.4 + (idx / unions.length) * 0.6).toFixed(2);
             var path = ['M',xi1,yi1,'L',x1,y1,'A',R,R,0,large,1,x2,y2,'L',xi2,yi2,'A',r,r,0,large,0,xi1,yi1,'Z'].join(' ');
-            svg += '<path d="' + path + '" fill="' + sliceColor + '" stroke="#fff" stroke-width="0.5"'
-                 + ' style="cursor:pointer;opacity:' + (0.4 + (idx / unions.length) * 0.6).toFixed(2) + ';"'
+            svg += '<path d="' + path + '" fill="' + color + '" stroke="#fff" stroke-width="0.5"'
+                 + ' style="cursor:pointer;opacity:' + opacity + ';"'
                  + ' onclick="window._unionClick(' + idx + ')"'
                  + ' onmouseover="this.style.opacity=1"'
-                 + ' onmouseout="this.style.opacity=' + (0.4 + (idx / unions.length) * 0.6).toFixed(2) + '">'
+                 + ' onmouseout="this.style.opacity=' + opacity + '">'
                  + '<title>' + u.name + ': ' + val + '</title></path>';
             angle += slice;
         });
     } else {
-        // empty ring
         svg += '<circle cx="100" cy="100" r="80" fill="none" stroke="#ccc" stroke-width="35"/>';
     }
     svg += '</svg>';
@@ -689,7 +654,7 @@ window.drawUnionChart = function() {
 
     var legend = '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;font-size:0.75em;">';
     unions.forEach(function(u, idx) {
-        var val = getValue(u);
+        var val     = getValue(u);
         var opacity = (0.4 + (idx / unions.length) * 0.6).toFixed(2);
         legend += '<span style="cursor:pointer;opacity:' + opacity + ';" onclick="window._unionClick(' + idx + ')">'
             + '<span style="display:inline-block;width:8px;height:8px;background:' + color
@@ -702,43 +667,29 @@ window.drawUnionChart = function() {
 
     window._unionData = unions.map(function(u) {
         return { name: u.name, value: getValue(u),
-                 strength: Q[u.id+'_strength']||0, militancy: Q[u.id+'_militancy']||0,
-                 communist: Q[u.id+'_communist']||0, grouper: Q[u.id+'_grouper']||0 };
+                 strength:  Q[u.id+'_strength']  || 0,
+                 militancy: Q[u.id+'_militancy'] || 0,
+                 communist: Q[u.id+'_communist'] || 0,
+                 grouper:   Q[u.id+'_grouper']   || 0 };
     });
 };
 
-
-}());
-
-window.showSidebars = function() {
-    var Q = dendryUI.dendryEngine.state.qualities;
-    if (Q.modem === 1) {
-        $("#stats_sidebar_4").show();
-        $("#stats_sidebar_5").show();
-        $("#stats_sidebar_6").show();
-    } else {
-        $("#stats_sidebar").show();
-        $("#stats_sidebar_2").show();
-        $("#stats_sidebar_3").show();
-    }
+window._unionClick = function(idx) {
+    var u  = window._unionData[idx];
+    var el = document.getElementById('union-info');
+    if (el) el.innerHTML = '<strong>' + u.name + '</strong>'
+        + ' &nbsp; Str: '  + u.strength
+        + ' &nbsp; Mil: '  + u.militancy
+        + ' &nbsp; Com: '  + u.communist
+        + (window._unionData[idx].grouper !== undefined ? ' &nbsp; Grp: ' + u.grouper : '');
 };
 
-window.hideSidebars = function() {
-    $("#stats_sidebar").hide();
-    $("#stats_sidebar_2").hide();
-    $("#stats_sidebar_3").hide();
-    $("#stats_sidebar_4").hide();
-    $("#stats_sidebar_5").hide();
-    $("#stats_sidebar_6").hide();
-};
+// ─── Dialogue system ──────────────────────────────────────
 
-
- // ─── Dialogue system ──────────────────────────────────────
-
-window._dialogueSceneId = null;
+window._dialogueSceneId  = null;
 window._dialogueContainer = null;
-window._dialogueQueue = [];
-window._dialoguePlaying = false;
+window._dialogueQueue    = [];
+window._dialoguePlaying  = false;
 
 window._dialoguePalette = [
     '#6B2A1A','#3A5A3A','#2A3A5A','#5A3A6B',
@@ -762,29 +713,23 @@ window._dialogueAnimEnabled = function() {
 };
 
 window._dialogueAnimDelay = function() {
-    // Base reading pause after fade completes
-    // 450ms for the fade + 600ms reading time normally, 
-    // more if typewriter is on since text is still appearing
     return window.dendryUI && window.dendryUI.typewriter ? 1400 : 1050;
 };
 
 window._getOrCreateDialogueLog = function() {
     var currentScene = window.dendryUI.dendryEngine.state.sceneId;
-
     if (currentScene !== window._dialogueSceneId) {
-        window._dialogueSceneId = currentScene;
+        window._dialogueSceneId   = currentScene;
         window._dialogueContainer = null;
-        window._dialogueQueue = [];
-        window._dialoguePlaying = false;
+        window._dialogueQueue     = [];
+        window._dialoguePlaying   = false;
     }
-
     if (!window._dialogueContainer) {
         var log = document.createElement('div');
         log.className = 'dialogue-log';
         document.getElementById('content').appendChild(log);
         window._dialogueContainer = log;
     }
-
     return window._dialogueContainer;
 };
 
@@ -799,12 +744,11 @@ window._buildDialogueEntry = function(opts, instant) {
     entry.className = 'dialogue-entry ' + side;
 
     if (!instant) {
-        entry.style.opacity = '0';
+        entry.style.opacity   = '0';
         entry.style.transform = 'translateY(6px)';
         entry.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
     } else {
-        // On restore, skip animation entirely
-        entry.style.opacity = '1';
+        entry.style.opacity   = '1';
         entry.style.transform = 'translateY(0)';
         entry.style.transition = 'none';
     }
@@ -812,7 +756,6 @@ window._buildDialogueEntry = function(opts, instant) {
     if (side !== 'center') {
         var portrait = document.createElement('div');
         portrait.className = 'dialogue-portrait';
-
         var imgPath = img || ('img/' + id + '.jpg');
         var imgEl = document.createElement('img');
         imgEl.src = imgPath;
@@ -843,15 +786,12 @@ window._buildDialogueEntry = function(opts, instant) {
     return entry;
 };
 
-
-
-
 window._dialoguePlayQueue = function() {
     if (window._dialoguePlaying) return;
     if (window._dialogueQueue.length === 0) return;
 
     window._dialoguePlaying = true;
-    var log = window._getOrCreateDialogueLog();
+    var log     = window._getOrCreateDialogueLog();
     var animate = window._dialogueAnimEnabled();
 
     function playNext() {
@@ -859,17 +799,14 @@ window._dialoguePlayQueue = function() {
             window._dialoguePlaying = false;
             return;
         }
-
-        var opts = window._dialogueQueue.shift();
+        var opts  = window._dialogueQueue.shift();
         var entry = window._buildDialogueEntry(opts, !animate);
         log.appendChild(entry);
 
         if (animate) {
-            // Two rAF calls ensure the browser has painted opacity:0
-            // before we switch to opacity:1, guaranteeing the transition fires
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
-                    entry.style.opacity = '1';
+                    entry.style.opacity   = '1';
                     entry.style.transform = 'translateY(0)';
                     setTimeout(playNext, window._dialogueAnimDelay());
                 });
@@ -892,10 +829,10 @@ window.clearDialogue = function() {
     if (window._dialogueContainer) {
         window._dialogueContainer.innerHTML = '';
     }
-    window._dialogueSceneId = null;
+    window._dialogueSceneId   = null;
     window._dialogueContainer = null;
-    window._dialogueQueue = [];
-    window._dialoguePlaying = false;
+    window._dialogueQueue     = [];
+    window._dialoguePlaying   = false;
 };
 
 window._dialogueRestore = function() {};
