@@ -5,17 +5,23 @@ on-arrival: {!
 if (Q.month_actions > 0) {
     Q.month_actions -= 1;
 }
+if (Q.day_actions > 0) {
+    Q.day_actions -= 1;
+}
 // return card to hand
 var card = this.state.lastPlayedCard;
 card.image = card.cardImage;
-if (Q.difficulty >= 0) {
-    this.state.currentHands['main'].push(card);
+if (Q.modem >= 1) {
+    this.state.currentHands['main_2'].push(card);
 } else {
     this.state.currentHands['main.main_easy'].push(card);
 }
 // reset the timer...
 if (Q[card.id + "_timer"]) {
     Q[card.id + "_timer"] = 0;
+}
+if (Q[card.id + "_d_timer"]) {
+    Q[card.id + "_d_timer"] = 0;
 }
 // reduce visit count
 if (this.state.visits[card.id]) {
