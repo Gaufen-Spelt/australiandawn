@@ -381,7 +381,7 @@ window.updateSidebar = function() {
     var Q = dendryUI.dendryEngine.state.qualities;
     if (!Q) return;
 
-    if (Q.modem === 1) {
+    if (Q.modem === 1 && Q.intro_sidebar_trigger === 1) {
         $('#stats_sidebar').hide();
         $('#stats_sidebar_2').hide();
         $('#stats_sidebar_3').hide();
@@ -437,7 +437,7 @@ window.updateSidebar = function() {
             dendryUI.dendryEngine._runActions(scene2.onArrival);
             var displayContent2 = dendryUI.dendryEngine._makeDisplayContent(scene2.content, true);
             $('#qualities_2').append(dendryUI.contentToHTML.convert(displayContent2));
-        }
+        } else { hideSidebars() }
 
         if (!window.sidebar3Collapsed) {
             $('#qualities_3').empty();
