@@ -4,6 +4,20 @@ tags: event
 view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
+// aside — no portrait, stage-direction feel
+window.addDialogue({side:'aside', text:'The phone rings twice.'});
+
+// redacted — click to reveal
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The plan is ready.', redacted:true});
+
+// dramatic slow reveal with glow
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'God help us.', duration:1200, pulse:true, portraitGlow:'#c40000'});
+
+// spotlight — dims everything prior
+window.addDialogue({side:'center', text:'A decision must be made.', spotlight:true, delay:2000});
+
+// self-removing message
+window.addDialogue({side:'aside', text:'[Line disconnected]', fadeOut:3000, italic:true});
 window.addDialogue({side:'center', text:'My mind is nothing but restless. My world is nothing but hell. There shall be no day further where bankers and rich fags would be living further in their comfort. Or so I thought. I have no one but my people. They are sitting in bar, talking about their hardships. Perhaps... Call?'});
 window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Who would be it?...'});
 window.addDialogue({side:'center', text:'As Eddie reaches out to the phone, he hears the voice of...'});
