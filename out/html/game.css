@@ -1107,3 +1107,49 @@ table {
   margin: 0;
   text-indent: 0;
 }
+
+/* ─── Dialogue additions ─────────────────────────────────── */
+
+/* aside: portrait-free, left-aligned, italic stage-direction flavour.
+   Intentionally mirrors .center tone but left-aligned and less padded. */
+.dialogue-entry.aside {
+  align-self: flex-start;
+  flex-direction: row;
+  max-width: 80%;
+}
+
+.dialogue-entry.aside .dialogue-bubble {
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid var(--rule-color);
+  box-shadow: none;
+  font-style: italic;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85em;
+  color: var(--mono-color);
+  padding: 0.25em 0.7em;
+}
+
+.dialogue-entry.aside .dialogue-bubble p {
+  margin: 0;
+  text-indent: 0;
+}
+
+/* timestamp label beneath bubble text */
+.dialogue-bubble .dialogue-timestamp {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72em;
+  color: var(--mono-color);
+  opacity: 0.65;
+  margin-top: 0.3em;
+  letter-spacing: 0.05em;
+}
+
+.dialogue-entry.right .dialogue-bubble .dialogue-timestamp {
+  text-align: right;
+}
+
+.dialogue-entry.center .dialogue-bubble .dialogue-timestamp {
+  text-align: center;
+}
+
