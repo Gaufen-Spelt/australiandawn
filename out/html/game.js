@@ -718,18 +718,55 @@ window._unionClick = function(idx) {
 
 // ─── Dialogue system ──────────────────────────────────────
 //
-// addDialogue(opts) — supported opts:
-//   id       {string}  Character id (used for portrait lookup & color hashing)
-//   name     {string}  Display name shown above bubble
-//   side     {string}  'left' | 'right' | 'center'
-//   text     {string}  Bubble text
-//   img      {string}  Optional explicit portrait path (overrides id-based lookup)
-//   delay    {number}  ms to wait after this entry before showing the next one.
-//                      Overrides the global _dialogueAnimDelay() for this entry only.
-//                      E.g. delay:2200 for a long pause, delay:400 for a quick beat.
-//   duration {number}  ms for the fade-in/slide-in CSS transition of this entry.
-//                      Overrides the default 0.45s (450ms).
-//                      E.g. duration:900 for a slow dramatic reveal, duration:150 for a snap.
+// addDialogue(opts) — all opts:
+//
+//  CORE
+//   id            {string}   Character id — portrait lookup + color hash fallback
+//   name          {string}   Display name above bubble
+//   side          {string}   'left' | 'right' | 'center' | 'aside'
+//                            'aside' = left-aligned, no portrait, styled like a
+//                            stage-direction comment (italic, faint, no bubble chrome)
+//   text          {string}   Bubble text
+//   img           {string}   Explicit portrait path (overrides id-based img/id.jpg)
+//
+//  TIMING
+//   delay         {number}   ms pause after this entry before the next. Default: _dialogueAnimDelay()
+//   duration      {number}   ms for the fade+slide CSS transition. Default: 450
+//
+//  BUBBLE STYLE
+//   borderColor   {string}   CSS colour — overrides bubble border colour
+//   borderStyle   {string}   CSS border-style value ('dashed','dotted','double'…)
+//   bubbleColor   {string}   CSS colour — bubble background
+//   textColor     {string}   CSS colour — bubble text
+//   nameColor     {string}   CSS colour — name label
+//   bubbleOpacity {number}   0–1 opacity on the bubble element
+//   maxWidth      {string}   CSS max-width on the entry ('60%', '300px'…)
+//   fontSize      {string}   CSS font-size on the bubble ('0.85em', '1.1em'…)
+//   italic        {bool}     Italic text in the bubble
+//   strikethrough {bool}     Line-through on bubble text
+//
+//  PORTRAIT STYLE
+//   portraitGlow  {string}   CSS colour — box-shadow glow ring around the portrait
+//   filter        {string}   CSS filter on portrait img ('grayscale(1)', 'sepia(0.7)'…)
+//   hidePortrait  {bool}     Suppress portrait even when side is left/right
+//
+//  SPECIAL CONTENT
+//   icon          {string}   Emoji / text prepended before bubble text
+//   timestamp     {string}   Small label shown beneath the bubble ('22:04', 'Day 3'…)
+//   redacted      {bool}     Shows ████████ mask; click anywhere on entry to reveal
+//
+//  ANIMATIONS
+//   shake         {bool}     Horizontal shake keyframe after entry appears
+//   pulse         {bool}     Repeating glow-pulse keyframe on the bubble
+//   slideFrom     {string}   Override slide-in axis: 'top'|'bottom'|'left'|'right'
+//   fadeOut       {number}   ms after appearing to fade the entry out and remove it
+//   spotlight     {bool}     Dims all previous entries when this one appears
+//
+//  MISC
+//   sfx           {string}   Quality id to set to 1 on dendryEngine when entry appears
+//                            (hooks into Dendry audio via signal; requires game wiring)
+//   twSpeed       {number}   Multiplier on typewriter per-char delay for this entry (0.5 = faster)
+//   extraClass    {string}   Extra CSS class(es) appended to the entry element
 
 window._dialogueSceneId   = null;
 window._dialogueContainer = null;
@@ -757,10 +794,19 @@ window._dialogueAnimEnabled = function() {
     return window.dendryUI && window.dendryUI.dialogue_anim !== false;
 };
 
-// Global fallback delay (ms) between entries when no per-entry delay is set.
 window._dialogueAnimDelay = function() {
     return window.dendryUI && window.dendryUI.typewriter ? 1400 : 1050;
 };
+
+// Inject keyframes once.
+(function() {
+    var style = document.createElement('style');
+    style.textContent = [
+        '@keyframes dlg-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}',
+        '@keyframes dlg-pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 8px 3px rgba(255,255,255,0.35)}}',
+    ].join('');
+    document.head.appendChild(style);
+}());
 
 window._getOrCreateDialogueLog = function() {
     var currentScene = window.dendryUI.dendryEngine.state.sceneId;
@@ -779,37 +825,54 @@ window._getOrCreateDialogueLog = function() {
     return window._dialogueContainer;
 };
 
-// _buildDialogueEntry(opts, instant)
-//   opts.duration overrides the 450ms default transition duration for this entry.
 window._buildDialogueEntry = function(opts, instant) {
     var id       = opts.id       || 'unknown';
     var name     = opts.name     || id;
     var side     = opts.side     || 'left';
     var text     = opts.text     || '';
     var img      = opts.img      || null;
-    // Per-entry transition duration in ms; falls back to 450ms if not specified.
     var duration = (opts.duration != null) ? opts.duration : 450;
 
+    // 'aside': no portrait, left-aligned, italic stage-direction flavour
+    var isAside  = (side === 'aside');
+    var cssClass = 'dialogue-entry ' + (isAside ? 'aside' : side);
+    if (opts.extraClass) cssClass += ' ' + opts.extraClass;
+
     var entry = document.createElement('div');
-    entry.className = 'dialogue-entry ' + side;
+    entry.className = cssClass;
+    if (opts.maxWidth) entry.style.maxWidth = opts.maxWidth;
+
+    // ── Slide direction ──────────────────────────────────────
+    var slideTranslate = 'translateY(6px)';
+    var slideReset     = 'translateY(0)';
+    if (opts.slideFrom === 'top')    { slideTranslate = 'translateY(-10px)'; slideReset = 'translateY(0)'; }
+    if (opts.slideFrom === 'bottom') { slideTranslate = 'translateY(14px)';  slideReset = 'translateY(0)'; }
+    if (opts.slideFrom === 'left')   { slideTranslate = 'translateX(-14px)'; slideReset = 'translateX(0)'; }
+    if (opts.slideFrom === 'right')  { slideTranslate = 'translateX(14px)';  slideReset = 'translateX(0)'; }
 
     if (!instant) {
         entry.style.opacity    = '0';
-        entry.style.transform  = 'translateY(6px)';
-        entry.style.transition = 'opacity ' + (duration / 1000).toFixed(3) + 's ease, '
-                               + 'transform ' + (duration / 1000).toFixed(3) + 's ease';
+        entry.style.transform  = slideTranslate;
+        entry.style.transition = 'opacity ' + (duration/1000).toFixed(3) + 's ease, '
+                               + 'transform ' + (duration/1000).toFixed(3) + 's ease';
     } else {
-        entry.style.opacity    = '1';
-        entry.style.transform  = 'translateY(0)';
+        entry.style.opacity   = '1';
+        entry.style.transform = slideReset;
         entry.style.transition = 'none';
     }
 
-    if (side !== 'center') {
+    // ── Portrait ─────────────────────────────────────────────
+    var needsPortrait = !isAside && side !== 'center' && !opts.hidePortrait;
+    if (needsPortrait) {
         var portrait = document.createElement('div');
         portrait.className = 'dialogue-portrait';
+        if (opts.portraitGlow) {
+            portrait.style.boxShadow = '0 0 0 2px ' + opts.portraitGlow + ', 0 0 8px 2px ' + opts.portraitGlow;
+        }
         var imgPath = img || ('img/' + id + '.jpg');
-        var imgEl = document.createElement('img');
-        imgEl.src = imgPath;
+        var imgEl   = document.createElement('img');
+        imgEl.src   = imgPath;
+        if (opts.filter) imgEl.style.filter = opts.filter;
         imgEl.onerror = function() {
             portrait.removeChild(imgEl);
             portrait.style.backgroundColor = window._dialogueColorFor(id);
@@ -819,26 +882,112 @@ window._buildDialogueEntry = function(opts, instant) {
         entry.appendChild(portrait);
     }
 
+    // ── Bubble ───────────────────────────────────────────────
     var bubble = document.createElement('div');
     bubble.className = 'dialogue-bubble';
 
-    if (side !== 'center' && name) {
+    if (opts.borderColor) { bubble.style.borderColor = opts.borderColor; bubble.style.borderTopColor = opts.borderColor; }
+    if (opts.borderStyle) bubble.style.borderStyle = opts.borderStyle;
+    if (opts.bubbleColor) bubble.style.backgroundColor = opts.bubbleColor;
+    if (opts.bubbleOpacity != null) bubble.style.opacity = opts.bubbleOpacity;
+    if (opts.pulse) bubble.style.animation = 'dlg-pulse 2s ease-in-out infinite';
+
+    // ── Name label ───────────────────────────────────────────
+    var showName = !isAside && side !== 'center' && name;
+    if (showName) {
         var nameEl = document.createElement('div');
         nameEl.className = 'dialogue-name';
         nameEl.textContent = name;
+        if (opts.nameColor) nameEl.style.color = opts.nameColor;
         bubble.appendChild(nameEl);
     }
 
+    // ── Text ─────────────────────────────────────────────────
     var textEl = document.createElement('p');
-    textEl.textContent = text;
+
+    var displayText = text;
+    if (opts.icon) displayText = opts.icon + ' ' + displayText;
+
+    if (opts.redacted) {
+        // Mask with block chars; clicking the entry reveals
+        var masked = displayText.replace(/\S/g, '█');
+        textEl.textContent = masked;
+        textEl.dataset.revealed = '0';
+        textEl.dataset.real = displayText;
+        entry.style.cursor = 'pointer';
+        entry.addEventListener('click', function() {
+            if (textEl.dataset.revealed === '0') {
+                textEl.textContent = textEl.dataset.real;
+                textEl.dataset.revealed = '1';
+                entry.style.cursor = '';
+            }
+        });
+    } else {
+        textEl.textContent = displayText;
+    }
+
+    if (opts.textColor) textEl.style.color = opts.textColor;
+    if (opts.fontSize)  bubble.style.fontSize = opts.fontSize;
+    if (opts.italic || isAside) textEl.style.fontStyle = 'italic';
+    if (opts.strikethrough) textEl.style.textDecoration = 'line-through';
+
     bubble.appendChild(textEl);
+
+    // ── Timestamp ────────────────────────────────────────────
+    if (opts.timestamp) {
+        var tsEl = document.createElement('div');
+        tsEl.className = 'dialogue-timestamp';
+        tsEl.textContent = opts.timestamp;
+        bubble.appendChild(tsEl);
+    }
+
     entry.appendChild(bubble);
+
+    // ── Post-appear effects (shake, fadeOut, spotlight) ──────
+    // Applied after the entry is inserted and animated in; stored for playNext to fire.
+    entry._dlgOpts = opts;
 
     return entry;
 };
 
-// _dialoguePlayQueue: uses opts.delay (if set) as the post-entry pause,
-// otherwise falls back to _dialogueAnimDelay().
+window._applyPostAppearEffects = function(entry, log) {
+    var opts = entry._dlgOpts;
+    if (!opts) return;
+
+    // shake
+    if (opts.shake) {
+        entry.style.animation = 'dlg-shake 0.4s ease';
+        entry.addEventListener('animationend', function() { entry.style.animation = ''; }, {once: true});
+    }
+
+    // spotlight: dim all siblings that appeared before this one
+    if (opts.spotlight) {
+        var entries = log.querySelectorAll('.dialogue-entry');
+        for (var i = 0; i < entries.length - 1; i++) {
+            entries[i].style.transition = 'opacity 0.5s ease';
+            entries[i].style.opacity    = '0.3';
+        }
+    }
+
+    // sfx: nudge a quality to 1 so Dendry scenes can react via view-if
+    if (opts.sfx) {
+        try {
+            window.dendryUI.dendryEngine.state.qualities[opts.sfx] = 1;
+        } catch(e) {}
+    }
+
+    // fadeOut: fade and remove after N ms
+    if (opts.fadeOut) {
+        setTimeout(function() {
+            entry.style.transition = 'opacity 0.6s ease';
+            entry.style.opacity    = '0';
+            setTimeout(function() {
+                if (entry.parentNode) entry.parentNode.removeChild(entry);
+            }, 650);
+        }, opts.fadeOut);
+    }
+};
+
 window._dialoguePlayQueue = function() {
     if (window._dialoguePlaying) return;
     if (window._dialogueQueue.length === 0) return;
@@ -856,18 +1005,20 @@ window._dialoguePlayQueue = function() {
         var entry = window._buildDialogueEntry(opts, !animate);
         log.appendChild(entry);
 
-        // Resolve the post-display pause: per-entry opts.delay beats global default.
         var pause = (opts.delay != null) ? opts.delay : window._dialogueAnimDelay();
 
         if (animate) {
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
                     entry.style.opacity   = '1';
-                    entry.style.transform = 'translateY(0)';
+                    entry.style.transform = (opts.slideFrom === 'left' || opts.slideFrom === 'right')
+                        ? 'translateX(0)' : 'translateY(0)';
+                    window._applyPostAppearEffects(entry, log);
                     setTimeout(playNext, pause);
                 });
             });
         } else {
+            window._applyPostAppearEffects(entry, log);
             setTimeout(playNext, 0);
         }
     }
