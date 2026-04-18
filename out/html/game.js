@@ -717,6 +717,19 @@ window._unionClick = function(idx) {
 };
 
 // ─── Dialogue system ──────────────────────────────────────
+//
+// addDialogue(opts) — supported opts:
+//   id       {string}  Character id (used for portrait lookup & color hashing)
+//   name     {string}  Display name shown above bubble
+//   side     {string}  'left' | 'right' | 'center'
+//   text     {string}  Bubble text
+//   img      {string}  Optional explicit portrait path (overrides id-based lookup)
+//   delay    {number}  ms to wait after this entry before showing the next one.
+//                      Overrides the global _dialogueAnimDelay() for this entry only.
+//                      E.g. delay:2200 for a long pause, delay:400 for a quick beat.
+//   duration {number}  ms for the fade-in/slide-in CSS transition of this entry.
+//                      Overrides the default 0.45s (450ms).
+//                      E.g. duration:900 for a slow dramatic reveal, duration:150 for a snap.
 
 window._dialogueSceneId   = null;
 window._dialogueContainer = null;
@@ -744,6 +757,7 @@ window._dialogueAnimEnabled = function() {
     return window.dendryUI && window.dendryUI.dialogue_anim !== false;
 };
 
+// Global fallback delay (ms) between entries when no per-entry delay is set.
 window._dialogueAnimDelay = function() {
     return window.dendryUI && window.dendryUI.typewriter ? 1400 : 1050;
 };
@@ -765,12 +779,16 @@ window._getOrCreateDialogueLog = function() {
     return window._dialogueContainer;
 };
 
+// _buildDialogueEntry(opts, instant)
+//   opts.duration overrides the 450ms default transition duration for this entry.
 window._buildDialogueEntry = function(opts, instant) {
-    var id   = opts.id   || 'unknown';
-    var name = opts.name || id;
-    var side = opts.side || 'left';
-    var text = opts.text || '';
-    var img  = opts.img  || null;
+    var id       = opts.id       || 'unknown';
+    var name     = opts.name     || id;
+    var side     = opts.side     || 'left';
+    var text     = opts.text     || '';
+    var img      = opts.img      || null;
+    // Per-entry transition duration in ms; falls back to 450ms if not specified.
+    var duration = (opts.duration != null) ? opts.duration : 450;
 
     var entry = document.createElement('div');
     entry.className = 'dialogue-entry ' + side;
@@ -778,7 +796,8 @@ window._buildDialogueEntry = function(opts, instant) {
     if (!instant) {
         entry.style.opacity    = '0';
         entry.style.transform  = 'translateY(6px)';
-        entry.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+        entry.style.transition = 'opacity ' + (duration / 1000).toFixed(3) + 's ease, '
+                               + 'transform ' + (duration / 1000).toFixed(3) + 's ease';
     } else {
         entry.style.opacity    = '1';
         entry.style.transform  = 'translateY(0)';
@@ -818,6 +837,8 @@ window._buildDialogueEntry = function(opts, instant) {
     return entry;
 };
 
+// _dialoguePlayQueue: uses opts.delay (if set) as the post-entry pause,
+// otherwise falls back to _dialogueAnimDelay().
 window._dialoguePlayQueue = function() {
     if (window._dialoguePlaying) return;
     if (window._dialogueQueue.length === 0) return;
@@ -835,12 +856,15 @@ window._dialoguePlayQueue = function() {
         var entry = window._buildDialogueEntry(opts, !animate);
         log.appendChild(entry);
 
+        // Resolve the post-display pause: per-entry opts.delay beats global default.
+        var pause = (opts.delay != null) ? opts.delay : window._dialogueAnimDelay();
+
         if (animate) {
             requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
                     entry.style.opacity   = '1';
                     entry.style.transform = 'translateY(0)';
-                    setTimeout(playNext, window._dialogueAnimDelay());
+                    setTimeout(playNext, pause);
                 });
             });
         } else {
@@ -868,42 +892,3 @@ window.clearDialogue = function() {
 };
 
 window._dialogueRestore = function() {};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.showSidebars = function() {
-    var Q = dendryUI.dendryEngine.state.qualities;
-    if (!Q) return;
-    if (Q.modem === 1) {
-        $('#stats_sidebar_4').show();
-        $('#stats_sidebar_5').show();
-        $('#stats_sidebar_6').show();
-    } else {
-        $('#stats_sidebar').show();
-        $('#stats_sidebar_2').show();
-        $('#stats_sidebar_3').show();
-    }
-    window.updateSidebar();
-};
-
-window.hideSidebars = function() {
-    $('#stats_sidebar').hide();
-    $('#stats_sidebar_2').hide();
-    $('#stats_sidebar_3').hide();
-    $('#stats_sidebar_4').hide();
-    $('#stats_sidebar_5').hide();
-    $('#stats_sidebar_6').hide();
-};
