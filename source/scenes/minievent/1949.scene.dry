@@ -130,8 +130,6 @@ window.addNewspaper({
     ]
 });
 
-}; // end runNewspaperTemplates
-
 
 // ─────────────────────────────────────────────────────────
 // LETTER TEMPLATES
