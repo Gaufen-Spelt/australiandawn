@@ -4,12 +4,6 @@ tags: event
 view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
-// dialogue_templates.js
-// Reference — all addDialogue opts demonstrated.
-// Paste contents of the IIFE body into any on-arrival: {! ... !} in your .dry scene,
-// or call window.runDialogueTemplates() directly from the console to test.
-
-window.runDialogueTemplates = function() {
 
 // ── CORE ─────────────────────────────────────────────────
 
@@ -162,10 +156,6 @@ window.addDialogue({side:'aside', text:'The conversation ended there. Or so he b
 
 // Final spotlight center — chapter close
 window.addDialogue({side:'center', text:'January, 1949.', spotlight:true, fontSize:'1.1em', duration:1200, delay:3000});
-
-};
-
-window.runDialogueTemplates()
 
 // aside — no portrait, stage-direction feel
 window.addDialogue({side:'aside', text:'The phone rings twice.'});
