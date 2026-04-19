@@ -137,8 +137,6 @@ window.addNewspaper({
 // LETTER TEMPLATES
 // ─────────────────────────────────────────────────────────
 
-window.runLetterTemplates = function() {
-
 // ── Minimal typed letter ──────────────────────────────────
 window.addLetter({
     date: '4 January 1949',
