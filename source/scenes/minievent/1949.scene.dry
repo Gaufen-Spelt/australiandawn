@@ -5,6 +5,275 @@ view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
 
+// newspaper_letter_templates.js
+// Reference — all addNewspaper and addLetter opts demonstrated.
+// Call window.runNewspaperTemplates() or window.runLetterTemplates() from console,
+// or paste the body of either into an on-arrival: {! ... !} block.
+
+// ─────────────────────────────────────────────────────────
+// NEWSPAPER TEMPLATES
+// ─────────────────────────────────────────────────────────
+
+// ── Minimal single story, inline ─────────────────────────
+window.addNewspaper({
+    paperName: 'The Sydney Morning Herald',
+    date: 'Tuesday, 4 January 1949',
+    stories: [
+        {
+            headline: 'Government Faces Budget Crisis',
+            body: 'Ministers met in emergency session yesterday as the treasury deficit mounted beyond expectations.\nSources close to the Premier declined to comment.',
+        }
+    ]
+});
+
+// ── Full masthead, two-column, multiple stories ───────────
+window.addNewspaper({
+    paperName: 'The Australian Worker',
+    motto: '"Labour\'s Voice Since 1891"',
+    date: 'Friday, 7 January 1949',
+    edition: 'Morning Edition',
+    volume: 'Vol. LVIII, No. 3',
+    price: 'Twopence',
+    columns: 2,
+    stories: [
+        {
+            headline: 'Ward Calls for General Strike',
+            subheadline: 'Labor Left Demands Action on Wages',
+            byline: 'By Our Industrial Correspondent',
+            location: 'SYDNEY, Thursday',
+            body: 'Eddie Ward last night issued a call to arms to the labour movement, demanding an immediate general strike in response to the government\'s wage freeze.\nThe announcement drew cheers from the packed gallery at Trades Hall.',
+            pullQuote: 'We shall not be silent while the workers starve.',
+            cols: 2,
+            headlineSize: '1.5em',
+        },
+        {
+            headline: 'Lang Denies Split',
+            subheadline: 'Premier insists party unity holds',
+            byline: 'By Our Political Staff',
+            body: 'Jack Lang moved quickly to deny reports of a factional split within the ALP caucus, calling the claims "mischievous fabrication."',
+        },
+        {
+            headline: 'Steel Workers Vote on Stoppage',
+            body: 'Members of the FIA at the Newcastle steelworks will ballot this week on a proposed 48-hour stoppage.',
+            border: false,
+        }
+    ]
+});
+
+// ── Aged paper, torn edge, urgent stamp ──────────────────
+window.addNewspaper({
+    paperName: 'The Courier',
+    date: '12 January 1949',
+    aged: true,
+    torn: true,
+    columns: 1,
+    maxWidth: '420px',
+    stories: [
+        {
+            headline: 'Crisis at the Docks',
+            subheadline: 'Waterfront dispute enters third week',
+            body: 'Tension at the Sydney waterfront showed no sign of easing as employers refused to reinstate dismissed union delegates.',
+            urgent: true,
+        }
+    ]
+});
+
+// ── Modal, custom masthead colours, image, classified ─────
+window.addNewspaper({
+    paperName: 'CLASSIFIED BULLETIN',
+    motto: 'For Authorised Recipients Only',
+    date: '9 January 1949',
+    mastheadColor: '#1a1a2e',
+    mastheadTextColor: '#a0c4ff',
+    mode: 'modal',
+    columns: 1,
+    maxWidth: '480px',
+    stories: [
+        {
+            headline: 'Operation Resolved: Status Report',
+            byline: 'ASIO Internal Circulation',
+            body: 'The subject was observed meeting with known communist organisers at the Ironworkers Hall on the evening of the 8th.\nSurveillance to continue.',
+            classified: true,
+            borderStyle: 'dashed',
+            img: 'img/surveillance_photo.jpg',
+            imgCaption: 'Subject photographed entering premises, 21:14.',
+        }
+    ],
+    onClose: function() { console.log('Bulletin closed.'); }
+});
+
+// ── Three-column broadsheet ───────────────────────────────
+window.addNewspaper({
+    paperName: 'The Federal Chronicle',
+    motto: '"All the News That\'s Fit to Print"',
+    date: 'Monday, 10 January 1949',
+    edition: 'Late Extra',
+    volume: 'Vol. XXII, No. 7',
+    price: 'Penny',
+    columns: 3,
+    maxWidth: '760px',
+    stories: [
+        {
+            headline: 'Parliament Recalled Early',
+            body: 'The Governor-General has agreed to an emergency recall of parliament at the request of the Prime Minister.',
+            cols: 2,
+        },
+        {
+            headline: 'Markets Fall Sharply',
+            body: 'The Sydney exchange closed down 4.2 points amid uncertainty over industrial action.',
+        },
+        {
+            headline: 'Union Leaders Summoned',
+            body: 'Senior officials of the ACTU have been summoned to meet with the Minister for Labour tomorrow morning.',
+            pullQuote: 'The time for half-measures is over.',
+        },
+        {
+            headline: 'Weather: Storms Expected',
+            body: 'The Bureau of Meteorology warns of heavy rain and strong winds for coastal districts.',
+            border: false,
+        }
+    ]
+});
+
+}; // end runNewspaperTemplates
+
+
+// ─────────────────────────────────────────────────────────
+// LETTER TEMPLATES
+// ─────────────────────────────────────────────────────────
+
+window.runLetterTemplates = function() {
+
+// ── Minimal typed letter ──────────────────────────────────
+window.addLetter({
+    date: '4 January 1949',
+    greeting: 'Dear Mr Ward,',
+    paragraphs: [
+        'I write to you in confidence regarding the matter we discussed at the conference last week.',
+        'The situation has deteriorated more rapidly than either of us anticipated. I urge you to act.'
+    ],
+    closing: 'Yours faithfully,',
+    signature: 'J. Lang',
+});
+
+// ── Full typed letter, all header fields ─────────────────
+window.addLetter({
+    style: 'typed',
+    senderName: 'Jack Lang',
+    senderTitle: 'Premier of New South Wales',
+    senderAddress: 'Premier\'s Office\nMacquarie Street\nSydney, N.S.W.',
+    recipientName: 'Mr E. J. Ward, M.P.',
+    recipientTitle: 'Minister for External Territories',
+    date: '6 January 1949',
+    location: 'Sydney',
+    reference: 'Motion 44-B / Industrial Relations',
+    subject: 'Proposed General Strike — Confidential',
+    greeting: 'Dear Eddie,',
+    paragraphs: [
+        'Following our telephone conversation of the 4th, I am writing to confirm the position of this office regarding the proposed industrial action.',
+        'It is my considered view that a general strike at this juncture would be premature. The parliamentary numbers are not yet with us, and the press will use any disruption to paint the movement as irresponsible.',
+        'I ask that you hold your position for no more than three weeks. By that time the budget situation will have made our case for us.'
+    ],
+    closing: 'Yours sincerely,',
+    signature: 'Jack Lang',
+    postscript: 'Burn this after reading.',
+    enclosures: 'Enc: Draft motion text (2 pp.)',
+});
+
+// ── Handwritten style, aged, with seal and margin note ───
+window.addLetter({
+    style: 'handwritten',
+    aged: true,
+    senderName: 'E. Ward',
+    date: '8 January 1949',
+    location: 'Trades Hall, Sydney',
+    greeting: 'Jack —',
+    paragraphs: [
+        'Three weeks is too long. The men are ready now and they won\'t stay ready forever.',
+        'Come to Trades Hall Thursday evening. Bring Calwell if you must, but come.',
+    ],
+    closing: 'Ed',
+    signature: 'Eddie Ward',
+    seal: 'EW',
+    sealColor: '#8B0000',
+    marginNote: 'hand-delivered — no copies',
+    paperColor: '#ddd5b0',
+    inkColor: '#1a0a00',
+});
+
+// ── Classified, redacted, modal ───────────────────────────
+window.addLetter({
+    style: 'typed',
+    classified: true,
+    mode: 'modal',
+    watermark: 'TOP SECRET',
+    senderName: 'Director, ASIO',
+    date: '10 January 1949',
+    recipientName: 'The Attorney-General',
+    subject: 'Subject: WARD, Edward John',
+    greeting: 'Sir,',
+    paragraphs: [
+        'Surveillance conducted between 4–9 January has produced the following findings.',
+        'The subject met on three occasions with individuals known to this office as members of the Communist Party of Australia.',
+        'The precise nature of these discussions remains unknown. Transcription of the intercepted call of the 8th is attached under separate cover.',
+        'It is recommended that telephone monitoring continue and that the subject\'s travel documents be flagged for review.'
+    ],
+    redacted: true,
+    closing: 'I have the honour to be, Sir, your obedient servant,',
+    signature: '[ Signature Withheld ]',
+    enclosures: 'Enc: Surveillance log (14 pp.) — Eyes Only',
+    onClose: function() { console.log('Letter dismissed.'); }
+});
+
+// ── Urgent, with signature image, enclosures ─────────────
+window.addLetter({
+    style: 'typed',
+    urgent: true,
+    senderName: 'A. A. Calwell',
+    senderTitle: 'Minister for Immigration',
+    date: '11 January 1949',
+    location: 'Canberra',
+    recipientName: 'Mr J. B. Chifley',
+    greeting: 'Dear Ben,',
+    paragraphs: [
+        'The situation in the caucus has reached a point where I can no longer remain silent.',
+        'Ward\'s faction is moving faster than we anticipated. If we do not act before Friday\'s meeting the balance will shift permanently against us.',
+        'I recommend immediate consultation with the factions listed in the attached schedule.'
+    ],
+    closing: 'Yours,',
+    signatureImg: 'img/signatures/calwell.png',
+    postscript: 'I will telephone at 09:00 tomorrow.',
+    enclosures: 'Enc: Caucus faction schedule',
+    borderColor: '#8B0000',
+});
+
+// ── Handwritten, all opts combined ───────────────────────
+window.addLetter({
+    style: 'handwritten',
+    aged: true,
+    mode: 'modal',
+    paperColor: '#e0d5b0',
+    inkColor: '#0a0a2a',
+    senderName: 'Unknown',
+    date: 'undated',
+    greeting: 'To whoever finds this —',
+    paragraphs: [
+        'The names in the file are real. All of them.',
+        'Do not trust the man who gave you this letter.',
+    ],
+    redacted: true,
+    watermark: 'VOID',
+    seal: '?',
+    sealColor: '#333',
+    marginNote: 'found in desk drawer',
+    closing: '',
+    signature: '— ',
+    postscript: 'They already know you have read this.',
+    maxWidth: '460px',
+    delay: 500,
+});
+
+
 // ── CORE ─────────────────────────────────────────────────
 
 // Basic left (portrait auto-looked up as img/eddie.jpg, falls back to initials)
