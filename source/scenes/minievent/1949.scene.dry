@@ -4,6 +4,169 @@ tags: event
 view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
+// dialogue_templates.js
+// Reference — all addDialogue opts demonstrated.
+// Paste contents of the IIFE body into any on-arrival: {! ... !} in your .dry scene,
+// or call window.runDialogueTemplates() directly from the console to test.
+
+window.runDialogueTemplates = function() {
+
+// ── CORE ─────────────────────────────────────────────────
+
+// Basic left (portrait auto-looked up as img/eddie.jpg, falls back to initials)
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Standard left bubble.'});
+
+// Basic right
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Standard right bubble.'});
+
+// Center — no portrait, italic narrator bar
+window.addDialogue({side:'center', text:'The room falls silent.'});
+
+// Aside — no portrait, left-aligned stage direction
+window.addDialogue({side:'aside', text:'A telephone sits on the desk.'});
+
+// Explicit portrait path override
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Using an explicit image path.', img:'img/custom/eddie_alt.jpg'});
+
+
+// ── TIMING ───────────────────────────────────────────────
+
+// Long pause after (2.5s) — dramatic beat
+window.addDialogue({side:'center', text:'Something is about to happen.', delay:2500});
+
+// Fast snap — quick follow-up
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'What?', delay:300});
+
+// Slow fade-in reveal (1.4s transition)
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'You heard me.', duration:1400});
+
+// Both: slow in, long pause before next
+window.addDialogue({side:'center', text:'Neither man spoke.', duration:1000, delay:2200});
+
+
+// ── BUBBLE STYLE ─────────────────────────────────────────
+
+// Custom border colour
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Something feels wrong.', borderColor:'#8B0000'});
+
+// Dashed border
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Uncertain ground.', borderStyle:'dashed'});
+
+// Custom bubble background
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Emergency channel.', bubbleColor:'#1a1a2e'});
+
+// Custom text colour
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Read between the lines.', textColor:'#c40000'});
+
+// Custom name label colour
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'My name in red.', nameColor:'#c40000'});
+
+// Semi-transparent bubble
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Fading authority.', bubbleOpacity:0.5});
+
+// Narrow bubble
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Tight.', maxWidth:'40%'});
+
+// Larger font
+window.addDialogue({side:'center', text:'A DECLARATION.', fontSize:'1.15em'});
+
+// Italic bubble text
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'He thought to himself...', italic:true});
+
+// Strikethrough — retracted statement
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'I never said that.', strikethrough:true});
+
+
+// ── PORTRAIT STYLE ───────────────────────────────────────
+
+// Glow ring around portrait
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Under pressure.', portraitGlow:'#c40000'});
+
+// Grayscale portrait — memory, death, absence
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'A ghost of the past.', filter:'grayscale(1)'});
+
+// Sepia portrait
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'From the archives.', filter:'sepia(0.8)'});
+
+// Portrait suppressed — voice only
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'A voice on the wire.', hidePortrait:true});
+
+
+// ── SPECIAL CONTENT ──────────────────────────────────────
+
+// Icon prepended to text
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'The line is secure.', icon:'📞'});
+
+// Timestamp label
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Are you there?', timestamp:'22:14'});
+
+// Timestamp on left
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Barely.', timestamp:'22:14'});
+
+// Redacted — click entry to reveal
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The operative is Brennan.', redacted:true});
+
+// Redacted aside
+window.addDialogue({side:'aside', text:'The name in the file has been crossed out.', redacted:true});
+
+
+// ── ANIMATIONS ───────────────────────────────────────────
+
+// Shake — alarm, anger, impact
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'That is unacceptable!', shake:true});
+
+// Pulse glow on bubble — tension, urgency
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Listen carefully.', pulse:true});
+
+// Slide from top
+window.addDialogue({side:'center', text:'A message drops from above.', slideFrom:'top'});
+
+// Slide from bottom
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Rising from the floor.', slideFrom:'bottom'});
+
+// Slide from left
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Entering from the side.', slideFrom:'left'});
+
+// Slide from right
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Other side.', slideFrom:'right'});
+
+// FadeOut — self-removing after 3s
+window.addDialogue({side:'aside', text:'[Signal lost]', fadeOut:3000});
+
+// Spotlight — dims all prior entries
+window.addDialogue({side:'center', text:'One moment. One choice.', spotlight:true, delay:2000});
+
+
+// ── MISC ─────────────────────────────────────────────────
+
+// sfx — sets quality 'phone_ring' to 1 on appear (wire up in game scenes)
+window.addDialogue({side:'aside', text:'The phone rings.', sfx:'phone_ring'});
+
+// extraClass — attach custom CSS class for bespoke styling
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Something classified.', extraClass:'urgent'});
+
+
+// ── COMBINATIONS ─────────────────────────────────────────
+
+// Tense incoming call: slow reveal, glow, timestamp, pulse
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'We need to move tonight.', duration:1100, portraitGlow:'#c40000', pulse:true, timestamp:'23:58', delay:2000});
+
+// Shocked reaction: shake, red border, fast in
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Tonight?!', shake:true, borderColor:'#8B0000', duration:150, delay:1800});
+
+// Redacted threat with glow
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The target is already inside.', redacted:true, portraitGlow:'#8B0000', borderColor:'#8B0000'});
+
+// Narrator aside fading out — scene transition
+window.addDialogue({side:'aside', text:'The conversation ended there. Or so he believed.', italic:true, fadeOut:4000, delay:4500});
+
+// Final spotlight center — chapter close
+window.addDialogue({side:'center', text:'January, 1949.', spotlight:true, fontSize:'1.1em', duration:1200, delay:3000});
+
+};
+
+window.runDialogueTemplates()
+
 // aside — no portrait, stage-direction feel
 window.addDialogue({side:'aside', text:'The phone rings twice.'});
 
