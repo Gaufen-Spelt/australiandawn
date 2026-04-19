@@ -5,11 +5,6 @@ view-if: year >= 1949 and day >= 1
 max-visits: 1
 on-arrival: {!
 
-// newspaper_letter_templates.js
-// Reference — all addNewspaper and addLetter opts demonstrated.
-// Call window.runNewspaperTemplates() or window.runLetterTemplates() from console,
-// or paste the body of either into an on-arrival: {! ... !} block.
-
 // ─────────────────────────────────────────────────────────
 // NEWSPAPER TEMPLATES
 // ─────────────────────────────────────────────────────────
