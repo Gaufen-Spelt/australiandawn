@@ -1043,3 +1043,467 @@ window.clearDialogue = function() {
 };
 
 window._dialogueRestore = function() {};
+
+// ─── Newspaper system ─────────────────────────────────────
+//
+// addNewspaper(opts) — opts:
+//
+//  MASTHEAD
+//   paperName     {string}   Publication name. Default: 'The Daily Record'
+//   motto         {string}   Tagline beneath masthead
+//   date          {string}   Edition date string. Default: ''
+//   edition       {string}   e.g. 'Morning Edition', 'Late Extra'
+//   volume        {string}   e.g. 'Vol. XII, No. 44'
+//   price         {string}   e.g. 'Threepence'
+//   mastheadColor {string}   Masthead background colour. Default: '#1a1a1a'
+//   mastheadTextColor {string} Masthead text colour. Default: '#f5f0e8'
+//
+//  STORIES (array of story objects — opts.stories)
+//   Each story supports:
+//   headline      {string}   Main headline (required)
+//   subheadline   {string}   Deck beneath headline
+//   byline        {string}   e.g. 'By Our Political Correspondent'
+//   location      {string}   Dateline e.g. 'CANBERRA, Tuesday'
+//   body          {string}   Article body text (can include \n for paragraphs)
+//   pullQuote     {string}   Highlighted pull quote
+//   img           {string}   Image path
+//   imgCaption    {string}   Caption beneath image
+//   cols          {number}   Column span 1–3. Default: 1
+//   headlineSize  {string}   CSS font-size override on headline
+//   border        {bool}     Draw border around this story. Default: true
+//   urgent        {bool}     Red URGENT stamp overlay on story
+//   classified    {bool}     CLASSIFIED stamp overlay on story
+//
+//  LAYOUT & DISPLAY
+//   mode          {string}   'inline' | 'modal'. Default: 'inline'
+//   columns       {number}   Total grid columns 1–3. Default: 2
+//   maxWidth      {string}   CSS max-width. Default: '680px'
+//   aged          {bool}     Sepia/yellowed paper effect
+//   torn          {bool}     Torn-edge bottom border effect
+//   delay         {number}   ms before showing (modal mode). Default: 0
+//   onClose       {function} Callback when modal closed
+
+window.addNewspaper = function(opts) {
+    var paperName         = opts.paperName         || 'The Daily Record';
+    var motto             = opts.motto             || '';
+    var date              = opts.date              || '';
+    var edition           = opts.edition           || '';
+    var volume            = opts.volume            || '';
+    var price             = opts.price             || '';
+    var mastheadColor     = opts.mastheadColor     || '#1a1a1a';
+    var mastheadTextColor = opts.mastheadTextColor || '#f5f0e8';
+    var mode              = opts.mode              || 'inline';
+    var columns           = opts.columns           || 2;
+    var maxWidth          = opts.maxWidth          || '680px';
+    var aged              = opts.aged              || false;
+    var torn              = opts.torn              || false;
+    var stories           = opts.stories           || [];
+
+    // ── Wrapper ──────────────────────────────────────────
+    var wrap = document.createElement('div');
+    wrap.className = 'newspaper' + (aged ? ' newspaper-aged' : '') + (torn ? ' newspaper-torn' : '');
+    wrap.style.maxWidth = maxWidth;
+
+    // ── Masthead ─────────────────────────────────────────
+    var mast = document.createElement('div');
+    mast.className = 'newspaper-masthead';
+    mast.style.backgroundColor = mastheadColor;
+    mast.style.color = mastheadTextColor;
+
+    var nameEl = document.createElement('div');
+    nameEl.className = 'newspaper-name';
+    nameEl.textContent = paperName;
+    mast.appendChild(nameEl);
+
+    if (motto) {
+        var mottoEl = document.createElement('div');
+        mottoEl.className = 'newspaper-motto';
+        mottoEl.textContent = motto;
+        mast.appendChild(mottoEl);
+    }
+
+    var metaEl = document.createElement('div');
+    metaEl.className = 'newspaper-meta';
+    var metaParts = [volume, date, edition, price].filter(Boolean);
+    metaEl.textContent = metaParts.join('  ·  ');
+    mast.appendChild(metaEl);
+
+    wrap.appendChild(mast);
+
+    // ── Rule ─────────────────────────────────────────────
+    var rule = document.createElement('div');
+    rule.className = 'newspaper-rule';
+    wrap.appendChild(rule);
+
+    // ── Stories grid ─────────────────────────────────────
+    var grid = document.createElement('div');
+    grid.className = 'newspaper-grid';
+    grid.style.gridTemplateColumns = 'repeat(' + columns + ', 1fr)';
+
+    stories.forEach(function(s) {
+        var art = document.createElement('div');
+        art.className = 'newspaper-story' + (s.border === false ? '' : ' newspaper-story-border');
+        if (s.cols && s.cols > 1) art.style.gridColumn = 'span ' + Math.min(s.cols, columns);
+
+        // Stamps
+        if (s.urgent) {
+            var stamp = document.createElement('div');
+            stamp.className = 'newspaper-stamp newspaper-stamp-urgent';
+            stamp.textContent = 'URGENT';
+            art.appendChild(stamp);
+        }
+        if (s.classified) {
+            var cstamp = document.createElement('div');
+            cstamp.className = 'newspaper-stamp newspaper-stamp-classified';
+            cstamp.textContent = 'CLASSIFIED';
+            art.appendChild(cstamp);
+        }
+
+        // Headline
+        var hl = document.createElement('div');
+        hl.className = 'newspaper-headline';
+        if (s.headlineSize) hl.style.fontSize = s.headlineSize;
+        hl.textContent = s.headline;
+        art.appendChild(hl);
+
+        // Subheadline
+        if (s.subheadline) {
+            var shl = document.createElement('div');
+            shl.className = 'newspaper-subheadline';
+            shl.textContent = s.subheadline;
+            art.appendChild(shl);
+        }
+
+        // Byline / location
+        var byRow = [s.location, s.byline].filter(Boolean);
+        if (byRow.length) {
+            var byEl = document.createElement('div');
+            byEl.className = 'newspaper-byline';
+            byEl.textContent = byRow.join('  —  ');
+            art.appendChild(byEl);
+        }
+
+        // Image
+        if (s.img) {
+            var imgEl = document.createElement('img');
+            imgEl.className = 'newspaper-img';
+            imgEl.src = s.img;
+            art.appendChild(imgEl);
+            if (s.imgCaption) {
+                var capEl = document.createElement('div');
+                capEl.className = 'newspaper-caption';
+                capEl.textContent = s.imgCaption;
+                art.appendChild(capEl);
+            }
+        }
+
+        // Body
+        if (s.body) {
+            s.body.split('\n').forEach(function(para) {
+                if (!para.trim()) return;
+                var p = document.createElement('p');
+                p.className = 'newspaper-body';
+                p.textContent = para;
+                art.appendChild(p);
+            });
+        }
+
+        // Pull quote
+        if (s.pullQuote) {
+            var pq = document.createElement('blockquote');
+            pq.className = 'newspaper-pullquote';
+            pq.textContent = '\u201C' + s.pullQuote + '\u201D';
+            art.appendChild(pq);
+        }
+
+        grid.appendChild(art);
+    });
+
+    wrap.appendChild(grid);
+
+    // ── Torn edge ────────────────────────────────────────
+    if (torn) {
+        var tornEl = document.createElement('div');
+        tornEl.className = 'newspaper-torn-edge';
+        wrap.appendChild(tornEl);
+    }
+
+    // ── Output ───────────────────────────────────────────
+    if (mode === 'modal') {
+        var backdrop = document.createElement('div');
+        backdrop.className = 'newspaper-modal-backdrop';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'newspaper-modal-close';
+        closeBtn.textContent = '✕';
+        closeBtn.onclick = function() {
+            document.body.removeChild(backdrop);
+            if (opts.onClose) opts.onClose();
+        };
+        backdrop.onclick = function(e) { if (e.target === backdrop) closeBtn.onclick(); };
+
+        var modal = document.createElement('div');
+        modal.className = 'newspaper-modal';
+        modal.appendChild(closeBtn);
+        modal.appendChild(wrap);
+        backdrop.appendChild(modal);
+
+        var show = function() { document.body.appendChild(backdrop); };
+        if (opts.delay) { setTimeout(show, opts.delay); } else { show(); }
+    } else {
+        document.getElementById('content').appendChild(wrap);
+    }
+};
+
+// ─── Letter system ────────────────────────────────────────
+//
+// addLetter(opts) — opts:
+//
+//  HEADER
+//   senderName    {string}   Sender's name
+//   senderTitle   {string}   Sender's title/position
+//   senderAddress {string}   Sender address (multiline with \n)
+//   recipientName {string}   Recipient name
+//   recipientTitle{string}   Recipient title
+//   date          {string}   Date string
+//   location      {string}   Place of writing
+//   reference     {string}   Reference line e.g. 'Re: Motion 44-B'
+//   subject       {string}   Subject line
+//
+//  BODY
+//   greeting      {string}   Opening salutation e.g. 'Dear Mr Ward,'
+//   paragraphs    {array}    Array of body paragraph strings
+//   postscript    {string}   P.S. line
+//
+//  CLOSING
+//   closing       {string}   Valediction e.g. 'Yours faithfully,'
+//   signature     {string}   Signed name (rendered in cursive style)
+//   signatureImg  {string}   Path to signature image (overrides text signature)
+//   enclosures    {string}   e.g. 'Enc: 3 documents'
+//
+//  STYLE
+//   style         {string}   'typed' | 'handwritten'. Default: 'typed'
+//   paperColor    {string}   CSS background colour of paper
+//   inkColor      {string}   CSS text colour
+//   aged          {bool}     Yellowed/worn paper effect
+//   classified    {bool}     CLASSIFIED stamp across letter
+//   urgent        {bool}     URGENT stamp
+//   seal          {string}   Text for wax seal emblem (e.g. '★' or initials)
+//   sealColor     {string}   Wax seal colour. Default: '#8B0000'
+//   marginNote    {string}   Handwritten-style note in left margin
+//   redacted      {bool}     Redacts body paragraphs — click to reveal
+//   watermark     {string}   Faint watermark text across letter body
+//
+//  DISPLAY
+//   mode          {string}   'inline' | 'modal'. Default: 'inline'
+//   maxWidth      {string}   CSS max-width. Default: '560px'
+//   delay         {number}   ms before showing (modal). Default: 0
+//   onClose       {function} Callback when modal closed
+
+window.addLetter = function(opts) {
+    var style      = opts.style      || 'typed';
+    var mode       = opts.mode       || 'inline';
+    var maxWidth   = opts.maxWidth   || '560px';
+    var inkColor   = opts.inkColor   || (style === 'handwritten' ? '#1a1230' : '#1a1a1a');
+    var paperColor = opts.paperColor || (opts.aged ? '#e8dfc0' : '#f5f0e8');
+    var sealColor  = opts.sealColor  || '#8B0000';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'letter letter-' + style + (opts.aged ? ' letter-aged' : '');
+    wrap.style.maxWidth   = maxWidth;
+    wrap.style.color      = inkColor;
+    wrap.style.backgroundColor = paperColor;
+
+    // ── Watermark ────────────────────────────────────────
+    if (opts.watermark) {
+        var wm = document.createElement('div');
+        wm.className = 'letter-watermark';
+        wm.textContent = opts.watermark;
+        wrap.appendChild(wm);
+    }
+
+    // ── Stamps ───────────────────────────────────────────
+    if (opts.classified) {
+        var cs = document.createElement('div');
+        cs.className = 'letter-stamp letter-stamp-classified';
+        cs.textContent = 'CLASSIFIED';
+        wrap.appendChild(cs);
+    }
+    if (opts.urgent) {
+        var us = document.createElement('div');
+        us.className = 'letter-stamp letter-stamp-urgent';
+        us.textContent = 'URGENT';
+        wrap.appendChild(us);
+    }
+
+    // ── Seal ─────────────────────────────────────────────
+    if (opts.seal) {
+        var sealEl = document.createElement('div');
+        sealEl.className = 'letter-seal';
+        sealEl.style.backgroundColor = sealColor;
+        sealEl.style.boxShadow = '0 0 0 3px ' + sealColor + ', 0 0 0 5px ' + inkColor;
+        sealEl.textContent = opts.seal;
+        wrap.appendChild(sealEl);
+    }
+
+    // ── Margin note ──────────────────────────────────────
+    if (opts.marginNote) {
+        var mn = document.createElement('div');
+        mn.className = 'letter-margin-note';
+        mn.textContent = opts.marginNote;
+        wrap.appendChild(mn);
+    }
+
+    // ── Header block ─────────────────────────────────────
+    var header = document.createElement('div');
+    header.className = 'letter-header';
+
+    if (opts.senderName || opts.senderAddress) {
+        var senderEl = document.createElement('div');
+        senderEl.className = 'letter-sender';
+        if (opts.senderName) {
+            var snEl = document.createElement('div');
+            snEl.className = 'letter-sender-name';
+            snEl.textContent = opts.senderName + (opts.senderTitle ? ', ' + opts.senderTitle : '');
+            senderEl.appendChild(snEl);
+        }
+        if (opts.senderAddress) {
+            opts.senderAddress.split('\n').forEach(function(line) {
+                var l = document.createElement('div');
+                l.className = 'letter-sender-address';
+                l.textContent = line;
+                senderEl.appendChild(l);
+            });
+        }
+        header.appendChild(senderEl);
+    }
+
+    if (opts.date || opts.location) {
+        var dateEl = document.createElement('div');
+        dateEl.className = 'letter-date';
+        dateEl.textContent = [opts.location, opts.date].filter(Boolean).join(', ');
+        header.appendChild(dateEl);
+    }
+
+    if (opts.recipientName) {
+        var recEl = document.createElement('div');
+        recEl.className = 'letter-recipient';
+        recEl.textContent = opts.recipientName + (opts.recipientTitle ? '\n' + opts.recipientTitle : '');
+        header.appendChild(recEl);
+    }
+
+    if (opts.reference) {
+        var refEl = document.createElement('div');
+        refEl.className = 'letter-reference';
+        refEl.textContent = 'Ref: ' + opts.reference;
+        header.appendChild(refEl);
+    }
+
+    if (opts.subject) {
+        var subjEl = document.createElement('div');
+        subjEl.className = 'letter-subject';
+        subjEl.textContent = 'Re: ' + opts.subject;
+        header.appendChild(subjEl);
+    }
+
+    wrap.appendChild(header);
+
+    // ── Body ─────────────────────────────────────────────
+    var body = document.createElement('div');
+    body.className = 'letter-body';
+
+    if (opts.greeting) {
+        var greetEl = document.createElement('div');
+        greetEl.className = 'letter-greeting';
+        greetEl.textContent = opts.greeting;
+        body.appendChild(greetEl);
+    }
+
+    (opts.paragraphs || []).forEach(function(para) {
+        var p = document.createElement('p');
+        p.className = 'letter-para';
+        if (opts.redacted) {
+            p.textContent = para.replace(/\S/g, '█');
+            p.dataset.real = para;
+            p.dataset.revealed = '0';
+            p.style.cursor = 'pointer';
+            p.addEventListener('click', function() {
+                if (p.dataset.revealed === '0') {
+                    p.textContent = p.dataset.real;
+                    p.dataset.revealed = '1';
+                    p.style.cursor = '';
+                }
+            });
+        } else {
+            p.textContent = para;
+        }
+        body.appendChild(p);
+    });
+
+    wrap.appendChild(body);
+
+    // ── Closing ──────────────────────────────────────────
+    var closing = document.createElement('div');
+    closing.className = 'letter-closing';
+
+    if (opts.closing) {
+        var closingEl = document.createElement('div');
+        closingEl.className = 'letter-valediction';
+        closingEl.textContent = opts.closing;
+        closing.appendChild(closingEl);
+    }
+
+    if (opts.signatureImg) {
+        var sigImg = document.createElement('img');
+        sigImg.className = 'letter-signature-img';
+        sigImg.src = opts.signatureImg;
+        closing.appendChild(sigImg);
+    } else if (opts.signature) {
+        var sigEl = document.createElement('div');
+        sigEl.className = 'letter-signature';
+        sigEl.textContent = opts.signature;
+        closing.appendChild(sigEl);
+    }
+
+    if (opts.postscript) {
+        var psEl = document.createElement('div');
+        psEl.className = 'letter-ps';
+        psEl.textContent = 'P.S. ' + opts.postscript;
+        closing.appendChild(psEl);
+    }
+
+    if (opts.enclosures) {
+        var encEl = document.createElement('div');
+        encEl.className = 'letter-enclosures';
+        encEl.textContent = opts.enclosures;
+        closing.appendChild(encEl);
+    }
+
+    wrap.appendChild(closing);
+
+    // ── Output ───────────────────────────────────────────
+    if (mode === 'modal') {
+        var backdrop = document.createElement('div');
+        backdrop.className = 'letter-modal-backdrop';
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'letter-modal-close';
+        closeBtn.textContent = '✕';
+        closeBtn.onclick = function() {
+            document.body.removeChild(backdrop);
+            if (opts.onClose) opts.onClose();
+        };
+        backdrop.onclick = function(e) { if (e.target === backdrop) closeBtn.onclick(); };
+
+        var modal = document.createElement('div');
+        modal.className = 'letter-modal';
+        modal.appendChild(closeBtn);
+        modal.appendChild(wrap);
+        backdrop.appendChild(modal);
+
+        var show = function() { document.body.appendChild(backdrop); };
+        if (opts.delay) { setTimeout(show, opts.delay); } else { show(); }
+    } else {
+        document.getElementById('content').appendChild(wrap);
+    }
+};
