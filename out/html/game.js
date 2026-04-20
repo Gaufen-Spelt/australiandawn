@@ -1252,7 +1252,7 @@ window.addNewspaper = function(opts) {
         var show = function() { document.body.appendChild(backdrop); };
         if (opts.delay) { setTimeout(show, opts.delay); } else { show(); }
     } else {
-        document.getElementById('below_content').appendChild(wrap);
+        document.getElementById('content').appendChild(wrap);
     }
 };
 
@@ -1505,6 +1505,6 @@ window.addLetter = function(opts) {
         var show = function() { document.body.appendChild(backdrop); };
         if (opts.delay) { setTimeout(show, opts.delay); } else { show(); }
     } else {
-        document.getElementById('below_content').appendChild(wrap);
+        document.getElementById('content').appendChild(wrap);
     }
 };
