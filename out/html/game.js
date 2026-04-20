@@ -220,7 +220,6 @@
     if (window.justLoaded) {
         window.justLoaded = false;
     }
-    document.getElementById('below_content').innerHTML = '';
   };
 
   window.onDisplayContent = function() {
