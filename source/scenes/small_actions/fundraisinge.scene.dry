@@ -23,11 +23,14 @@ Regional Funds: [+ nsw_resources +] <br>
 @leaflets
 subtitle: It's messy work with ink and stencils, but we can produce thousands.
 on-arrival: leaflets += 1000; fundraisinge_d_timer += 1
+go-to: root
 
 @posters
 subtitle: High-visibility "Vote 1" placards. Requires a small layout of cash for the ink. 〔 -1 NSW RESOURCE 〕
 on-arrival: posters += 170; nsw_resources -= 1; fundraisinge_d_timer += 2
-  
+go-to: root
+
 @resource
 subtitle: A dance at the Town Hall. Harder to organize, but the "tin-rattle" is lucrative.
 on-arrival: nsw_resources += 3; fundraisinge_d_timer += 4
+go-to: root
