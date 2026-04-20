@@ -308,6 +308,5 @@ go-to: events_choice if has_event = 1; main.main_easy if has_event = 0 and diffi
 @events_choice
 
 - #event
-- @newspaper
 
 # This scene is solely for updating numbers after events, and routing to special events.
