@@ -1,0 +1,440 @@
+title: Newspaper
+new-page: true
+subtitle: Perhaps, someone's New Year is just as restless?
+on-arrival: {!
+
+// ─────────────────────────────────────────────────────────
+// NEWSPAPER TEMPLATES
+// ─────────────────────────────────────────────────────────
+
+// ── Minimal single story, inline ─────────────────────────
+window.addNewspaper({
+    paperName: 'The Sydney Morning Herald',
+    date: 'Tuesday, 4 January 1949',
+    stories: [
+        {
+            headline: 'Government Faces Budget Crisis',
+            body: 'Ministers met in emergency session yesterday as the treasury deficit mounted beyond expectations.\nSources close to the Premier declined to comment.',
+        }
+    ]
+});
+
+// ── Full masthead, two-column, multiple stories ───────────
+window.addNewspaper({
+    paperName: 'The Australian Worker',
+    motto: '"Labour\'s Voice Since 1891"',
+    date: 'Friday, 7 January 1949',
+    edition: 'Morning Edition',
+    volume: 'Vol. LVIII, No. 3',
+    price: 'Twopence',
+    columns: 2,
+    stories: [
+        {
+            headline: 'Ward Calls for General Strike',
+            subheadline: 'Labor Left Demands Action on Wages',
+            byline: 'By Our Industrial Correspondent',
+            location: 'SYDNEY, Thursday',
+            body: 'Eddie Ward last night issued a call to arms to the labour movement, demanding an immediate general strike in response to the government\'s wage freeze.\nThe announcement drew cheers from the packed gallery at Trades Hall.',
+            pullQuote: 'We shall not be silent while the workers starve.',
+            cols: 2,
+            headlineSize: '1.5em',
+        },
+        {
+            headline: 'Lang Denies Split',
+            subheadline: 'Premier insists party unity holds',
+            byline: 'By Our Political Staff',
+            body: 'Jack Lang moved quickly to deny reports of a factional split within the ALP caucus, calling the claims "mischievous fabrication."',
+        },
+        {
+            headline: 'Steel Workers Vote on Stoppage',
+            body: 'Members of the FIA at the Newcastle steelworks will ballot this week on a proposed 48-hour stoppage.',
+            border: false,
+        }
+    ]
+});
+
+// ── Aged paper, torn edge, urgent stamp ──────────────────
+window.addNewspaper({
+    paperName: 'The Courier',
+    date: '12 January 1949',
+    aged: true,
+    torn: true,
+    columns: 1,
+    maxWidth: '420px',
+    stories: [
+        {
+            headline: 'Crisis at the Docks',
+            subheadline: 'Waterfront dispute enters third week',
+            body: 'Tension at the Sydney waterfront showed no sign of easing as employers refused to reinstate dismissed union delegates.',
+            urgent: true,
+        }
+    ]
+});
+
+// ── Modal, custom masthead colours, image, classified ─────
+window.addNewspaper({
+    paperName: 'CLASSIFIED BULLETIN',
+    motto: 'For Authorised Recipients Only',
+    date: '9 January 1949',
+    mastheadColor: '#1a1a2e',
+    mastheadTextColor: '#a0c4ff',
+    mode: 'modal',
+    columns: 1,
+    maxWidth: '480px',
+    stories: [
+        {
+            headline: 'Operation Resolved: Status Report',
+            byline: 'ASIO Internal Circulation',
+            body: 'The subject was observed meeting with known communist organisers at the Ironworkers Hall on the evening of the 8th.\nSurveillance to continue.',
+            classified: true,
+            borderStyle: 'dashed',
+            img: 'img/surveillance_photo.jpg',
+            imgCaption: 'Subject photographed entering premises, 21:14.',
+        }
+    ],
+    onClose: function() { console.log('Bulletin closed.'); }
+});
+
+// ── Three-column broadsheet ───────────────────────────────
+window.addNewspaper({
+    paperName: 'The Federal Chronicle',
+    motto: '"All the News That\'s Fit to Print"',
+    date: 'Monday, 10 January 1949',
+    edition: 'Late Extra',
+    volume: 'Vol. XXII, No. 7',
+    price: 'Penny',
+    columns: 3,
+    maxWidth: '760px',
+    stories: [
+        {
+            headline: 'Parliament Recalled Early',
+            body: 'The Governor-General has agreed to an emergency recall of parliament at the request of the Prime Minister.',
+            cols: 2,
+        },
+        {
+            headline: 'Markets Fall Sharply',
+            body: 'The Sydney exchange closed down 4.2 points amid uncertainty over industrial action.',
+        },
+        {
+            headline: 'Union Leaders Summoned',
+            body: 'Senior officials of the ACTU have been summoned to meet with the Minister for Labour tomorrow morning.',
+            pullQuote: 'The time for half-measures is over.',
+        },
+        {
+            headline: 'Weather: Storms Expected',
+            body: 'The Bureau of Meteorology warns of heavy rain and strong winds for coastal districts.',
+            border: false,
+        }
+    ]
+});
+
+
+// ─────────────────────────────────────────────────────────
+// LETTER TEMPLATES
+// ─────────────────────────────────────────────────────────
+
+// ── Minimal typed letter ──────────────────────────────────
+window.addLetter({
+    date: '4 January 1949',
+    greeting: 'Dear Mr Ward,',
+    paragraphs: [
+        'I write to you in confidence regarding the matter we discussed at the conference last week.',
+        'The situation has deteriorated more rapidly than either of us anticipated. I urge you to act.'
+    ],
+    closing: 'Yours faithfully,',
+    signature: 'J. Lang',
+});
+
+// ── Full typed letter, all header fields ─────────────────
+window.addLetter({
+    style: 'typed',
+    senderName: 'Jack Lang',
+    senderTitle: 'Premier of New South Wales',
+    senderAddress: 'Premier\'s Office\nMacquarie Street\nSydney, N.S.W.',
+    recipientName: 'Mr E. J. Ward, M.P.',
+    recipientTitle: 'Minister for External Territories',
+    date: '6 January 1949',
+    location: 'Sydney',
+    reference: 'Motion 44-B / Industrial Relations',
+    subject: 'Proposed General Strike — Confidential',
+    greeting: 'Dear Eddie,',
+    paragraphs: [
+        'Following our telephone conversation of the 4th, I am writing to confirm the position of this office regarding the proposed industrial action.',
+        'It is my considered view that a general strike at this juncture would be premature. The parliamentary numbers are not yet with us, and the press will use any disruption to paint the movement as irresponsible.',
+        'I ask that you hold your position for no more than three weeks. By that time the budget situation will have made our case for us.'
+    ],
+    closing: 'Yours sincerely,',
+    signature: 'Jack Lang',
+    postscript: 'Burn this after reading.',
+    enclosures: 'Enc: Draft motion text (2 pp.)',
+});
+
+// ── Handwritten style, aged, with seal and margin note ───
+window.addLetter({
+    style: 'handwritten',
+    aged: true,
+    senderName: 'E. Ward',
+    date: '8 January 1949',
+    location: 'Trades Hall, Sydney',
+    greeting: 'Jack —',
+    paragraphs: [
+        'Three weeks is too long. The men are ready now and they won\'t stay ready forever.',
+        'Come to Trades Hall Thursday evening. Bring Calwell if you must, but come.',
+    ],
+    closing: 'Ed',
+    signature: 'Eddie Ward',
+    seal: 'EW',
+    sealColor: '#8B0000',
+    marginNote: 'hand-delivered — no copies',
+    paperColor: '#ddd5b0',
+    inkColor: '#1a0a00',
+});
+
+// ── Classified, redacted, modal ───────────────────────────
+window.addLetter({
+    style: 'typed',
+    classified: true,
+    mode: 'modal',
+    watermark: 'TOP SECRET',
+    senderName: 'Director, ASIO',
+    date: '10 January 1949',
+    recipientName: 'The Attorney-General',
+    subject: 'Subject: WARD, Edward John',
+    greeting: 'Sir,',
+    paragraphs: [
+        'Surveillance conducted between 4–9 January has produced the following findings.',
+        'The subject met on three occasions with individuals known to this office as members of the Communist Party of Australia.',
+        'The precise nature of these discussions remains unknown. Transcription of the intercepted call of the 8th is attached under separate cover.',
+        'It is recommended that telephone monitoring continue and that the subject\'s travel documents be flagged for review.'
+    ],
+    redacted: true,
+    closing: 'I have the honour to be, Sir, your obedient servant,',
+    signature: '[ Signature Withheld ]',
+    enclosures: 'Enc: Surveillance log (14 pp.) — Eyes Only',
+    onClose: function() { console.log('Letter dismissed.'); }
+});
+
+// ── Urgent, with signature image, enclosures ─────────────
+window.addLetter({
+    style: 'typed',
+    urgent: true,
+    senderName: 'A. A. Calwell',
+    senderTitle: 'Minister for Immigration',
+    date: '11 January 1949',
+    location: 'Canberra',
+    recipientName: 'Mr J. B. Chifley',
+    greeting: 'Dear Ben,',
+    paragraphs: [
+        'The situation in the caucus has reached a point where I can no longer remain silent.',
+        'Ward\'s faction is moving faster than we anticipated. If we do not act before Friday\'s meeting the balance will shift permanently against us.',
+        'I recommend immediate consultation with the factions listed in the attached schedule.'
+    ],
+    closing: 'Yours,',
+    signatureImg: 'img/signatures/calwell.png',
+    postscript: 'I will telephone at 09:00 tomorrow.',
+    enclosures: 'Enc: Caucus faction schedule',
+    borderColor: '#8B0000',
+});
+
+// ── Handwritten, all opts combined ───────────────────────
+window.addLetter({
+    style: 'handwritten',
+    aged: true,
+    mode: 'modal',
+    paperColor: '#e0d5b0',
+    inkColor: '#0a0a2a',
+    senderName: 'Unknown',
+    date: 'undated',
+    greeting: 'To whoever finds this —',
+    paragraphs: [
+        'The names in the file are real. All of them.',
+        'Do not trust the man who gave you this letter.',
+    ],
+    redacted: true,
+    watermark: 'VOID',
+    seal: '?',
+    sealColor: '#333',
+    marginNote: 'found in desk drawer',
+    closing: '',
+    signature: '— ',
+    postscript: 'They already know you have read this.',
+    maxWidth: '460px',
+    delay: 500,
+});
+
+
+// ── CORE ─────────────────────────────────────────────────
+
+// Basic left (portrait auto-looked up as img/eddie.jpg, falls back to initials)
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Standard left bubble.'});
+
+// Basic right
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Standard right bubble.'});
+
+// Center — no portrait, italic narrator bar
+window.addDialogue({side:'center', text:'The room falls silent.'});
+
+// Aside — no portrait, left-aligned stage direction
+window.addDialogue({side:'aside', text:'A telephone sits on the desk.'});
+
+// Explicit portrait path override
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Using an explicit image path.', img:'img/custom/eddie_alt.jpg'});
+
+
+// ── TIMING ───────────────────────────────────────────────
+
+// Long pause after (2.5s) — dramatic beat
+window.addDialogue({side:'center', text:'Something is about to happen.', delay:2500});
+
+// Fast snap — quick follow-up
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'What?', delay:300});
+
+// Slow fade-in reveal (1.4s transition)
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'You heard me.', duration:1400});
+
+// Both: slow in, long pause before next
+window.addDialogue({side:'center', text:'Neither man spoke.', duration:1000, delay:2200});
+
+
+// ── BUBBLE STYLE ─────────────────────────────────────────
+
+// Custom border colour
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Something feels wrong.', borderColor:'#8B0000'});
+
+// Dashed border
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Uncertain ground.', borderStyle:'dashed'});
+
+// Custom bubble background
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Emergency channel.', bubbleColor:'#1a1a2e'});
+
+// Custom text colour
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Read between the lines.', textColor:'#c40000'});
+
+// Custom name label colour
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'My name in red.', nameColor:'#c40000'});
+
+// Semi-transparent bubble
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Fading authority.', bubbleOpacity:0.5});
+
+// Narrow bubble
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Tight.', maxWidth:'40%'});
+
+// Larger font
+window.addDialogue({side:'center', text:'A DECLARATION.', fontSize:'1.15em'});
+
+// Italic bubble text
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'He thought to himself...', italic:true});
+
+// Strikethrough — retracted statement
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'I never said that.', strikethrough:true});
+
+
+// ── PORTRAIT STYLE ───────────────────────────────────────
+
+// Glow ring around portrait
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Under pressure.', portraitGlow:'#c40000'});
+
+// Grayscale portrait — memory, death, absence
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'A ghost of the past.', filter:'grayscale(1)'});
+
+// Sepia portrait
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'From the archives.', filter:'sepia(0.8)'});
+
+// Portrait suppressed — voice only
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'A voice on the wire.', hidePortrait:true});
+
+
+// ── SPECIAL CONTENT ──────────────────────────────────────
+
+// Icon prepended to text
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'The line is secure.', icon:'📞'});
+
+// Timestamp label
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Are you there?', timestamp:'22:14'});
+
+// Timestamp on left
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Barely.', timestamp:'22:14'});
+
+// Redacted — click entry to reveal
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The operative is Brennan.', redacted:true});
+
+// Redacted aside
+window.addDialogue({side:'aside', text:'The name in the file has been crossed out.', redacted:true});
+
+
+// ── ANIMATIONS ───────────────────────────────────────────
+
+// Shake — alarm, anger, impact
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'That is unacceptable!', shake:true});
+
+// Pulse glow on bubble — tension, urgency
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Listen carefully.', pulse:true});
+
+// Slide from top
+window.addDialogue({side:'center', text:'A message drops from above.', slideFrom:'top'});
+
+// Slide from bottom
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Rising from the floor.', slideFrom:'bottom'});
+
+// Slide from left
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Entering from the side.', slideFrom:'left'});
+
+// Slide from right
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Other side.', slideFrom:'right'});
+
+// FadeOut — self-removing after 3s
+window.addDialogue({side:'aside', text:'[Signal lost]', fadeOut:3000});
+
+// Spotlight — dims all prior entries
+window.addDialogue({side:'center', text:'One moment. One choice.', spotlight:true, delay:2000});
+
+
+// ── MISC ─────────────────────────────────────────────────
+
+// sfx — sets quality 'phone_ring' to 1 on appear (wire up in game scenes)
+window.addDialogue({side:'aside', text:'The phone rings.', sfx:'phone_ring'});
+
+// extraClass — attach custom CSS class for bespoke styling
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'Something classified.', extraClass:'urgent'});
+
+
+// ── COMBINATIONS ─────────────────────────────────────────
+
+// Tense incoming call: slow reveal, glow, timestamp, pulse
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'We need to move tonight.', duration:1100, portraitGlow:'#c40000', pulse:true, timestamp:'23:58', delay:2000});
+
+// Shocked reaction: shake, red border, fast in
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Tonight?!', shake:true, borderColor:'#8B0000', duration:150, delay:1800});
+
+// Redacted threat with glow
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The target is already inside.', redacted:true, portraitGlow:'#8B0000', borderColor:'#8B0000'});
+
+// Narrator aside fading out — scene transition
+window.addDialogue({side:'aside', text:'The conversation ended there. Or so he believed.', italic:true, fadeOut:4000, delay:4500});
+
+// Final spotlight center — chapter close
+window.addDialogue({side:'center', text:'January, 1949.', spotlight:true, fontSize:'1.1em', duration:1200, delay:3000});
+
+// aside — no portrait, stage-direction feel
+window.addDialogue({side:'aside', text:'The phone rings twice.'});
+
+// redacted — click to reveal
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'The plan is ready.', redacted:true});
+
+// dramatic slow reveal with glow
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'God help us.', duration:1200, pulse:true, portraitGlow:'#c40000'});
+
+// spotlight — dims everything prior
+window.addDialogue({side:'center', text:'A decision must be made.', spotlight:true, delay:2000});
+
+// self-removing message
+window.addDialogue({side:'aside', text:'[Line disconnected]', fadeOut:3000, italic:true});
+window.addDialogue({side:'center', text:'My mind is nothing but restless. My world is nothing but hell. There shall be no day further where bankers and rich fags would be living further in their comfort. Or so I thought. I have no one but my people. They are sitting in bar, talking about their hardships. Perhaps... Call?'});
+window.addDialogue({id:'eddie', name:'Eddie Ward', side:'left', text:'Who would be it?...'});
+window.addDialogue({side:'center', text:'As Eddie reaches out to the phone, he hears the voice of...'});
+window.addDialogue({id:'lang', name:'Jack Lang', side:'right', text:'My lords, who could it be in the days of the cold and spiteful January if not Premier himself?... If only I was. Welcome, Ed...'});
+!}
+
+= Dialogue sus boys
+
+- @post_event: Back
