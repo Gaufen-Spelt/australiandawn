@@ -3,58 +3,16 @@ tags: nsw_action
 is-card: true
 new-page: true
 view-if: ideologynsw_d_timer <= 0
-on-display: {!
-Q.day_actions += 1; 
+on-arrival: {!
+Q.day_actions += 1;
 Q.ideologynsw_d_timer = 4;
-  const figures = [
-    {
-      src: 'img/eddie.jpg',
-      text: 'Our most comfortable position is held by the leader of local chapters of NSW - Edward John Ward, staunch street socialist - firebrand, who is very keen on the tactics of grassroots and strikes to intimidate the states, governments and thus - rich oligarchy. The most uncompromissive of all bunch.',
-      imgLeft: true
-    },
-    {
-      src: 'img/evatt.jpg',
-      text: 'Evatt is our socialist oriented, but more intellectual ally. He usually sides with centrists of the ALP over Firebrand socialists.',
-      imgLeft: false
-    },
-    {
-      src: 'img/ben.jpg',
-      text: 'Joseph Cahill, our pragmatist unionist of New South Wales, is more keen on liberal workerist stance.',
-      imgLeft: true
-    },
-    {
-      src: 'img/jackkane2.jpg',
-      text: 'Jack Thomas Kane is members of Industrial Groups / Groupers, shock troop and effective units against Communist Influence.',
-      imgLeft: false
-    }
-  ];
 
-  const wrap = document.createElement('div');
-
-  figures.forEach(figure => {
-    const container = document.createElement('div');
-    container.style.cssText = 'display:flex; align-items:center; gap:16px; margin:12px 0;';
-
-    const img = document.createElement('img');
-    img.src = figure.src;
-    img.style.cssText = 'width:110px; height:140px; object-fit:cover; flex-shrink:0; border:2px solid #8b0000;';
-
-    const text = document.createElement('p');
-    text.style.cssText = 'margin:0; flex:1;';
-    text.textContent = figure.text;
-
-    if (figure.imgLeft) {
-      container.appendChild(img);
-      container.appendChild(text);
-    } else {
-      container.appendChild(text);
-      container.appendChild(img);
-    }
-
-    wrap.appendChild(container);
-  });
-
-  document.getElementById('content').appendChild(wrap);
+window._ideologyFigures = [
+  { src:'img/eddie.jpg',    text:'Our most comfortable position...', imgLeft:true  },
+  { src:'img/evatt.jpg',    text:'Evatt is our socialist...',        imgLeft:false },
+  { src:'img/ben.jpg',      text:'Joseph Cahill, our pragmatist...', imgLeft:true  },
+  { src:'img/jackkane2.jpg',text:'Jack Thomas Kane is members...',   imgLeft:false },
+];
 !}
 
 = Ideological Stance of the NSW
