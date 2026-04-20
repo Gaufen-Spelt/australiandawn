@@ -3,6 +3,10 @@ tags: nsw_action
 is-card: true
 new-page: true
 view-if: debating_d_timer <= 0
-on-arrival: day_actions += 1; debating_d_timer = 2
+on-arrival: day_actions += 1; debating_d_timer = 4
 
-= Debater, oh yeah
+= Debating
+
+Debating, with our colleagues or our enemies, serves the purpose of creating the image of us as respectable force with visible agenda and spreading our views around the streets.
+
+What will we do?
