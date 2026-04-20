@@ -225,7 +225,27 @@
   window.onDisplayContent = function() {
     window.updateSidebar();
     window._dialogueRestore();
-  };
+
+    if (window._ideologyFigures) {
+        var figures = window._ideologyFigures;
+        window._ideologyFigures = null;
+        var wrap = document.createElement('div');
+        figures.forEach(function(f) {
+            var row = document.createElement('div');
+            row.style.cssText = 'display:flex;align-items:center;gap:16px;margin:12px 0;';
+            var img = document.createElement('img');
+            img.src = f.src;
+            img.style.cssText = 'width:110px;height:140px;object-fit:cover;flex-shrink:0;border:2px solid #8b0000;';
+            var p = document.createElement('p');
+            p.style.cssText = 'margin:0;flex:1;';
+            p.textContent = f.text;
+            if (f.imgLeft) { row.appendChild(img); row.appendChild(p); }
+            else           { row.appendChild(p);   row.appendChild(img); }
+            wrap.appendChild(row);
+        });
+        document.getElementById('content').appendChild(wrap);
+    }
+};
 
   window.generateBar = function(quality, qualityName, max, min, colors) {
       var bar = document.createElement('div');
