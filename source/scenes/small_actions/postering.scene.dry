@@ -5,4 +5,8 @@ new-page: true
 view-if: postering_d_timer <= 0
 on-arrival: day_actions += 1; postering_d_timer = 2
 
-= Postering, oh yeah
+= Postering
+
+Postering serves the purpose of passive spread of our agenda, views, events, informations and all arounder easy way of informing.
+
+What should we inform of?
