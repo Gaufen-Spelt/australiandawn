@@ -68,32 +68,34 @@ go-to: eg_menu if started == 1; root.start_menu_2 if started == 0
 = Completed Achievements in this Playthrough
 
 
-[? if game_achievement_eiserne_front:
+[? if game_achievement_balmain:
 {!<div style="border-left: 4px solid var(--rule-color); background-color: var(--card-bg-color); padding: 8px; margin: 4px 0;">!}
   {!<span style="display: inline-block; width: 12px; height: 12px; background-color: var(--link-color); margin-right: 8px;"></span>!}
-  <strong>Eiserne Front</strong> — form the <span style="color: var(--link-color); font-weight: bold;">Iron</span> <span style="font-weight: bold;">Front</span>.
+  <strong>Balmain's Second Strike</strong> — Trotskyist of Balmain must win the FIA case and enter the ALP.
 {!</div>!}
 ?]
 
 = Completed Achievements Overall
 
 
-[? if achievement_eiserne_front:
+[? if achievement_balmain:
 {!<div style="border-left: 4px solid var(--rule-color); background-color: var(--card-bg-color); padding: 8px; margin: 4px 0;">!}
   {!<span style="display: inline-block; width: 12px; height: 12px; background-color: var(--link-color); margin-right: 8px;"></span>!}
-  <strong>Eiserne Front</strong> — form the <span style="color: var(--link-color); font-weight: bold;">Iron</span> <span style="font-weight: bold;">Front</span>.
+  <strong>Balmain's Second Strike</strong> — Trotskyist of Balmain must win the FIA case and enter the ALP.
 {!</div>!}
 ?]
+
 
 
 = Incomplete Achievements
 
-[? if not achievement_eiserne_front:
+[? if not achievement_balmain:
 {!<div style="border-left: 4px solid var(--rule-color); background-color: var(--card-bg-color); padding: 8px; margin: 4px 0;">!}
   {!<span style="display: inline-block; width: 12px; height: 12px; background-color: var(--link-color); margin-right: 8px;"></span>!}
-  <strong>Eiserne Front</strong> — form the <span style="color: var(--link-color); font-weight: bold;">Iron</span> <span style="font-weight: bold;">Front</span>.
+  <strong>Balmain's Second Strike</strong> — Trotskyist of Balmain must win the FIA case and enter the ALP.
 {!</div>!}
 ?]
+
 
 @end_game
 game-over: true
