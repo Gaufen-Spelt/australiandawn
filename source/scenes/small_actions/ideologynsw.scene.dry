@@ -7,12 +7,6 @@ on-arrival: {!
 Q.day_actions += 1;
 Q.ideologynsw_d_timer = 4;
 
-window._ideologyFigures = [
-  { src:'img/eddie.jpg',    text:'Our most comfortable position is held by the leader of local chapters of NSW - Edward John Ward, staunch street socialist - firebrand, who is very keen on the tactics of grassroots and strikes to intimidate the states, governments and thus - rich oligarchy. The most uncompromissive of all bunch.',   imgLeft:true  },
-  { src:'img/evatt.jpg',    text:'Evatt is our socialist oriented, but more intellectual ally. He usually sides with centrists of the ALP over Firebrand socialists, however we still keep good relations due to common goal.',    imgLeft:false },
-  { src:'img/cahill.jpg',      text:'Joseph Cahill, our pragmatist unionist of New South Wales, is more keen on liberal laborite stance, essentially serving as Right Wing NSW Machine ALP Fractions boss.',    imgLeft:true  },
-  { src:'img/jackkane2.jpg',    text:'Jack Thomas Kane is members of Industrial Groups / Groupers, shock troop and effective units against Communist Influence. Adopting his catholic based laborism is not present as possible and rational option given how much is it unrelevant to our major blue collar base.',   imgLeft:false },
-];
 !}
 
 = Ideological Stance of the NSW
